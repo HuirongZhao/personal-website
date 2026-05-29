@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>铝行业研究笔记</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f9f9f8;color:#1a1a1a;padding:2rem 1rem;}
+.pg{max-width:980px;margin:0 auto;}
+.bc{font-size:13px;color:#888;margin-bottom:1.5rem;display:flex;align-items:center;gap:6px;}
+.ptitle{font-size:22px;font-weight:500;margin-bottom:6px;}
+.pmeta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:2rem;}
+.tag{font-size:12px;padding:3px 10px;border-radius:99px;border:0.5px solid #ccc;color:#555;}
+.tb{background:#E6F1FB;color:#0C447C;border-color:#85B7EB;}
+.tt{background:#E1F5EE;color:#085041;border-color:#5DCAA5;}
+.sec{margin-bottom:2rem;}
+.stitle{font-size:16px;font-weight:500;margin-bottom:1rem;padding-bottom:8px;border-bottom:0.5px solid #e5e5e5;display:flex;align-items:center;gap:8px;}
+.hint{font-size:12px;font-weight:400;color:#aaa;margin-left:4px;}
+.chain{display:flex;align-items:stretch;overflow:hidden;border-radius:8px;border:0.5px solid #e0e0e0;}
+.cn{flex:1;padding:10px 6px;text-align:center;border-right:0.5px solid #e0e0e0;cursor:pointer;transition:filter .15s;}
+.cn:last-child{border-right:none;}
+.cn:hover{filter:brightness(.95);}
+.cn.on{outline:2px solid #378ADD;outline-offset:-2px;z-index:1;}
+.nl{font-size:12px;font-weight:500;margin-bottom:3px;}
+.ns{font-size:11px;color:#666;line-height:1.4;}
+.nh{font-size:10px;color:#185FA5;margin-top:4px;}
+.na{display:flex;align-items:center;justify-content:center;padding:0 3px;background:#f5f5f3;border-right:0.5px solid #e0e0e0;color:#bbb;font-size:12px;}
+.up{background:#E6F1FB;}.mid{background:#FAEEDA;}.dn{background:#E1F5EE;}
+.pop{display:none;margin-top:8px;background:#fff;border:0.5px solid #ccc;border-radius:12px;padding:1rem 1.25rem;position:relative;}
+.pop.on{display:block;}
+.pc{position:absolute;top:10px;right:12px;cursor:pointer;color:#aaa;font-size:18px;line-height:1;background:none;border:none;}
+.pc:hover{color:#333;}
+.pt{font-size:14px;font-weight:500;margin-bottom:8px;}
+.pr{display:flex;gap:8px;margin-bottom:6px;font-size:13px;}
+.pr:last-child{margin-bottom:0;}
+.pk{color:#aaa;width:90px;flex-shrink:0;}
+.pv{color:#1a1a1a;}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.cc{background:#f5f5f3;border-radius:8px;padding:12px 14px;cursor:pointer;border:0.5px solid transparent;transition:border-color .15s;}
+.cc:hover{border-color:#ccc;}
+.cc.on{border-color:#378ADD;}
+.cl{font-size:12px;color:#666;margin-bottom:4px;}
+.cv{font-size:18px;font-weight:500;}
+.cs{font-size:11px;color:#aaa;margin-top:2px;}
+.ch{font-size:10px;color:#185FA5;margin-top:4px;}
+.calc{background:#fff;border:0.5px solid #ccc;border-radius:12px;padding:1rem 1.25rem;}
+.cr{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.crd{border-top:0.5px solid #e5e5e5;padding-top:14px;margin-bottom:0;}
+.ck{font-size:13px;color:#666;width:80px;flex-shrink:0;}
+.cres{font-size:22px;font-weight:500;color:#0C447C;}
+.cu{font-size:13px;color:#666;}
+input[type=range]{flex:1;accent-color:#378ADD;}
+.ref{margin-top:12px;padding:10px 14px;background:#f5f5f3;border-left:2px solid #85B7EB;}
+.rt{font-size:12px;font-weight:500;color:#555;margin-bottom:6px;}
+.ri{font-size:12px;color:#555;line-height:1.6;display:flex;gap:6px;margin-bottom:4px;}
+.rn{color:#185FA5;flex-shrink:0;}
+.rl{color:#185FA5;text-decoration:none;font-size:11px;}
+.rl:hover{text-decoration:underline;}
+.sb{display:inline-block;font-size:11px;padding:1px 6px;background:#E6F1FB;color:#0C447C;border-radius:3px;margin-left:4px;font-family:monospace;}
+.cogrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cocard{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:1rem 1.25rem;cursor:pointer;transition:border-color .15s;}
+.cocard:hover{border-color:#ccc;}
+.cocard.on{border-color:#378ADD;}
+.cob{font-size:11px;font-weight:500;padding:3px 8px;border-radius:4px;}
+.bh{background:#E6F1FB;color:#0C447C;}
+.ba{background:#EAF3DE;color:#27500A;}
+.con{font-size:14px;font-weight:500;margin-top:2px;}
+.cot{font-size:12px;color:#aaa;}
+.cof{font-size:12px;color:#666;margin:8px 0;line-height:1.6;}
+.lt{font-size:11px;padding:2px 8px;border-radius:4px;display:inline-block;}
+.lu{background:#E6F1FB;color:#185FA5;}
+.lm{background:#FAEEDA;color:#854F0B;}
+.ld2t{background:#E1F5EE;color:#0F6E56;}
+.coh{font-size:11px;color:#185FA5;margin-top:8px;}
+.ovg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;background:#f5f5f3;border-radius:8px;padding:12px 14px;}
+.on2{font-size:12px;font-weight:500;margin-bottom:3px;}
+.od{font-size:11px;color:#666;line-height:1.5;}
+.plist{display:flex;flex-direction:column;gap:8px;}
+.prow{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:8px;border:0.5px solid;cursor:pointer;transition:opacity .15s;}
+.prow:hover{opacity:.88;}
+.prow.on{outline:2px solid #378ADD;outline-offset:1px;}
+.pi{font-size:16px;width:24px;flex-shrink:0;margin-top:1px;}
+.ptt{font-size:13px;font-weight:500;margin-bottom:3px;}
+.pd{font-size:12px;color:#555;line-height:1.5;}
+.ph{font-size:11px;color:#185FA5;margin-top:4px;}
+.phigh{background:#E1F5EE;border-color:#5DCAA5;}
+.plow{background:#FCEBEB;border-color:#F09595;}
+.lgl{border-left:2px solid #ddd;padding-left:1rem;}
+.li{padding-bottom:14px;position:relative;}
+.li:last-child{padding-bottom:0;}
+.ld2{width:8px;height:8px;border-radius:50%;background:#bbb;position:absolute;left:-21px;top:4px;}
+.ld2.nw{background:#1D9E75;}
+.ldt{font-size:11px;color:#aaa;margin-bottom:2px;}
+.ltx{font-size:13px;color:#666;}
+.legend{display:flex;gap:12px;margin-top:8px;font-size:11px;margin-bottom:8px;}
+.lswatch{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="pg">
+<div class="bc">学习与探索 › 行业研究 › 铝行业</div>
+<div class="ptitle">铝行业研究笔记</div>
+<div class="pmeta">
+  <span class="tag tb">产业链分析</span>
+  <span class="tag tt">成本模型</span>
+  <span class="tag">SIG布局</span>
+  <span style="font-size:12px;color:#aaa;">🕐 持续更新中 · 2025.05</span>
+</div>
+
+<div class="sec">
+  <div class="stitle">产业链全貌<span class="hint">点击节点查看详情</span></div>
+  <div class="chain">
+    <div class="cn up" onclick="tog('c0',this,'cn')"><div class="nl">铝土矿</div><div class="ns">资源储备<br>矿石品位</div><div class="nh">点击展开 ↓</div></div>
+    <div class="na">›</div>
+    <div class="cn up" onclick="tog('c1',this,'cn')"><div class="nl">氧化铝</div><div class="ns">拜耳法<br>烧碱+能源</div><div class="nh">点击展开 ↓</div></div>
+    <div class="na">›</div>
+    <div class="cn mid" onclick="tog('c2',this,'cn')"><div class="nl">电解铝</div><div class="ns">高耗电<br>~13,500 kWh/吨</div><div class="nh">点击展开 ↓</div></div>
+    <div class="na">›</div>
+    <div class="cn dn" onclick="tog('c3',this,'cn')"><div class="nl">铝合金加工</div><div class="ns">型材/板带箔<br>棒材/结构件</div><div class="nh">点击展开 ↓</div></div>
+    <div class="na">›</div>
+    <div class="cn dn" onclick="tog('c4',this,'cn')"><div class="nl">下游应用</div><div class="ns">汽车/3C<br>新能源/电力</div><div class="nh">点击展开 ↓</div></div>
+  </div>
+  <div class="legend">
+    <span style="display:flex;align-items:center;gap:4px;color:#aaa"><span class="lswatch" style="background:#E6F1FB;border:0.5px solid #85B7EB;"></span>上游</span>
+    <span style="display:flex;align-items:center;gap:4px;color:#aaa"><span class="lswatch" style="background:#FAEEDA;border:0.5px solid #EF9F27;"></span>中游</span>
+    <span style="display:flex;align-items:center;gap:4px;color:#aaa"><span class="lswatch" style="background:#E1F5EE;border:0.5px solid #5DCAA5;"></span>下游</span>
+  </div>
+  <div id="c0" class="pop"><button class="pc" onclick="close2('c0','cn')">×</button><div class="pt">铝土矿</div><div class="pr"><span class="pk">核心角色</span><span class="pv">铝的原始来源，所有铝产品的起点</span></div><div class="pr"><span class="pk">主要产地</span><span class="pv">几内亚、澳大利亚、中国（山西/广西）、牙买加</span></div><div class="pr"><span class="pk">品位指标</span><span class="pv">铝硅比（A/S比）越高越好，决定氧化铝回收率</span></div><div class="pr"><span class="pk">经营重点</span><span class="pv">资源储量、采购成本、运输距离与海运成本</span></div></div>
+  <div id="c1" class="pop"><button class="pc" onclick="close2('c1','cn')">×</button><div class="pt">氧化铝（Al₂O₃）</div><div class="pr"><span class="pk">生产工艺</span><span class="pv">拜耳法：铝土矿 + 高压碱液溶出 → 过滤 → 分解 → 煅烧</span></div><div class="pr"><span class="pk">主要成本</span><span class="pv">铝土矿价格、烧碱、能源（煤/天然气）、运输</span></div><div class="pr"><span class="pk">用量比例</span><span class="pv">生产 1 吨电解铝需消耗氧化铝约 1.93–1.98 吨</span></div><div class="pr"><span class="pk">经营重点</span><span class="pv">一体化布局可降低外部采购波动；氧化铝影响吨铝成本约 40%</span></div></div>
+  <div id="c2" class="pop"><button class="pc" onclick="close2('c2','cn')">×</button><div class="pt">电解铝（原铝）</div><div class="pr"><span class="pk">生产工艺</span><span class="pv">霍尔-埃鲁法：氧化铝在熔融冰晶石中电解还原为铝液，阳极碳消耗并产生 CO₂</span></div><div class="pr"><span class="pk">耗电强度</span><span class="pv">~13,500 kWh/吨（行业均值）；先进产线可达 ≤12,650 kWh/吨（国标优等级）</span></div><div class="pr"><span class="pk">主要成本</span><span class="pv">电力（~35%）、氧化铝（~40%）、预焙阳极（~10%）</span></div><div class="pr"><span class="pk">经营重点</span><span class="pv">低成本电力是核心护城河；产能利用率直接影响固定成本摊销</span></div></div>
+  <div id="c3" class="pop"><button class="pc" onclick="close2('c3','cn')">×</button><div class="pt">铝合金加工</div><div class="pr"><span class="pk">主要产品</span><span class="pv">铝棒、型材、板带箔、铝杆、结构件、锻件</span></div><div class="pr"><span class="pk">利润逻辑</span><span class="pv">普通加工看加工费；高端产品看技术壁垒和客户认证</span></div><div class="pr"><span class="pk">客户认证</span><span class="pv">汽车/3C 客户认证周期通常 1–3 年，进入后客户粘性强</span></div><div class="pr"><span class="pk">关键指标</span><span class="pv">加工费水平、良率、高端产品占比、客户集中度</span></div></div>
+  <div id="c4" class="pop"><button class="pc" onclick="close2('c4','cn')">×</button><div class="pt">下游应用领域</div><div class="pr"><span class="pk">汽车轻量化</span><span class="pv">防撞梁、电池包型材、门槛梁；新能源车铝用量高于燃油车</span></div><div class="pr"><span class="pk">3C 电子</span><span class="pv">手机中框、笔记本外壳、散热结构件；表面处理要求高</span></div><div class="pr"><span class="pk">电力/新能源</span><span class="pv">铝导线、光伏支架、储能结构件</span></div><div class="pr"><span class="pk">趋势判断</span><span class="pv">汽车+新能源增量更确定；建筑需求相对承压</span></div></div>
+
+  <div style="margin-top:10px;">
+    <button onclick="toggleCoffee()" id="coffee-btn" style="display:flex;align-items:center;gap:6px;background:none;border:0.5px solid #e0e0e0;border-radius:8px;padding:8px 14px;font-size:12px;color:#666;cursor:pointer;width:100%;">
+      <span style="font-size:14px;">☕</span>
+      <span>换个方式理解：把产业链想象成做一杯咖啡</span>
+      <span id="coffee-arrow" style="margin-left:auto;color:#aaa;transition:transform .2s;">↓</span>
+    </button>
+    <div id="coffee-panel" style="display:none;margin-top:8px;background:#fffdf7;border:0.5px solid #e8e0cc;border-radius:12px;padding:1.25rem;">
+      <table style="width:100%;border-collapse:collapse;margin-bottom:1rem;">
+        <thead>
+          <tr>
+            <th style="font-size:12px;font-weight:500;color:#aaa;text-align:left;padding:0 0 8px 0;border-bottom:0.5px solid #e8e0cc;width:50%;">咖啡</th>
+            <th style="font-size:12px;font-weight:500;color:#aaa;text-align:left;padding:0 0 8px 12px;border-bottom:0.5px solid #e8e0cc;">铝产业链</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="font-size:13px;color:#555;padding:9px 0;border-bottom:0.5px solid #f0e8d8;">咖啡豆（原材料）</td><td style="font-size:13px;color:#1a1a1a;padding:9px 0 9px 12px;border-bottom:0.5px solid #f0e8d8;">铝土矿</td></tr>
+          <tr><td style="font-size:13px;color:#555;padding:9px 0;border-bottom:0.5px solid #f0e8d8;">烘焙咖啡豆</td><td style="font-size:13px;color:#1a1a1a;padding:9px 0 9px 12px;border-bottom:0.5px solid #f0e8d8;">提炼氧化铝</td></tr>
+          <tr><td style="font-size:13px;color:#555;padding:9px 0;border-bottom:0.5px solid #f0e8d8;">用咖啡机萃取咖啡液</td><td style="font-size:13px;color:#1a1a1a;padding:9px 0 9px 12px;border-bottom:0.5px solid #f0e8d8;">电解铝</td></tr>
+          <tr><td style="font-size:13px;color:#555;padding:9px 0;border-bottom:0.5px solid #f0e8d8;">加奶、调味、拉花</td><td style="font-size:13px;color:#1a1a1a;padding:9px 0 9px 12px;border-bottom:0.5px solid #f0e8d8;">铝合金加工</td></tr>
+          <tr><td style="font-size:13px;color:#555;padding:9px 0;">卖给星巴克/精品咖啡店</td><td style="font-size:13px;color:#1a1a1a;padding:9px 0 9px 12px;">卖给汽车厂/手机厂</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:13px;color:#666;line-height:1.8;padding-top:10px;border-top:0.5px solid #e8e0cc;">
+        咖啡豆不能直接喝，要先烘焙；烘焙后还不能喝，要萃取；萃取出来是浓缩液，还要根据客户喜好调配。<br>铝也一样——矿石不能用，要提纯；提纯后还不是金属，要电解；电解出来是纯铝，还要合金化才能做成零件。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stitle">电解铝成本结构<span class="hint">点击卡片查看拆解</span></div>
+  <div class="cgrid">
+    <div class="cc" onclick="tog('k0',this,'cc')"><div class="cl">氧化铝（原料）</div><div class="cv">~40%</div><div class="cs">1.93–1.98 吨/吨铝</div><div class="ch">点击展开 ↓</div></div>
+    <div class="cc" onclick="tog('k1',this,'cc')"><div class="cl">电力成本</div><div class="cv">~35%</div><div class="cs">13,500 kWh/吨铝</div><div class="ch">点击展开 ↓</div></div>
+    <div class="cc" onclick="tog('k2',this,'cc')"><div class="cl">阳极炭素</div><div class="cv">~10%</div><div class="cs">0.45–0.5 吨/吨铝</div><div class="ch">点击展开 ↓</div></div>
+  </div>
+  <div id="k0" class="pop" style="margin-top:0;margin-bottom:14px;"><button class="pc" onclick="close2('k0','cc')">×</button><div class="pt">氧化铝成本拆解</div><div class="pr"><span class="pk">占比逻辑</span><span class="pv">每吨铝消耗氧化铝 1.93–1.98 吨，价格波动直接传导吨铝成本</span></div><div class="pr"><span class="pk">风险点</span><span class="pv">外购企业受市场价格波动大；一体化企业（创新实业）可有效对冲</span></div><div class="pr"><span class="pk">敏感性</span><span class="pv">氧化铝价格上涨 100 元/吨 → 吨铝成本约增加 195–198 元</span></div><div style="margin-top:10px;padding-top:10px;border-top:0.5px solid #e5e5e5;font-size:11px;color:#aaa;">数据来源：氧化铝单耗应低于 1,920 kg/吨铝（理论值 1,907 kg/吨铝）· <span style="display:inline-block;font-size:10px;padding:1px 5px;background:#f0f0f0;border-radius:3px;color:#666;font-family:monospace;">铝行业规范条件 2020</span> · <a href="https://www.ndrc.gov.cn/yjzxDownload/20220726fj8.pdf" target="_blank" style="color:#185FA5;text-decoration:none;">国家发改委 2022 ↗</a></div></div>
+  <div id="k1" class="pop" style="margin-top:0;margin-bottom:14px;"><button class="pc" onclick="close2('k1','cc')">×</button><div class="pt">电力成本拆解</div><div class="pr"><span class="pk">基准参数</span><span class="pv">行业均值 13,500 kWh/吨；国标优等级 ≤12,650 kWh/吨</span></div><div class="pr"><span class="pk">敏感性</span><span class="pv">电价每变动 0.1 元/度 → 吨铝电力成本变动约 1,350 元</span></div><div class="pr"><span class="pk">地区差异</span><span class="pv">云南水电低至 0.25–0.30 元；东部电网可达 0.50 元以上</span></div><div class="pr"><span class="pk">绿电趋势</span><span class="pv">国家要求 2025 年电解铝绿电消费比例提升；沙特红海项目以绿电为核心卖点</span></div><div style="margin-top:10px;padding-top:10px;border-top:0.5px solid #e5e5e5;font-size:11px;color:#aaa;">数据来源：<span style="display:inline-block;font-size:10px;padding:1px 5px;background:#f0f0f0;border-radius:3px;color:#666;font-family:monospace;">GB 21346—2022</span> · <a href="https://news.smm.cn/news/102559033" target="_blank" style="color:#185FA5;text-decoration:none;">SMM 上海有色网 ↗</a> · <a href="http://www.cpem.org.cn/list40/98235.html" target="_blank" style="color:#185FA5;text-decoration:none;">CPEM 全国电力设备管理网 ↗</a></div></div>
+  <div id="k2" class="pop" style="margin-top:0;margin-bottom:14px;"><button class="pc" onclick="close2('k2','cc')">×</button><div class="pt">阳极炭素成本拆解</div><div class="pr"><span class="pk">消耗原理</span><span class="pv">阳极碳在电解过程中与氧结合生成 CO₂，被持续消耗，是电解铝不可避免的工艺损耗。</span></div><div class="pr"><span class="pk">用量参数</span><span class="pv">行业规范中炭阳极净耗要求低于 410 kg/t；实际阳极消耗会因电解槽工艺、残极回收和统计口径有所差异。</span></div><div class="pr"><span class="pk">价格联动</span><span class="pv">阳极炭素成本与石油焦、煤沥青等原料价格相关，受能源和大宗商品价格间接影响。</span></div><div class="pr"><span class="pk">碳市场</span><span class="pv">阳极消耗是电解铝直接碳排放的重要来源，未来若碳成本进一步显性化，可能增加吨铝成本压力。</span></div><div style="margin-top:10px;padding-top:10px;border-top:0.5px solid #e5e5e5;font-size:11px;color:#aaa;">数据来源：《铝行业规范条件（2020）》：炭阳极净耗应低于 410 kg/t；相关行业资料显示，先进企业炭阳极净耗约 400 kg/t。</div></div>
+  <div class="calc">
+    <div style="font-size:13px;font-weight:500;color:#555;margin-bottom:12px;">电价敏感性计算器</div>
+    <div class="cr"><span class="ck">电价（元/度）</span><input type="range" min="20" max="60" step="1" value="40" id="sl" oninput="calc()"><span style="font-size:14px;font-weight:500;min-width:38px;text-align:right;" id="pd">0.40</span></div>
+    <div class="cr crd"><span class="ck">吨铝电力成本</span><span class="cres" id="cd">5,400</span><span class="cu">元/吨</span></div>
+  </div>
+  <div class="ref">
+    <div class="rt">电力数据来源</div>
+    <div class="ri"><span class="rn">[1]</span><span>行业均值 13,500 kWh/吨 · <a class="rl" href="http://www.cpem.org.cn/list40/98235.html" target="_blank">CPEM 全国电力设备管理网 2024 ↗</a></span></div>
+    <div class="ri"><span class="rn">[2]</span><span>国标三级能耗分级（2024年起）<span class="sb">GB 21346—2022</span> · <a class="rl" href="https://news.smm.cn/news/102559033" target="_blank">SMM 上海有色网 ↗</a></span></div>
+    <div class="ri"><span class="rn">[3]</span><span>发改委阶梯电价 2025 年起分档标准 13,300 kWh/吨 · <a class="rl" href="https://news.qq.com/rain/a/20220531A022R100" target="_blank">铝行业专题报告 ↗</a></span></div>
+  </div>
+
+</div>
+
+<div class="sec">
+  <div class="stitle">SIG 产业链布局<span class="hint">点击卡片查看详情</span></div>
+  <div class="cogrid">
+    <div class="cocard" onclick="tog('g0',this,'cocard')">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;"><span class="cob bh">H股</span><span class="cot">02788.HK</span></div>
+      <div class="con">创新实业</div>
+      <div class="cof">核心：氧化铝 + 电解铝<br>电解铝收入占比约 73%<br>霍林郭勒产能 788,100 吨/年</div>
+      <span class="lt lu">上游</span><div class="coh">点击展开 ↓</div>
+    </div>
+    <div class="cocard" onclick="tog('g1',this,'cocard')">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;"><span class="cob ba">A股</span><span class="cot">600361.SH</span></div>
+      <div class="con">创新新材</div>
+      <div class="cof">铝合金加工 · 高端材料<br>3C · 汽车轻量化 · 板带箔<br>棒材全球市占率第一</div>
+      <span class="lt lm">中游</span> <span class="lt ld2t" style="margin-left:4px;">下游</span><div class="coh">点击展开 ↓</div>
+    </div>
+  </div>
+  <div id="g0" class="pop"><button class="pc" onclick="close2('g0','cocard')">×</button><div class="pt">创新实业 · 业务与财务</div><div class="pr"><span class="pk">核心业务</span><span class="pv">氧化铝冶炼 + 电解铝生产，典型上游一体化布局</span></div><div class="pr"><span class="pk">2025年收入</span><span class="pv">约 186.81 亿元</span></div><div class="pr"><span class="pk">收入结构</span><span class="pv">电解铝约 136.22 亿元（73%）；氧化铝约 44.17 亿元（24%）</span></div><div class="pr"><span class="pk">产能规模</span><span class="pv">霍林郭勒电解铝年产能 788,100 吨；氧化铝产能 300 万吨，自给率超 100%</span></div><div class="pr"><span class="pk">分析视角</span><span class="pv">收入高度集中于电解铝，铝价波动直接影响盈利；一体化是核心竞争力</span></div><div style="margin-top:10px;padding-top:10px;border-top:0.5px solid #e5e5e5;font-size:11px;color:#aaa;">数据来源：<a href="https://caifuhao.eastmoney.com/news/20251117110118338559030" target="_blank" style="color:#185FA5;text-decoration:none;">创新实业 IPO 招股说明书摘要 · 东方财富 2025 ↗</a> · <a href="https://finance.sina.com.cn/stock/hkstock/hkgg/2026-01-22/doc-inhieiky2818991.shtml" target="_blank" style="color:#185FA5;text-decoration:none;">国信证券研报 2026.01 ↗</a></div></div>
+  <div id="g1" class="pop"><button class="pc" onclick="close2('g1','cocard')">×</button><div class="pt">创新新材 · 业务与布局</div><div class="pr"><span class="pk">核心业务</span><span class="pv">铝合金棒材、型材、板带箔、铝杆线缆、汽车结构件</span></div><div class="pr"><span class="pk">市场地位</span><span class="pv">铝合金棒材全球市占率连续多年第一（2023年全球占比 8.43%，国内 11.25%）</span></div><div class="pr"><span class="pk">主要客户</span><span class="pv">苹果产业链核心供应商；汽车客户含比亚迪、理想、宝马、奔驰、日产等</span></div><div class="pr"><span class="pk">生产基地</span><span class="pv">山东、江苏、内蒙古、云南 + 越南、墨西哥海外工厂</span></div><div class="pr"><span class="pk">分析视角</span><span class="pv">核心看产品结构升级、高端客户占比、海外产能爬坡和加工费走势</span></div><div style="margin-top:10px;padding-top:10px;border-top:0.5px solid #e5e5e5;font-size:11px;color:#aaa;">数据来源：<a href="https://stockn.xueqiu.com/SH600361/20250424247340.pdf" target="_blank" style="color:#185FA5;text-decoration:none;">创新新材 2024 年年度报告 ↗</a> · <a href="https://pdf.dfcfw.com/pdf/H3_AP202407141637881905_1.pdf" target="_blank" style="color:#185FA5;text-decoration:none;">东方财富证券研报 2024.07 ↗</a></div></div>
+  <div class="ovg">
+    <div><div class="on2">沙特红海 RSA</div><div class="od">现代化铝产业集群<br>绿色可持续铝谷<br>电解铝至高精度铝材</div></div>
+    <div><div class="on2">越南工厂</div><div class="od">聚焦国际顶尖 3C 需求<br>生产铝合金电子型材<br>服务东南亚供应链</div></div>
+    <div><div class="on2">墨西哥 PARAMOUNT</div><div class="od">汽车产业集聚中心<br>车用铝挤压型材<br>配套铝棒材产能</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stitle">利润聚集点分析<span class="hint">点击查看逻辑说明</span></div>
+  <div class="plist">
+    <div class="prow phigh" onclick="tog('p0',this,'prow')">
+      <span class="pi" style="color:#0F6E56;">↑</span>
+      <div style="flex:1;"><div class="ptt">低成本能源 + 一体化上游</div><div class="pd">电价每降 0.1 元/度，吨铝成本减少约 1,350 元。拥有自备电、低价绿电或一体化布局的企业具备显著成本护城河。</div><div class="ph">点击展开逻辑 ↓</div></div>
+    </div>
+    <div id="p0" class="pop"><button class="pc" onclick="close2('p0','prow')">×</button><div class="pt">为什么上游能赚钱？</div><div class="pr"><span class="pk">核心逻辑</span><span class="pv">电解铝是标准化大宗商品，竞争优势主要来自成本端</span></div><div class="pr"><span class="pk">电力是关键</span><span class="pv">云南水电企业吨铝电力成本可比东部低 2,000–3,000 元，直接体现为利润差距</span></div><div class="pr"><span class="pk">一体化价值</span><span class="pv">自产氧化铝可规避外购价格波动，在氧化铝上涨周期中明显受益</span></div><div class="pr"><span class="pk">观察指标</span><span class="pv">吨铝综合成本、自备电比例、产能利用率、氧化铝自给率</span></div></div>
+    <div class="prow phigh" onclick="tog('p1',this,'prow')">
+      <span class="pi" style="color:#0F6E56;">↑</span>
+      <div style="flex:1;"><div class="ptt">高端加工 + 客户认证壁垒</div><div class="pd">汽车轻量化、3C电子铝材客户认证周期长、技术标准高，客户粘性强，加工利润空间优于普通型材。</div><div class="ph">点击展开逻辑 ↓</div></div>
+    </div>
+    <div id="p1" class="pop"><button class="pc" onclick="close2('p1','prow')">×</button><div class="pt">为什么高端加工有溢价？</div><div class="pr"><span class="pk">认证壁垒</span><span class="pv">汽车 Tier1 认证通常需要 1–3 年，通过后替换成本高，形成稳定订单</span></div><div class="pr"><span class="pk">加工费逻辑</span><span class="pv">普通型材加工费约 500–1,000 元/吨；汽车/3C 高端产品可达 2,000–5,000 元/吨</span></div><div class="pr"><span class="pk">观察指标</span><span class="pv">高端产品收入占比、新进入供应商名单数、汽车/3C 客户集中度</span></div></div>
+    <div class="prow plow" onclick="tog('p2',this,'prow')">
+      <span class="pi" style="color:#A32D2D;">↓</span>
+      <div style="flex:1;"><div class="ptt">同质化普通加工 / 高成本电解铝</div><div class="pd">加工费透明、竞争激烈；高电价地区电解铝盈利弱；新建产能爬坡期折旧压力大。</div><div class="ph">点击展开逻辑 ↓</div></div>
+    </div>
+    <div id="p2" class="pop"><button class="pc" onclick="close2('p2','prow')">×</button><div class="pt">为什么这些环节利润薄？</div><div class="pr"><span class="pk">普通加工</span><span class="pv">产品标准化，竞争者多，加工费由市场决定，议价能力有限</span></div><div class="pr"><span class="pk">高成本电解铝</span><span class="pv">铝价是全行业统一参考，高电价企业成本劣势无法通过提价弥补</span></div><div class="pr"><span class="pk">爬坡期压力</span><span class="pv">新建产能固定资产折旧在爬坡期全额承担，产能利用率低时吨成本偏高</span></div><div class="pr"><span class="pk">观察指标</span><span class="pv">产能利用率、新项目投产进度、高电价地区产能占比</span></div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="stitle">学习记录</div>
+  <div class="lgl">
+    <div class="li"><div class="ld2 nw"></div><div class="ldt">2025.05.20</div><div class="ltx">梳理产业链五环节、吨铝成本结构、SIG H股/A股布局，补充国标 GB 21346—2022 引用，加入各模块展开详情</div></div>
+    <div class="li"><div class="ld2"></div><div class="ldt">下一步</div><div class="ltx">补充 LME 铝价走势及创新实业 2025 年报财务数据</div></div>
+  </div>
+</div>
+</div>
+
+<script>
+function calc(){var v=parseInt(document.getElementById('sl').value);var p=v/100;document.getElementById('pd').textContent=p.toFixed(2);document.getElementById('cd').textContent=Math.round(13500*p).toLocaleString();}
+function toggleCoffee(){var p=document.getElementById('coffee-panel');var a=document.getElementById('coffee-arrow');var open=p.style.display==='block';p.style.display=open?'none':'block';a.style.transform=open?'':'rotate(180deg)';}
+var state={cn:null,cc:null,cocard:null,prow:null};
+function tog(id,el,cls){
+  var pop=document.getElementById(id);var prev=state[cls];
+  if(prev===id){pop.classList.remove('on');el.classList.remove('on');state[cls]=null;return;}
+  if(prev){document.getElementById(prev).classList.remove('on');document.querySelectorAll('.'+cls).forEach(function(n){n.classList.remove('on');});}
+  pop.classList.add('on');el.classList.add('on');state[cls]=id;
+}
+function close2(id,cls){document.getElementById(id).classList.remove('on');document.querySelectorAll('.'+cls).forEach(function(n){n.classList.remove('on');});state[cls]=null;}
+</script>
+</body>
+</html>

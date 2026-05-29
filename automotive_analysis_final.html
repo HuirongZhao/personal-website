@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汽车行业分析笔记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root {
+  --color-background-primary: #FFFDF8;
+  --color-background-secondary: #F4F1EA;
+  --color-text-primary: #272622;
+  --color-text-secondary: #5F5A51;
+  --color-text-tertiary: #918A7E;
+  --color-border-primary: #557263;
+  --color-border-tertiary: #E2DCD1;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+* { box-sizing: border-box; }
+html { background: var(--color-background-primary); }
+body {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  font-family: 'DM Sans','Helvetica Neue',Arial,sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.mod { padding: 2rem 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.mod:last-child { border-bottom: none; }
+.sec-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; color: var(--color-text-tertiary); text-transform: uppercase; margin: 0 0 4px; }
+.sec-title { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+.sec-hint { font-size: 12px; color: var(--color-text-tertiary); margin: 0 0 1.25rem; }
+.chain { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0; }
+.chain-node { border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); padding: 0.875rem 1rem; cursor: pointer; position: relative; transition: background 0.15s; }
+.chain-node:not(:last-child) { border-right: none; }
+.chain-node:first-child { border-radius: var(--border-radius-lg) 0 0 0; }
+.chain-node:last-child { border-radius: 0 var(--border-radius-lg) 0 0; }
+.chain-node.open, .chain-node:hover { background: var(--color-background-secondary); }
+.chain-step { font-size: 10px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 5px; }
+.chain-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+.chain-sub { font-size: 11px; color: var(--color-text-tertiary); margin: 0 0 8px; line-height: 1.5; }
+.chain-arrow { font-size: 13px; color: var(--color-text-tertiary); position: absolute; right: -8px; top: 50%; transform: translateY(-50%); z-index: 2; background: var(--color-background-primary); padding: 2px 0; }
+.chain-expand { font-size: 11px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 4px; }
+.chain-expand i { font-size: 13px; transition: transform 0.2s; }
+.chain-node.open .chain-expand i { transform: rotate(180deg); }
+.chain-detail-wrap { border: 0.5px solid var(--color-border-tertiary); border-top: none; border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg); background: var(--color-background-primary); display: none; }
+.chain-detail-wrap.open { display: block; }
+.chain-detail-panel { padding: 1rem 1.25rem; display: none; }
+.chain-detail-panel.active { display: block; }
+.detail-heading { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 8px; }
+.detail-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin: 0 0 10px; }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin: 2px 2px 0 0; background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); }
+.cite { font-size: 11px; color: var(--color-text-tertiary); margin-top: 10px; display: block; line-height: 1.5; }
+.ptable { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 1.25rem; }
+.ptable th { text-align: left; font-weight: 500; font-size: 11px; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.ptable td { padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); vertical-align: top; line-height: 1.5; }
+.ptable tr:last-child td { border-bottom: none; }
+.ptable td:first-child { color: var(--color-text-primary); font-weight: 500; }
+.ptable tr.hl td { background: var(--color-background-secondary); }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+.b-blue { background: #E6F1FB; color: #0C447C; }
+.b-amber { background: #FAEEDA; color: #633806; }
+.tab-layout { display: grid; grid-template-columns: 160px 1fr; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; margin-bottom: 1rem; }
+.tab-nav { background: var(--color-background-secondary); border-right: 0.5px solid var(--color-border-tertiary); display: grid; grid-template-rows: repeat(3, 1fr); }
+.tab-btn { padding: 0 1.25rem; cursor: pointer; border: none; background: transparent; text-align: left; border-bottom: 0.5px solid var(--color-border-tertiary); transition: background 0.15s; position: relative; display: flex; flex-direction: column; justify-content: center; }
+.tab-btn:last-child { border-bottom: none; }
+.tab-btn:hover { background: var(--color-background-primary); }
+.tab-btn.active { background: var(--color-background-primary); }
+.tab-btn.active::after { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 2px; background: #378ADD; }
+.tab-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 3px; display: block; }
+.tab-sub { font-size: 11px; color: var(--color-text-tertiary); margin: 0; display: block; line-height: 1.4; }
+.tab-content { background: var(--color-background-primary); }
+.tab-panel { padding: 1.25rem; display: none; }
+.tab-panel.active { display: block; }
+.tab-panel-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 8px; }
+.tab-panel-body { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin: 0 0 12px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+.funnel-outer { display: flex; justify-content: center; margin-bottom: 1rem; }
+.funnel-wrap { display: flex; align-items: stretch; gap: 0; width: fit-content; }
+.fstep { width: 130px; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 0.875rem 1rem; }
+.farrow { display: flex; align-items: center; padding: 0 8px; color: var(--color-text-tertiary); font-size: 16px; flex-shrink: 0; }
+.flabel { font-size: 10px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 8px; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 6px; }
+.fmetrics { list-style: none; margin: 0; padding: 0; }
+.fmetrics li { font-size: 12px; color: var(--color-text-secondary); padding: 4px 0; }
+.funnel-note { font-size: 12px; color: var(--color-text-tertiary); line-height: 1.6; margin: 0; padding: 0.875rem 1rem; background: var(--color-background-secondary); border-radius: var(--border-radius-md); }
+.insight { background: var(--color-background-secondary); border-left: 2px solid var(--color-border-primary); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 1rem 1.25rem; margin-top: 1.25rem; }
+.insight-label { font-size: 10px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin: 0 0 6px; }
+.insight-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin: 0; }
+.cps-list { display: flex; flex-direction: column; gap: 10px; margin-top: 1.25rem; }
+.cps-item { border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-tertiary); overflow: hidden; cursor: pointer; }
+.cps-item.c-teal { border-left: 3px solid #1D9E75; }
+.cps-item.c-blue { border-left: 3px solid #378ADD; }
+.cps-item.c-amber { border-left: 3px solid #BA7517; }
+.cps-top { padding: 0.875rem 1rem 0.875rem 1.1rem; background: var(--color-background-primary); display: flex; justify-content: space-between; align-items: center; }
+.cps-item.c-teal .cps-top { background: #E1F5EE; }
+.cps-item.c-blue .cps-top { background: #E6F1FB; }
+.cps-item.c-amber .cps-top { background: #FAEEDA; }
+.cps-num { font-size: 10px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; margin: 0 0 3px; }
+.cps-item.c-teal .cps-num { color: #0F6E56; }
+.cps-item.c-blue .cps-num { color: #185FA5; }
+.cps-item.c-amber .cps-num { color: #854F0B; }
+.cps-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 3px; }
+.cps-subtitle { font-size: 12px; color: var(--color-text-secondary); margin: 0; line-height: 1.5; }
+.cps-expand { font-size: 11px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 3px; white-space: nowrap; flex-shrink: 0; margin-left: 12px; }
+.cps-expand i { font-size: 14px; transition: transform 0.2s; }
+.cps-item.open .cps-expand i { transform: rotate(180deg); }
+.cps-body { padding: 1rem 1rem 1rem 1.1rem; border-top: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); display: none; }
+.cps-item.open .cps-body { display: block; }
+.cps-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; margin: 0 0 10px; }
+@media (max-width: 760px) {
+  body { padding: 0 1rem 1rem; }
+  .chain { grid-template-columns: 1fr; }
+  .chain-node:not(:last-child) { border-right: 0.5px solid var(--color-border-tertiary); border-bottom: none; }
+  .chain-node:first-child { border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; }
+  .chain-node:last-child { border-radius: 0; }
+  .chain-arrow { display: none; }
+  .tab-layout { grid-template-columns: 1fr; }
+  .tab-nav { grid-template-rows: none; grid-template-columns: 1fr; border-right: none; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .tab-btn { padding: 0.85rem 1rem; }
+  .tab-btn.active::after { left: 0; right: 0; top: auto; bottom: -1px; width: auto; height: 2px; }
+  .funnel-wrap { width: 100%; flex-direction: column; }
+  .fstep { width: 100%; }
+  .farrow { justify-content: center; padding: 6px 0; transform: rotate(90deg); }
+  .cps-top { align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<h2 class="sr-only">汽车行业分析模块</h2>
+
+<!-- 01 行业变化 -->
+<div class="mod">
+  <p class="sec-label">01</p>
+  <h2 class="sec-title">行业变化</h2>
+  <p class="sec-hint">点击节点查看详情</p>
+  <div class="chain" id="chain">
+    <div class="chain-node" data-idx="0" onclick="toggleChain(0)">
+      <span class="chain-arrow" aria-hidden="true">›</span>
+      <p class="chain-step">变化一</p>
+      <p class="chain-title">新能源重塑竞争逻辑</p>
+      <p class="chain-sub">渗透率提升，决策维度扩展</p>
+      <div class="chain-expand"><i class="ti ti-chevron-down" aria-hidden="true"></i><span>展开</span></div>
+    </div>
+    <div class="chain-node" data-idx="1" onclick="toggleChain(1)">
+      <span class="chain-arrow" aria-hidden="true">›</span>
+      <p class="chain-step">导致 →</p>
+      <p class="chain-title">价格竞争加剧</p>
+      <p class="chain-sub">利润承压，精细化经营提速</p>
+      <div class="chain-expand"><i class="ti ti-chevron-down" aria-hidden="true"></i><span>展开</span></div>
+    </div>
+    <div class="chain-node" data-idx="2" onclick="toggleChain(2)">
+      <span class="chain-arrow" aria-hidden="true">›</span>
+      <p class="chain-step">推动 →</p>
+      <p class="chain-title">用户决策线上化</p>
+      <p class="chain-sub">内容平台成为购车前链路入口</p>
+      <div class="chain-expand"><i class="ti ti-chevron-down" aria-hidden="true"></i><span>展开</span></div>
+    </div>
+    <div class="chain-node" data-idx="3" onclick="toggleChain(3)">
+      <p class="chain-step">促成 →</p>
+      <p class="chain-title">渠道转向用户运营</p>
+      <p class="chain-sub">从卖车到全生命周期经营</p>
+      <div class="chain-expand"><i class="ti ti-chevron-down" aria-hidden="true"></i><span>展开</span></div>
+    </div>
+  </div>
+  <div class="chain-detail-wrap" id="chainDetail">
+    <div id="panel0" class="chain-detail-panel">
+      <p class="detail-heading">新能源重塑竞争逻辑</p>
+      <p class="detail-body">新能源汽车渗透率提升后，用户购车决策维度显著增加。消费者不再只比较品牌、价格和空间，还会关注智能驾驶、续航、补能、车机系统、OTA 和真实车主口碑。汽车内容平台和车型导购平台在用户决策前期的影响力随之提升。</p>
+      <span class="tag">新能源渗透</span><span class="tag">决策复杂化</span><span class="tag">内容平台影响力提升</span>
+      <span class="cite">来源：新华社，2025 年中国新能源乘用车渗透率接近 60%，新能源汽车新车销量占全年汽车销量比例近半</span>
+    </div>
+    <div id="panel1" class="chain-detail-panel">
+      <p class="detail-heading">价格竞争加剧</p>
+      <p class="detail-body">终端优惠和价格战压缩利润空间，车企需从追求销量增长转向关注增长质量。不同渠道、平台和车型的费用投入，需进一步拆解到线索成本、到店率、成交率、单车获客成本和渠道 ROI，精细化经营成为核心诉求。</p>
+      <span class="tag">价格战</span><span class="tag">渠道ROI</span><span class="tag">精细化经营</span>
+      <span class="cite">来源：懂车帝巨懂车 2024 经销商引力峰会，2023 年汽车行业利润率仅为 5.5%，低于整体工业企业平均水平</span>
+    </div>
+    <div id="panel2" class="chain-detail-panel">
+      <p class="detail-heading">用户决策线上化</p>
+      <p class="detail-body">用户购车决策逐步前移到线上平台。抖音、小红书、B站承担内容种草，懂车帝、汽车之家承担车型对比和线索留资，搜索和地图平台承担高意向承接与到店转化。汽车营销正从单点广告投放转向线上线下一体化的用户转化链路。</p>
+      <span class="tag">线上化</span><span class="tag">内容种草</span><span class="tag">全链路转化</span>
+      <span class="cite">来源：懂车帝巨懂车运营策略副总裁郑文雅，置换频率加快、决策周期变短、购车向线上渠道迁移为当前汽车消费四大趋势（2024 经销商引力峰会）</span>
+    </div>
+    <div id="panel3" class="chain-detail-panel">
+      <p class="detail-heading">渠道转向用户运营</p>
+      <p class="detail-body">直营、代理、经销商、私域和第三方平台并存，车企需重新评估渠道效率。经营重点从单纯销量考核，延伸到客户留存、售后返场、复购推荐和用户生命周期价值管理。</p>
+      <span class="tag">用户运营</span><span class="tag">售后返场</span><span class="tag">生命周期价值</span>
+      <span class="cite">来源：公开行业分析，直营与经销商模式并存趋势下，车企一方用户数据资产的重要性持续提升</span>
+    </div>
+  </div>
+  <div class="insight">
+    <p class="insight-label">战略判断</p>
+    <p class="insight-text">汽车行业竞争正从"产品与渠道驱动"转向"内容影响决策、数据提升转化、服务延长用户生命周期"的综合竞争。</p>
+  </div>
+</div>
+
+<!-- 02 平台格局 -->
+<div class="mod">
+  <p class="sec-label">02</p>
+  <h2 class="sec-title">平台格局</h2>
+  <p class="sec-hint">点击平台名称查看详情</p>
+  <table class="ptable">
+    <thead>
+      <tr><th>平台类型</th><th>代表平台</th><th>链路位置</th><th>核心价值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>内容决策平台</td><td>小红书、抖音、B站</td><td><span class="badge b-blue">前链路</span></td><td>建立认知、兴趣种草、影响决策</td></tr>
+      <tr><td>搜索交易平台</td><td>百度、高德、美团</td><td><span class="badge b-amber">中后链路</span></td><td>承接意向、门店连接、试驾到店</td></tr>
+      <tr><td>私域运营平台</td><td>微信、企微、小程序</td><td><span class="badge b-amber">后链路</span></td><td>线索培育、成交转化、售后返场</td></tr>
+      <tr class="hl"><td>跨链路平台</td><td><span class="badge b-blue">懂车帝</span></td><td><span class="badge b-blue">全链路</span></td><td>从内容种草延伸到询价留资、交易转化和经销商经营</td></tr>
+    </tbody>
+  </table>
+  <div class="tab-layout">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(0)">
+        <span class="tab-name">懂车帝</span>
+        <span class="tab-sub">内容 + 交易转化平台</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(1)">
+        <span class="tab-name">汽车之家</span>
+        <span class="tab-sub">汽车垂媒 + 经销商服务</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(2)">
+        <span class="tab-name">易车</span>
+        <span class="tab-sub">汽车资讯 + 线索分发</span>
+      </button>
+    </div>
+    <div class="tab-content">
+      <div class="tab-panel active" id="tp0">
+        <p class="tab-panel-title">懂车帝 — 内容 + 交易转化平台</p>
+        <p class="tab-panel-body">依托字节系内容生态和算法分发能力，通过短视频、直播、车型库和车主成交价影响用户决策，并通过 CPS（按成交付费）模式向交易转化环节延伸。在汽车垂媒中具备较强的跨链路覆盖能力。</p>
+        <div class="tag-row"><span class="tag">内容种草</span><span class="tag">算法分发</span><span class="tag">CPS成交</span><span class="tag">字节系生态</span></div>
+        <span class="cite">来源：36氪，懂车帝 2023 年移动端 DAU 超 800 万，汽车兴趣用户达 4.98 亿；界面新闻，2024</span>
+      </div>
+      <div class="tab-panel" id="tp1">
+        <p class="tab-panel-title">汽车之家 — 汽车垂媒 + 经销商服务平台</p>
+        <p class="tab-panel-body">老牌汽车垂直媒体，通过车型库、资讯评测、论坛社区服务用户购车决策，面向主机厂和经销商提供媒体广告、销售线索、数据分析及营销服务，同时运营"车商城"线上交易平台并持续推进 O2O 战略落地。</p>
+        <div class="tag-row"><span class="tag">汽车垂媒</span><span class="tag">媒体广告</span><span class="tag">线索服务</span><span class="tag">O2O升级</span></div>
+        <span class="cite">来源：汽车之家 IR 官网；PR Newswire，汽车之家 2025 年二季度财报，在线营销及其他收入同比增长 20.5%</span>
+      </div>
+      <div class="tab-panel" id="tp2">
+        <p class="tab-panel-title">易车 — 汽车资讯 + 线索分发平台</p>
+        <p class="tab-panel-body">传统汽车互联网平台，通过汽车资讯、车型信息、报价查询和经销商服务连接用户与线下销售渠道。同时借助腾讯生态强化内容获客与经销商数字化营销能力，围绕视频号布局内容生产、线索分发和营销工具。</p>
+        <div class="tag-row"><span class="tag">汽车资讯</span><span class="tag">线索分发</span><span class="tag">腾讯生态</span><span class="tag">经销商营销</span></div>
+        <span class="cite">来源：易车官网，易车与腾讯视频号合作，围绕内容生产、线索分发、营销插件和数据决策赋能经销商</span>
+      </div>
+    </div>
+  </div>
+  <div class="insight">
+    <p class="insight-label">对比判断</p>
+    <p class="insight-text">汽车之家和易车的核心价值在于存量用户积累和经销商服务体系，懂车帝的差异化在于字节系流量优势和从内容向交易的链路延伸能力。</p>
+  </div>
+</div>
+
+<!-- 03 指标体系 -->
+<div class="mod">
+  <p class="sec-label">03</p>
+  <h2 class="sec-title">指标体系</h2>
+  <p class="sec-hint">覆盖用户从曝光触达到最终成交的完整链路</p>
+  <div class="funnel-outer">
+    <div class="funnel-wrap">
+      <div class="fstep">
+        <p class="flabel">曝光触达</p>
+        <ul class="fmetrics"><li>曝光量</li><li>点击率</li></ul>
+      </div>
+      <div class="farrow" aria-hidden="true">→</div>
+      <div class="fstep">
+        <p class="flabel">线索留资</p>
+        <ul class="fmetrics"><li>CPL</li><li>有效线索率</li></ul>
+      </div>
+      <div class="farrow" aria-hidden="true">→</div>
+      <div class="fstep">
+        <p class="flabel">到店试驾</p>
+        <ul class="fmetrics"><li>到店率</li><li>试驾率</li></ul>
+      </div>
+      <div class="farrow" aria-hidden="true">→</div>
+      <div class="fstep">
+        <p class="flabel">成交转化</p>
+        <ul class="fmetrics"><li>成交率</li><li>渠道 ROI</li><li>CAC</li></ul>
+      </div>
+    </div>
+  </div>
+  <p class="funnel-note">指标体系的核心不是单看流量规模，而是持续追踪用户从"看到车"到"到店成交"的转化效率，判断平台是否真正带来有效经营结果。</p>
+</div>
+
+<!-- 04 战略判断 + CPS -->
+<div class="mod">
+  <p class="sec-label">04</p>
+  <h2 class="sec-title">战略判断</h2>
+  <div class="insight" style="margin-top:0;">
+    <p class="insight-label">平台竞争趋势</p>
+    <p class="insight-text">汽车互联网平台竞争正在从"流量入口竞争"转向"交易效率竞争"。懂车帝通过 CPS 模式强化成交结果导向，汽车之家依托车型库、线索服务和 O2O 生态延伸交易链路，易车则借助腾讯生态强化内容获客与经销商营销服务。未来平台价值不只取决于流量规模，而取决于能否带来高质量线索、可验证成交和持续经营支持。</p>
+  </div>
+  <p style="font-size:13px; font-weight:500; color:var(--color-text-primary); margin: 1.75rem 0 4px;">深度解析：CPS 模式</p>
+  <p style="font-size:12px; color:var(--color-text-tertiary); margin: 0;">点击查看详情</p>
+  <div class="cps-list">
+    <div class="cps-item c-teal" onclick="toggleCps(this)">
+      <div class="cps-top">
+        <div><p class="cps-num">01</p><p class="cps-title">从 CPL/CPT 到 CPS：收费逻辑变化</p><p class="cps-subtitle">平台从"卖曝光 / 卖线索"转向"按成交结果付费"</p></div>
+        <div class="cps-expand"><span>点击展开</span><i class="ti ti-chevron-down" aria-hidden="true"></i></div>
+      </div>
+      <div class="cps-body">
+        <p class="cps-text">传统模式为 CPT（按时间付费）或 CPL（按线索付费），经销商不论是否成交都需付费，导致低效投放和转化不透明问题日益突出。懂车帝 2022 年推出 CPS（Cost Per Sale）模式，经销商付费与成交结果更强绑定，有效缓解了传统线索模式下的虚假线索和投入浪费问题。</p>
+        <span class="tag">CPT/CPL → CPS</span><span class="tag">成交结果导向</span><span class="tag">缓解低效投放</span>
+        <span class="cite">来源：中国青年报·出行周刊，2024；中国日报网，2024</span>
+      </div>
+    </div>
+    <div class="cps-item c-blue" onclick="toggleCps(this)">
+      <div class="cps-top">
+        <div><p class="cps-num">02</p><p class="cps-title">对经销商的影响：成本可控，但运营要求更高</p><p class="cps-subtitle">经销商不再只买线索，而要提升跟进、到店和成交效率</p></div>
+        <div class="cps-expand"><span>点击展开</span><i class="ti ti-chevron-down" aria-hidden="true"></i></div>
+      </div>
+      <div class="cps-body">
+        <p class="cps-text">好处：经销商付费成本与成交结果挂钩，投入更可控。约 60% 受访经销商表示使用 CPS 后销售转化率有所提升。挑战：经销商需要强化线索跟进时效、展厅转化效率和门店数字化管理能力，同时平台侧也需要具备更强的成交归因和数据追踪能力。</p>
+        <span class="tag">转化率提升</span><span class="tag">门店运营要求提升</span><span class="tag">归因能力</span>
+        <span class="cite">来源：懂车帝巨懂车《中国汽车经销商 2024 年度经营调研》，覆盖全国 300 多家经销商</span>
+      </div>
+    </div>
+    <div class="cps-item c-amber" onclick="toggleCps(this)">
+      <div class="cps-top">
+        <div><p class="cps-num">03</p><p class="cps-title">平台战略意义：从流量平台到交易效率平台</p><p class="cps-subtitle">CPS 让平台竞争从流量规模转向成交归因和经营支持能力</p></div>
+        <div class="cps-expand"><span>点击展开</span><i class="ti ti-chevron-down" aria-hidden="true"></i></div>
+      </div>
+      <div class="cps-body">
+        <p class="cps-text">2022 年推出，2023 年完成全国推行。截至 2024 年底，CPS 合作商家规模突破 28500 家，覆盖品牌超 110 个，57% 商家成交量较 2023 年实现正增长。2025 年懂车帝进一步聚焦交易与经营两大核心价值，通过交易场景扩容、产品服务升级和链路提效，加速从会员模式向交易模式转型。</p>
+        <span class="tag">28500+ 经销商</span><span class="tag">110+ 品牌</span><span class="tag">2025年持续升级</span>
+        <span class="cite">来源：中国日报网，懂车帝 2025 年卖车通将聚焦"交易与经营"两大核心价值（2024 年 11 月）</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var openIdx = null;
+function toggleChain(idx) {
+  var nodes = document.querySelectorAll('.chain-node');
+  var detailWrap = document.getElementById('chainDetail');
+  var panels = document.querySelectorAll('.chain-detail-panel');
+  if (openIdx === idx) { nodes[idx].classList.remove('open'); detailWrap.classList.remove('open'); openIdx = null; return; }
+  nodes.forEach(function(n){ n.classList.remove('open'); });
+  nodes[idx].classList.add('open');
+  panels.forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel'+idx).classList.add('active');
+  detailWrap.classList.add('open');
+  openIdx = idx;
+}
+function switchTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  document.getElementById('tp'+idx).classList.add('active');
+}
+function toggleCps(item) {
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.cps-item').forEach(function(c){ c.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
