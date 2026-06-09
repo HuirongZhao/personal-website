@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高考为什么总在下雨？</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #C04E22;
+  --orange-light: #D85A30;
+  --bg: #FAFAF8;
+  --bg2: #F2F0E9;
+  --bg3: #F5F3EC;
+  --white-card: #FFFFFF;
+  --text: #1a1a18;
+  --text-muted: #6B6963;
+  --text-faint: #9a9792;
+  --border: #E0DDD5;
+  --border-light: #ECEAE3;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 7vh 6vw 6vh;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(0,0,0,0.03) 59px, rgba(0,0,0,0.03) 60px),
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(0,0,0,0.03) 59px, rgba(0,0,0,0.03) 60px);
+  pointer-events: none;
+}
+.rain-anim { position: absolute; inset: 0; pointer-events: none; overflow: hidden; opacity: 0.2; }
+.hero-tag {
+  display: inline-block;
+  color: var(--orange);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(192,78,34,0.45);
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(3.6rem, 6.2vw, 6.6rem);
+  font-weight: 700;
+  line-height: 1.02;
+  margin-bottom: 1.35rem;
+  color: var(--text);
+  position: relative;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.hero-title em { font-style: normal; color: var(--orange); }
+.hero-origin {
+  max-width: 760px;
+  border-left: 2px solid var(--orange);
+  padding-left: 1rem;
+  margin-bottom: 1.1rem;
+  color: var(--text-muted);
+}
+.hero-origin-title {
+  font-size: 0.88rem;
+  color: var(--orange);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.hero-origin p {
+  font-size: 0.98rem;
+  line-height: 1.9;
+  margin-bottom: 0.75rem;
+}
+.hero-origin p:last-child { margin-bottom: 0; }
+.case-roadmap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  max-width: 880px;
+  margin: 1.4rem 0 1.2rem;
+}
+.case-step {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.56);
+  border-radius: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.case-step strong {
+  color: var(--orange);
+  font-weight: 500;
+  margin-right: 0.35rem;
+}
+.hero-finding {
+  margin-bottom: 1rem;
+  max-width: 620px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.32rem);
+  line-height: 1.7;
+  color: var(--text);
+}
+.hero-desc {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  position: relative;
+  margin-bottom: 2rem;
+  line-height: 1.9;
+}
+.hero-meta { display: flex; gap: clamp(1.4rem, 3.5vw, 2.5rem); position: relative; flex-wrap: wrap; }
+.hero-stat-num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 2rem; font-weight: 600;
+  color: var(--orange); line-height: 1;
+}
+.hero-stat-label { font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; margin-top: 4px; }
+.research-summary {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.4rem 0 1.5rem;
+  margin-bottom: 3rem;
+}
+.research-summary-label {
+  font-size: 11px;
+  color: var(--orange);
+  letter-spacing: 0.18em;
+  margin-bottom: 0.9rem;
+  font-weight: 500;
+}
+.research-summary .hero-finding { margin-bottom: 1.4rem; }
+.research-summary .hero-meta { margin-top: 0; }
+.scroll-hint {
+  position: absolute; bottom: 2.3vh; right: 6vw;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #B9B5AA;
+}
+.scroll-hint::before {
+  content: '↓';
+  font-size: 16px;
+  line-height: 1;
+  animation: scrollline 1.5s ease-in-out infinite;
+}
+@keyframes scrollline {
+  0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+}
+
+/* ── SECTIONS ── */
+.section {
+  padding: 8vh 6vw;
+  border-bottom: 1px solid var(--border);
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.section.visible { opacity: 1; transform: translateY(0); }
+.section-num { font-size: 11px; color: var(--orange); letter-spacing: 0.2em; margin-bottom: 1rem; }
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600; line-height: 1.25; margin-bottom: 1rem; color: var(--text);
+}
+.section-subtitle { color: var(--text-muted); font-size: 0.95rem; max-width: 600px; margin-bottom: 3rem; line-height: 1.9; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+
+.prose { font-size: 0.95rem; line-height: 2; color: #4a4a46; }
+.prose p { margin-bottom: 1.2rem; }
+.prose strong { color: var(--text); font-weight: 500; }
+.prose .highlight {
+  border-left: 2px solid var(--orange);
+  padding-left: 1rem;
+  color: var(--text);
+  font-style: italic;
+  font-family: 'Noto Serif SC', serif;
+  margin: 1.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ── CHART ── */
+.chart-wrap {
+  background: var(--white-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.5rem;
+}
+.chart-title {
+  font-size: 12px; color: var(--text-faint); letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.legend { display: flex; gap: 1rem; font-size: 11px; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+.bar-chart { display: flex; flex-direction: column; gap: 14px; }
+.bar-row { display: grid; grid-template-columns: 52px 1fr 36px; align-items: center; gap: 10px; }
+.bar-city { font-size: 12px; color: var(--text-faint); text-align: right; }
+.bar-tracks { position: relative; height: 20px; }
+.bar-track { position: absolute; height: 7px; border-radius: 2px; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
+.bar-gk { top: 0; background: var(--orange); }
+.bar-bl { bottom: 0; background: #C8C5BC; }
+.bar-pct { font-size: 11px; color: var(--orange); font-weight: 500; }
+
+/* ── FINDING ── */
+.finding {
+  background: #FDF6F3;
+  border: 1px solid #E8C5B5;
+  border-top: 2px solid var(--orange);
+  padding: 1.5rem;
+  border-radius: 0 0 4px 4px;
+  margin-top: 1.5rem;
+}
+.finding-label { font-size: 10px; color: var(--orange); letter-spacing: 0.15em; margin-bottom: 0.5rem; font-weight: 500; }
+.finding-text { font-size: 0.9rem; color: #3a3a36; line-height: 1.7; }
+.finding-text strong { color: var(--text); font-weight: 500; }
+.story-block { margin-bottom: 3rem; }
+.story-block:last-child { margin-bottom: 0; }
+.story-kicker { font-size: 11px; color: var(--orange); letter-spacing: 0.18em; margin-bottom: 0.7rem; font-weight: 500; }
+.story-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.story-lead {
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 760px;
+  margin-bottom: 1.4rem;
+}
+.insight-card {
+  background: #FDF6F3;
+  border-left: 2px solid var(--orange);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.25rem;
+}
+.insight-card strong { color: var(--text); font-weight: 500; }
+.beijing-chart {
+  display: grid;
+  gap: 1rem;
+  padding: 0.5rem 0 0.2rem;
+}
+.beijing-bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 46px;
+  align-items: center;
+  gap: 14px;
+}
+.beijing-bar-label { font-size: 12px; color: var(--text-muted); }
+.beijing-bar-track { height: 12px; background: var(--border-light); border-radius: 2px; overflow: hidden; }
+.beijing-bar-fill { height: 100%; width: 0; background: var(--orange); transition: width 0.9s cubic-bezier(0.4,0,0.2,1); }
+.beijing-bar-fill.base { background: #C8C5BC; }
+.beijing-bar-pct { font-size: 13px; color: var(--orange); text-align: right; font-weight: 500; }
+.beijing-timeline { overflow-x: auto; padding: 0.6rem 0 0.2rem; }
+.timeline-years { display: flex; gap: 4px; min-width: 580px; }
+.timeline-cell { width: 26px; flex: 0 0 26px; text-align: center; }
+.timeline-dot { width: 24px; height: 24px; border-radius: 3px; background: var(--border-light); border: 1px solid var(--border); }
+.timeline-dot.rain { background: var(--orange); border-color: var(--orange); opacity: 0.82; }
+.timeline-year { margin-top: 6px; font-size: 9px; color: #B9B5AA; transform: rotate(-45deg); transform-origin: center top; }
+.memory-quiz {
+  margin-top: 1.25rem;
+  background: var(--white-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem;
+}
+.memory-quiz-head { margin-bottom: 1rem; }
+.memory-quiz-kicker { font-size: 10px; color: var(--orange); letter-spacing: 0.14em; margin-bottom: 0.35rem; font-weight: 500; }
+.memory-quiz-title { font-family: 'Noto Serif SC', serif; font-size: 1.2rem; font-weight: 600; color: var(--text); line-height: 1.35; margin-bottom: 0.35rem; }
+.memory-quiz-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.8; max-width: 720px; }
+.quiz-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.85rem; }
+.quiz-question { background: var(--bg2); border: 1px solid var(--border-light); border-radius: 4px; padding: 0.9rem; }
+.quiz-label { font-size: 0.82rem; color: var(--text); font-weight: 500; line-height: 1.6; margin-bottom: 0.65rem; }
+.quiz-options { display: grid; gap: 0.42rem; }
+.quiz-option {
+  min-height: 34px;
+  border: 1px solid var(--border);
+  background: var(--white-card);
+  border-radius: 3px;
+  padding: 0.38rem 0.55rem;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.quiz-option:hover,
+.quiz-option.active {
+  border-color: var(--orange);
+  background: #FFF8F5;
+  color: var(--text);
+}
+.quiz-result {
+  margin-top: 1rem;
+  border-left: 2px solid var(--orange);
+  background: #FDF6F3;
+  padding: 0.9rem 1rem;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.quiz-result strong { color: var(--orange); font-weight: 500; }
+.sound-lab {
+  margin-top: 1.25rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--orange);
+  border-radius: 4px;
+  padding: 1.1rem;
+}
+.sound-lab-kicker { font-size: 10px; color: var(--orange); letter-spacing: 0.14em; margin-bottom: 0.35rem; font-weight: 500; }
+.sound-lab-title { font-family: 'Noto Serif SC', serif; font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+.sound-lab-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; max-width: 720px; }
+.sound-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; }
+.sound-card {
+  display: block;
+  width: 100%;
+  min-height: 116px;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: var(--white-card);
+  border-radius: 4px;
+  padding: 0.9rem;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+.sound-card:hover,
+.sound-card.active {
+  transform: translateY(-2px);
+  border-color: var(--orange);
+  background: #FFF8F5;
+  box-shadow: 0 8px 22px rgba(192,78,34,0.1);
+}
+.sound-index { font-size: 10px; color: var(--orange); letter-spacing: 0.12em; margin-bottom: 0.35rem; }
+.sound-name { font-size: 0.94rem; color: var(--text); font-weight: 500; margin-bottom: 0.25rem; }
+.sound-copy { font-size: 0.78rem; color: var(--text-muted); line-height: 1.65; }
+.sound-status {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.sound-status strong { color: var(--orange); font-weight: 500; }
+.region-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+.region-card { background: var(--white-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem; }
+.region-type { font-size: 10px; color: var(--orange); letter-spacing: 0.12em; margin-bottom: 0.3rem; font-weight: 500; }
+.region-title { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.35rem; }
+.region-body { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+.climate-map { margin-top: 1.2rem; }
+.climate-chain {
+  display: grid;
+  grid-template-columns: minmax(120px,1fr) 42px minmax(120px,1fr) 42px minmax(120px,1fr) 42px minmax(120px,1fr) 42px minmax(120px,1fr);
+  align-items: center;
+  gap: 0.3rem;
+}
+.climate-bubble {
+  min-height: 108px;
+  border: 1px solid #E8C5B5;
+  border-radius: 14px;
+  background: #FFF8F5;
+  padding: 0.9rem 0.75rem;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--text);
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.climate-bubble:hover,
+.climate-bubble.active {
+  transform: translateY(-2px);
+  border-color: var(--orange);
+  box-shadow: 0 8px 22px rgba(192,78,34,0.11);
+  background: #FDF6F3;
+}
+.bubble-num { font-size: 0.82rem; color: #4a4a46; line-height: 1; margin-bottom: 0.35rem; }
+.bubble-title { font-size: 1rem; line-height: 1.35; font-weight: 600; }
+.bubble-sub { margin-top: 0.25rem; font-size: 0.76rem; line-height: 1.5; color: var(--text-muted); }
+.climate-connector {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(192,78,34,0.18), rgba(192,78,34,0.9), rgba(192,78,34,0.18));
+  background-size: 200% 100%;
+  animation: arrowPulse 1.8s linear infinite;
+}
+.climate-connector::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--orange);
+  border-top: 2px solid var(--orange);
+  transform: translateY(-50%) rotate(45deg);
+}
+@keyframes arrowPulse {
+  0% { background-position: 0 0; opacity: 0.55; }
+  50% { opacity: 1; }
+  100% { background-position: 200% 0; opacity: 0.55; }
+}
+.climate-detail {
+  margin-top: 1.2rem;
+  min-height: 112px;
+  background: var(--white-card);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--orange);
+  border-radius: 4px;
+  padding: 1rem 1.1rem;
+}
+.climate-detail.pop { animation: detailPop 0.22s ease; }
+@keyframes detailPop {
+  from { opacity: 0.35; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.climate-detail-label { font-size: 10px; color: var(--orange); letter-spacing: 0.14em; margin-bottom: 0.45rem; font-weight: 500; }
+.climate-detail-title { font-family: 'Noto Serif SC', serif; font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 0.35rem; }
+.climate-detail-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.85; max-width: 760px; }
+.climate-hint { margin-top: 0.75rem; text-align: center; font-size: 11px; color: var(--text-faint); letter-spacing: 0.08em; }
+.history-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.4rem; }
+.history-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 0.8rem; }
+.history-card p:last-child { margin-bottom: 0; }
+
+/* ── METHOD TRIGGER ── */
+.method-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 1.25rem;
+  font-size: 11px; color: var(--orange); letter-spacing: 0.08em;
+  cursor: pointer;
+  border: 1px solid #E8C5B5;
+  background: #FFF8F5;
+  padding: 6px 14px; border-radius: 2px;
+  font-family: 'Noto Sans SC', sans-serif;
+  transition: all 0.2s;
+}
+.method-trigger:hover { background: #FAECEA; border-color: var(--orange); }
+
+/* ── MODAL OVERLAY ── */
+.panel-overlay {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(80,75,65,0.3);
+  z-index: 1000;
+}
+.panel-overlay.open { display: flex; align-items: flex-start; justify-content: flex-end; }
+
+.method-panel {
+  width: 400px; max-width: 90vw; height: 100vh;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  box-shadow: -8px 0 32px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.panel-overlay.open .method-panel { transform: translateX(0); }
+
+.panel-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  background: var(--bg);
+  position: sticky; top: 0;
+}
+.panel-tag { font-size: 10px; color: var(--orange); letter-spacing: 0.15em; margin-bottom: 4px; }
+.panel-title { font-family: 'Noto Serif SC', serif; font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+.panel-close {
+  width: 28px; height: 28px;
+  border: 1px solid var(--border); border-radius: 50%;
+  background: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--text-muted); flex-shrink: 0;
+  transition: all 0.15s; line-height: 1;
+}
+.panel-close:hover { background: var(--bg2); }
+.panel-body { padding: 1.5rem; }
+
+.method-item { border-left: 2px solid var(--border); padding-left: 1rem; margin-bottom: 1.25rem; }
+.method-item:last-of-type { margin-bottom: 0; }
+.method-item-name { font-size: 12px; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+.method-item-name span { color: var(--orange); font-family: 'Noto Serif SC', serif; font-size: 1.05rem; margin-right: 0.45rem; }
+.method-item-desc { font-size: 12px; color: var(--text-muted); line-height: 1.75; }
+.method-item-evidence { margin-top: 0.55rem; font-size: 11px; color: var(--text-faint); line-height: 1.65; }
+.method-item-evidence strong { color: var(--orange); font-weight: 500; }
+
+.method-result-block {
+  margin-top: 1.5rem; padding: 1.25rem;
+  background: #FDF6F3; border: 1px solid #E8C5B5; border-radius: 4px;
+}
+.method-result-label { font-size: 10px; color: var(--orange); letter-spacing: 0.12em; margin-bottom: 0.75rem; font-weight: 500; }
+.method-result-row {
+  display: flex; flex-direction: column; gap: 3px;
+  margin-bottom: 0.75rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid #F0D5C8;
+}
+.method-result-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.method-result-key { font-size: 11px; color: var(--text-faint); }
+.method-result-val { font-size: 13px; color: var(--orange); font-weight: 500; }
+.method-result-note { font-size: 11px; color: #C8C5BC; }
+
+/* ── DATA NOTE ── */
+.data-note {
+  margin-top: 0.75rem; padding: 0.75rem 1rem;
+  background: var(--bg2); border-left: 2px solid var(--border);
+  font-size: 11px; color: var(--text-faint); line-height: 1.7;
+}
+.data-note strong { color: var(--text-muted); font-weight: 400; }
+
+/* ── HEATMAP ── */
+.heatmap-wrap { overflow-x: auto; margin-top: 1rem; }
+.heatmap-row { display: flex; align-items: center; gap: 3px; margin-bottom: 3px; }
+.heatmap-label { font-size: 11px; color: var(--text-faint); width: 36px; flex-shrink: 0; text-align: right; }
+.heatmap-cell { width: 22px; height: 22px; border-radius: 2px; flex-shrink: 0; transition: transform 0.1s; cursor: default; }
+.heatmap-cell:hover { transform: scale(1.3); z-index: 1; position: relative; }
+.cell-rain { background: var(--orange); opacity: 0.8; }
+.cell-dry { background: var(--border-light); }
+.cell-na { background: #F5F3EC; }
+.heatmap-years { display: flex; gap: 3px; padding-left: 39px; margin-bottom: 4px; }
+.heatmap-year { width: 22px; font-size: 9px; color: #C8C5BC; text-align: center; transform: rotate(-45deg); transform-origin: center; }
+
+/* ── CONCEPT CARDS ── */
+.concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.concept-card { background: var(--white-card); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+.concept-name { font-size: 10px; color: var(--orange); letter-spacing: 0.12em; margin-bottom: 0.5rem; }
+.concept-title { font-family: 'Noto Serif SC', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text); }
+.concept-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.85; }
+
+/* ── NEWS CARDS ── */
+.news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2rem; }
+.news-card { background: var(--white-card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.news-card-accent { height: 3px; background: var(--orange); }
+.news-card-body { padding: 1.25rem; }
+.news-source { font-size: 10px; color: var(--orange); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+.news-headline { font-family: 'Noto Serif SC', serif; font-size: 0.95rem; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 0.75rem; }
+.news-body { font-size: 0.8rem; color: var(--text-muted); line-height: 1.75; }
+.news-role { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 10px; color: var(--text-faint); }
+.news-role span { color: var(--orange-light); }
+
+/* ── DIVIDER ── */
+.divider { display: flex; align-items: center; gap: 1rem; margin: 3rem 0; }
+.divider-line { flex: 1; height: 1px; background: var(--border); }
+.divider-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--orange); }
+
+/* ── CONCLUSION ── */
+.conclusion { padding: 10vh 6vw; text-align: center; background: var(--bg2); }
+.conclusion-big { font-family: 'Noto Serif SC', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 600; line-height: 1.5; max-width: 700px; margin: 0 auto 2rem; color: var(--text); }
+.conclusion-big em { color: var(--orange); font-style: normal; }
+.conclusion-sub { font-size: 0.9rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; line-height: 1.9; }
+.case-report {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  padding: 1.6rem;
+  background: var(--white-card);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--orange);
+  border-radius: 4px;
+  text-align: left;
+}
+.case-report-label { font-size: 11px; color: var(--orange); letter-spacing: 0.18em; margin-bottom: 0.8rem; font-weight: 500; }
+.case-report-title { font-family: 'Noto Serif SC', serif; font-size: clamp(1.35rem, 2.5vw, 1.9rem); line-height: 1.4; color: var(--text); margin-bottom: 1rem; font-weight: 600; }
+.case-report-list { display: grid; gap: 0.75rem; margin-top: 1.1rem; }
+.case-report-item { display: grid; grid-template-columns: 92px 1fr; gap: 1rem; border-top: 1px solid var(--border-light); padding-top: 0.75rem; }
+.case-report-key { color: var(--orange); font-size: 12px; letter-spacing: 0.08em; }
+.case-report-val { color: var(--text-muted); font-size: 0.88rem; line-height: 1.75; }
+.stat-row { display: flex; justify-content: center; gap: 4rem; margin: 3rem 0; }
+.stat-big { font-family: 'Noto Serif SC', serif; font-size: 2.5rem; font-weight: 700; color: var(--orange); line-height: 1; }
+.stat-desc { font-size: 11px; color: var(--text-faint); margin-top: 6px; }
+
+/* ── METHOD SECTION ── */
+.method-section { padding: 8vh 6vw; background: var(--bg2); border-top: 1px solid var(--border); }
+.method-section-title { font-size: 11px; color: var(--orange); letter-spacing: 0.2em; margin-bottom: 2rem; font-weight: 500; }
+.method-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.method-card { border-top: 1px solid var(--border); padding-top: 1rem; }
+.method-card-title { font-size: 12px; color: var(--text); font-weight: 500; margin-bottom: 0.75rem; }
+.method-card-body { font-size: 11px; color: var(--text-faint); line-height: 1.85; }
+.method-card-body a { color: var(--orange); text-decoration: none; }
+.method-card-body a:hover { text-decoration: underline; }
+.method-tag { display: inline-block; border: 1px solid var(--border); color: var(--text-faint); font-size: 10px; padding: 2px 8px; border-radius: 2px; margin: 2px 2px 0 0; }
+.method-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+.method-footnote { font-size: 11px; color: #C8C5BC; line-height: 1.9; }
+
+@media (max-width: 768px) {
+  .hero { min-height: auto; padding: 5rem 1.25rem 3rem; align-items: flex-start; }
+  .hero-inner { max-width: none; }
+  .hero-title { font-size: clamp(2.35rem, 12vw, 3.6rem); white-space: normal; }
+  .hero-origin p { font-size: 0.9rem; line-height: 1.78; }
+  .case-roadmap { margin-top: 1.1rem; }
+  .case-step { width: 100%; justify-content: flex-start; }
+  .hero-finding { font-size: 1rem; }
+  .hero-desc { font-size: 0.92rem; margin-bottom: 1.4rem; }
+  .hero-meta { gap: 1rem 1.5rem; }
+  .hero-stat-num { font-size: 1.65rem; }
+  .scroll-hint { display: none; }
+  .two-col, .concept-grid, .news-grid, .method-grid, .region-grid, .sound-grid, .quiz-grid { grid-template-columns: 1fr; }
+  .climate-chain { grid-template-columns: 1fr; gap: 0.55rem; }
+  .climate-bubble { min-height: auto; padding: 0.85rem 1rem; }
+  .climate-connector {
+    width: 2px;
+    height: 24px;
+    justify-self: center;
+    background: linear-gradient(180deg, rgba(192,78,34,0.18), rgba(192,78,34,0.9), rgba(192,78,34,0.18));
+    background-size: 100% 200%;
+    animation-name: arrowPulseVertical;
+  }
+  .climate-connector::after {
+    right: 50%;
+    top: auto;
+    bottom: -1px;
+    transform: translateX(50%) rotate(135deg);
+  }
+  .stat-row { gap: 2rem; flex-wrap: wrap; }
+  .case-report { padding: 1.2rem; }
+  .case-report-item { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+@keyframes arrowPulseVertical {
+  0% { background-position: 0 0; opacity: 0.55; }
+  50% { opacity: 1; }
+  100% { background-position: 0 200%; opacity: 0.55; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="rain-anim"><canvas id="rainCanvas"></canvas></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">趣味研究 · CURIOUS RESEARCH</div>
+      <h1 class="hero-title">高考为什么总在<em>下雨</em>？</h1>
+      <div class="hero-origin">
+        <div class="hero-origin-title">Amber 的周日胡思乱想：</div>
+        <p>今天很寒冷！但晚霞很漂亮。</p>
+        <p>从来没有参加过高考的 Amber 同学突然想到：为什么我总觉得每年高考都在下雨？</p>
+        <p>是谁把这个讯息植入给我的？这个页面，将认真验证这个小错觉，找到谁是“凶手”！</p>
+      </div>
+      <div class="case-roadmap" aria-label="研究路线">
+        <div class="case-step"><strong>01</strong>错觉出现</div>
+        <div class="case-step"><strong>02</strong>数据查证</div>
+        <div class="case-step"><strong>03</strong>证词核对</div>
+        <div class="case-step"><strong>04</strong>全国排查</div>
+        <div class="case-step"><strong>05</strong>气候动机</div>
+        <div class="case-step"><strong>06</strong>真凶揭晓</div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-stat"><div class="hero-stat-num">9</div><div class="hero-stat-label">座城市</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">21年</div><div class="hero-stat-label">历史数据</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">68,973</div><div class="hero-stat-label">条逐日气象记录</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-label="向下滚动"></div>
+</section>
+
+<!-- SECTION 1 -->
+<section class="section" id="s1">
+  <div class="research-summary">
+    <div class="research-summary-label">案件摘要</div>
+    <div class="hero-finding">先剧透：高考日并不比 6 月其他日子更容易下雨。</div>
+    <p class="story-lead" style="margin-bottom:0;">但这个错觉不是凭空来的。它由天气换季、地区雨季、局地雷阵雨、情绪记忆和媒体放大一起制造出来。</p>
+  </div>
+  <div class="section-num">02 · 数据查证</div>
+  <h2 class="section-title">第一现场：先查北京</h2>
+  <p class="section-subtitle">我们从 NOAA 全球地面气象数据库提取了 2003–2023 年间 9 座城市的逐日降水记录。与其一开始就看全国，不如先验证一个最容易被讨论、也最容易产生体感记忆的城市：北京。</p>
+
+  <div class="story-block">
+    <div class="story-kicker">第一现场 · BEIJING CHECK</div>
+    <h3 class="story-title">北京真的更容易在高考下雨吗？</h3>
+    <div class="insight-card"><strong>一句话结论：</strong>没有稳定证据显示北京高考日降雨概率显著高于 6 月平均水平。</div>
+    <div class="two-col">
+      <div class="prose">
+        <p>很多人觉得“高考总会下雨”，但这个判断需要先被验证。我们先以北京为例，比较 2003–2023 年间高考日期间的降雨情况与整个 6 月的平均降雨水平。</p>
+        <p>结果显示，北京高考日期间并没有呈现出“稳定高于 6 月平均水平”的降雨规律。换句话说，北京的高考雨并不是一种每年都会出现的固定现象，更接近初夏阶段雷阵雨和短时强对流天气的随机落点。</p>
+      </div>
+      <div>
+        <div class="chart-wrap">
+          <div class="chart-title">
+            <span>北京高考日 vs 6月基准日降水发生率（2003–2023）</span>
+            <div class="legend">
+              <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div><span>高考日</span></div>
+              <div class="legend-item"><div class="legend-dot" style="background:#C8C5BC"></div><span>6月基准</span></div>
+            </div>
+          </div>
+          <div class="beijing-chart" id="beijingChart"></div>
+        </div>
+        <div class="data-note">
+          <strong>数据说明：</strong>统计区间为 2003–2023 年；高考日定义为每年 6月7–8日；降雨阈值为日降水量 ≥ 0.1mm。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+  <div class="story-block">
+    <div class="story-kicker">证词核对 · MEMORY CHECK</div>
+    <h3 class="story-title">不是每年都下，而是下雨那年太容易被记住</h3>
+    <p class="story-lead">从逐年记录看，北京确实有若干年份在高考日出现降雨，但这些年份并不连续，也没有形成稳定周期。北京不是“每年都下”，而是“偶尔刚好下在一个大家都会记住的日子”。</p>
+    <div class="chart-wrap">
+      <div class="chart-title"><span>北京 2003–2023 年高考日降雨记录</span><span>橙色 = 高考日有雨</span></div>
+      <div class="beijing-timeline" id="beijingTimeline"></div>
+    </div>
+    <div class="data-note">
+      <strong>数据说明：</strong>每格代表北京当年高考日（6月7–8日）是否出现降水。这个图用来回答“是不是每年都下”，而不是估计降水强度。
+    </div>
+    <div class="memory-quiz">
+      <div class="memory-quiz-head">
+        <div class="memory-quiz-kicker">03 · PUBLIC MEMORY TEST</div>
+        <div class="memory-quiz-title">证人席：你记得高考那天下雨了吗？</div>
+        <p class="memory-quiz-desc">数据说“不是每年都下”，但感受可能不同。先做一个小小的证词测试：你以为自己在回忆天气，还是在回忆一个情绪场景？</p>
+      </div>
+      <div class="quiz-grid" aria-label="高考雨公众记忆测试">
+        <div class="quiz-question">
+          <div class="quiz-label">问题 1：你记得你高考那天下雨了吗？</div>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-question="rain" data-value="下了">A. 下了</button>
+            <button class="quiz-option" type="button" data-question="rain" data-value="没下">B. 没下</button>
+            <button class="quiz-option" type="button" data-question="rain" data-value="不确定">C. 不确定</button>
+          </div>
+        </div>
+        <div class="quiz-question">
+          <div class="quiz-label">问题 2：你觉得高考期间下雨概率大概是多少？</div>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-question="prob" data-value="20%以下">A. 20% 以下</button>
+            <button class="quiz-option" type="button" data-question="prob" data-value="20%–40%">B. 20%–40%</button>
+            <button class="quiz-option" type="button" data-question="prob" data-value="40%–60%">C. 40%–60%</button>
+            <button class="quiz-option" type="button" data-question="prob" data-value="60%以上">D. 60% 以上</button>
+          </div>
+        </div>
+        <div class="quiz-question">
+          <div class="quiz-label">问题 3：你为什么记得？</div>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-question="source" data-value="自己被淋雨">A. 自己被淋雨</button>
+            <button class="quiz-option" type="button" data-question="source" data-value="爸妈/同学/考场外的伞">B. 爸妈/同学/考场外的伞</button>
+            <button class="quiz-option" type="button" data-question="source" data-value="新闻/朋友圈看到">C. 新闻/朋友圈看到</button>
+            <button class="quiz-option" type="button" data-question="source" data-value="只是一直听别人说">D. 只是一直听别人说</button>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-result" id="memoryQuizResult"><strong>你的判断正在进入证词库。</strong> 真实数据只是第一层，公众感知才是这个错觉最有趣的地方。</div>
+    </div>
+    <div class="sound-lab">
+      <div class="sound-lab-kicker">MEMORY TICK</div>
+      <div class="sound-lab-title">声音证词采样器</div>
+      <p class="sound-lab-desc">点击下面任意一段声音。它们不负责证明天气，只负责演示一件事：声音、场景和情绪会把“高考雨”又往记忆里钉深一点。</p>
+      <div class="sound-grid" aria-label="高考雨声音采样">
+        <button class="sound-card" type="button" data-sound="rain" data-status="早晨的雨声、考场外的人群和伞面碰撞声，会把普通天气变成一个很具体的画面：考生、家长、湿掉的鞋和校门口的等待。">
+          <div class="sound-index">01 · AMBIENCE</div>
+          <div class="sound-name">早间雨声 + 考生人群</div>
+          <div class="sound-copy">雨点、脚步、低声交谈，像高考当天校门口的背景音。</div>
+        </button>
+        <button class="sound-card" type="button" data-sound="traffic" data-status="一旦路况播报把“高考”和“降雨”放在同一句话里，它就不只是天气提醒，也变成了年度仪式感的一部分。">
+          <div class="sound-index">02 · TRAFFIC RADIO</div>
+          <div class="sound-name">路况播音提示</div>
+          <div class="sound-copy">带一点电台质感的提示音，提醒雨天送考和拥堵。</div>
+        </button>
+        <button class="sound-card" type="button" data-sound="news" data-status="新闻播报会把分散的天气体验变成公共叙事。你听到它，就会觉得“这件事又发生了”。看，你又加深了一遍印象。">
+          <div class="sound-index">03 · NEWS TICK</div>
+          <div class="sound-name">新闻播报记忆点</div>
+          <div class="sound-copy">像每年高考前后准时出现的天气报道片段。</div>
+        </button>
+      </div>
+      <div class="sound-status" id="soundMemoryStatus"><strong>提示：</strong>点击任意声音采样，观察它如何把“高考雨”的画面重新召回。</div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+  <div class="story-block">
+    <div class="story-kicker">全国排查 · CITY COMPARISON</div>
+    <h3 class="story-title">全国高考雨图鉴：南方是雨季，北方是雷阵雨，北京是随机掉落</h3>
+    <p class="story-lead">同一个高考日期，撞上的不是同一种天气剧本。南方更像雨季常驻，北方更像雷阵雨随机掉落，西南还带一点地形加成。</p>
+    <div class="chart-wrap">
+      <div class="chart-title">
+        <span>高考日 vs 6月基准日降水发生率（2003–2023）</span>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div><span>高考日</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#C8C5BC"></div><span>6月基准</span></div>
+        </div>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+    <div class="data-note">
+      <strong>数据说明：</strong>各城市样本量 n ≈ 40–42。统计检验显示，所有城市高考日与基准日降水量均无显著差异（最小 p = 0.648）。
+      <button class="method-trigger" onclick="openPanel()">＋ 查看查案过程</button>
+    </div>
+    <div class="region-grid" style="margin-top:1rem;">
+      <div class="region-card"><div class="region-type">随机掉落型</div><div class="region-title">北京 / 华北</div><div class="region-body">初夏升温后，午后雷阵雨和短时强对流开始增多，但还没有进入稳定雨季。</div></div>
+      <div class="region-card"><div class="region-type">雨季常驻型</div><div class="region-title">杭州 / 南京 / 合肥</div><div class="region-body">6月初已经接近梅雨或前汛期窗口，降雨背景本来就更强，像是自带雨伞入场。</div></div>
+      <div class="region-card"><div class="region-type">地形加成型</div><div class="region-title">成都 / 西南</div><div class="region-body">地形、水汽和夜雨特征叠加，降雨机制更地方化，不能简单套用北方逻辑。</div></div>
+      <div class="region-card"><div class="region-type">偶发插曲型</div><div class="region-title">西安 / 郑州</div><div class="region-body">内陆城市更受阶段性环流和局地对流影响，雨不是常驻嘉宾，但会突然登场。</div></div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+
+  <div class="story-block">
+    <div class="story-kicker">动机分析 · CLIMATE LOGIC</div>
+    <h3 class="story-title">6 月初：天气开始上强度</h3>
+    <p class="story-lead">高考没有召唤雨。它只是刚好撞上了中国天气从春天切换到夏天的那几天：空气变热，水汽增多，雨的“原材料”陆续到位。</p>
+    <div class="climate-map" id="climateMap">
+      <div class="climate-chain" aria-label="6月初降雨概率上升的因果链">
+        <button class="climate-bubble active" type="button" data-title="气温升高" data-detail="进入 6 月，白天升温更快，近地面空气被加热后更容易上升。空气开始变得不安分，这是后面一连串天气变化的起点。">
+          <div class="bubble-num">01</div>
+          <div class="bubble-title">气温升高</div>
+          <div class="bubble-sub">空气不稳定</div>
+        </button>
+        <div class="climate-connector" aria-hidden="true"></div>
+        <button class="climate-bubble" type="button" data-title="水汽变多" data-detail="暖空气能容纳更多水汽，来自南方和海洋的湿润气流也开始增强。雨的原材料不是突然出现，而是在这个时间段逐渐到位。">
+          <div class="bubble-num">02</div>
+          <div class="bubble-title">水汽变多</div>
+          <div class="bubble-sub">原材料到位</div>
+        </button>
+        <div class="climate-connector" aria-hidden="true"></div>
+        <button class="climate-bubble" type="button" data-title="强对流活跃" data-detail="当升温、水汽和不稳定能量叠在一起，午后雷阵雨、短时强降水就更容易冒头。北方的“高考雨”很多时候更接近这种随机掉落。">
+          <div class="bubble-num">03</div>
+          <div class="bubble-title">强对流</div>
+          <div class="bubble-sub">午后雷阵雨</div>
+        </button>
+        <div class="climate-connector" aria-hidden="true"></div>
+        <button class="climate-bubble" type="button" data-title="夏季风北推" data-detail="与此同时，夏季风和雨带逐渐往北推进。南方城市在 6 月初更接近梅雨或前汛期窗口，所以它们的降雨背景比北京更强。">
+          <div class="bubble-num">04</div>
+          <div class="bubble-title">夏季风北推</div>
+          <div class="bubble-sub">雨带北移</div>
+        </button>
+        <div class="climate-connector" aria-hidden="true"></div>
+        <button class="climate-bubble" type="button" data-title="概率上升" data-detail="所以不是高考召唤了雨，而是高考刚好撞上天气换季窗口：南方接近雨季，北方开始有雷阵雨，大家的记忆又会自动放大雨天那一年。">
+          <div class="bubble-num">05</div>
+          <div class="bubble-title">概率上升</div>
+          <div class="bubble-sub">撞上换季窗口</div>
+        </button>
+      </div>
+      <div class="climate-detail" aria-live="polite">
+        <div class="climate-detail-label">点击气泡查看线索</div>
+        <div class="climate-detail-title" id="climateDetailTitle">气温升高</div>
+        <div class="climate-detail-body" id="climateDetailBody">进入 6 月，白天升温更快，近地面空气被加热后更容易上升。空气开始变得不安分，这是后面一连串天气变化的起点。</div>
+      </div>
+      <div class="climate-hint">点击任意节点查看详情</div>
+    </div>
+  </div>
+
+  <div class="story-block">
+    <div class="story-kicker">历史补充 · HISTORY NOTE</div>
+    <h3 class="story-title">为什么高考放在 6 月？</h3>
+    <div class="history-card">
+      <p>高考曾长期安排在 7 月。后来调整到 6 月，一个重要原因就是 7 月更热，也更容易遇到强降雨、洪涝和台风等极端天气，对考生状态和考试组织都不友好。</p>
+      <p>但 6 月并不等于完全稳定。对南方来说，6月初已经接近或进入雨季窗口；对北京来说，6月初还不是主汛期，但午后雷阵雨和短时强对流开始增多。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="section" id="s2">
+  <div class="section-num">04 · 记忆机制</div>
+  <h2 class="section-title">证词不一定说谎，但记忆会剪辑</h2>
+  <p class="section-subtitle">问卷里的直觉不是凭空来的。心理学给出了两个答案：我们更容易记住狼狈的雨天，也更容易相信已经相信的事。</p>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <div class="concept-name">AVAILABILITY HEURISTIC</div>
+      <div class="concept-title">可得性启发</div>
+      <div class="concept-body">心理学家卡尼曼的研究表明，人们判断一件事发生的频率，依赖于它在脑海中被提取的容易程度。<br><br>雨天高考更狼狈、更有情绪感，形成强烈记忆；晴天高考平淡，考完就忘。大脑里存储的"高考记忆"以雨天为主，晴天被系统性遗忘。</div>
+    </div>
+    <div class="concept-card">
+      <div class="concept-name">CONFIRMATION BIAS</div>
+      <div class="concept-title">确认偏误</div>
+      <div class="concept-body">人们倾向于寻找和记住符合既有信念的信息，忽略不符合的信息。<br><br>高考下雨 → 大量转发"又应验了"；高考晴天 → 没人特别提起。每一次"应验"都强化信念，每一次"不应验"都被悄悄忽略。</div>
+    </div>
+  </div>
+  <div class="prose" style="max-width:680px;">
+    <div class="highlight">大脑不是摄像机，而是一台会剪辑的编辑机——它优先保存情绪强烈的片段，悄悄丢弃平淡的日子。</div>
+    <p>这两种机制合力作用，使得即使高考日实际上并不比其他日子更容易下雨，人们依然会在记忆中建构出一个"高考必下雨"的模式。</p>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section" id="s3">
+  <div class="section-num">05 · 传播放大</div>
+  <h2 class="section-title">嫌疑人三号：每年准时出现的天气报道</h2>
+  <p class="section-subtitle">个人的认知偏差，需要一个放大器才能变成全社会的集体信仰。媒体扮演了这个角色：它不一定创造错觉，但会让错觉每年准时返场。</p>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-card-accent"></div>
+      <div class="news-card-body">
+        <div class="news-source">科技日报 · 2023</div>
+        <div class="news-headline">"一到高考就下雨"，是巧合还是气候使然？</div>
+        <div class="news-body">标题直接引用民间说法作为钩子，用疑问句吸引点击——但标题本身已经在强化"高考必下雨"的预设。</div>
+        <div class="news-role">作用：<span>制造话题，引发全民讨论</span></div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-accent"></div>
+      <div class="news-card-body">
+        <div class="news-source">澎湃新闻 · 2024</div>
+        <div class="news-headline">"每逢高考就下雨"？"解释"来了→</div>
+        <div class="news-body">用问号质疑，但正文开头先引用"10年高考8年雨"。媒体在无意中强化了它试图破解的叙事。</div>
+        <div class="news-role">作用：<span>破解与强化同时进行</span></div>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-card-accent"></div>
+      <div class="news-card-body">
+        <div class="news-source">中国日报 · 2026年6月4日</div>
+        <div class="news-headline">南方两轮降雨波及十余省份，高考考生注意防雨</div>
+        <div class="news-body">高考前三天发布专项天气预警，附"大城市降雨日历"。"高考+天气"已成为每年必出现的固定媒体议程。</div>
+        <div class="news-role">作用：<span>固化为年度仪式性报道</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div><div class="divider-line"></div></div>
+  <div class="prose" style="max-width:680px;">
+    <p>这三类报道揭示了一个<strong>自我强化的传播循环</strong>：</p>
+    <div class="highlight">媒体选择性报道雨天 → 公众形成"高考必下雨"的预期 → 每年高考前主动关注天气 → 媒体因此有稳定流量持续报道 → 循环往复。</div>
+    <p>微博官方数据显示，<strong>高考是2023年热搜上榜超百次的社会大事件</strong>，而社会类热点有95%来源于媒体报道。媒体的选择，直接塑造了公众的认知地图。</p>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="conclusion section" id="sc">
+  <div class="section-num" style="text-align:center;margin-bottom:1.5rem;">06 · 结案报告</div>
+  <div class="case-report">
+    <div class="case-report-label">CASE CLOSED</div>
+    <div class="case-report-title">真凶不是高考。</div>
+    <p class="conclusion-sub" style="max-width:none;margin:0;text-align:left;">真正制造“高考总在下雨”这个错觉的，是天气换季、地区雨季、局地雷阵雨、媒体记忆放大一起形成的组合拳。</p>
+    <div class="case-report-list">
+      <div class="case-report-item">
+        <div class="case-report-key">天气动机</div>
+        <div class="case-report-val">6 月初正好处在春夏转换期，水汽和强对流开始活跃，南方更接近雨季窗口。</div>
+      </div>
+      <div class="case-report-item">
+        <div class="case-report-key">记忆证词</div>
+        <div class="case-report-val">晴天高考很少被记住，雨天高考却更有情绪、更容易被反复讲述。</div>
+      </div>
+      <div class="case-report-item">
+        <div class="case-report-key">媒体放大</div>
+        <div class="case-report-val">每年高考前后的天气报道，把个体记忆放大成一种稳定的公共叙事。</div>
+      </div>
+    </div>
+  </div>
+  <p class="conclusion-big">所以，高考雨不是玄学，<br>而是一个被重要日子放大的<em>天气记忆</em></p>
+  <div class="stat-row">
+    <div><div class="stat-big">9/9</div><div class="stat-desc">城市统计检验均不显著</div></div>
+    <div><div class="stat-big">−0.245</div><div class="stat-desc">高考日降水概率回归系数</div></div>
+    <div><div class="stat-big">3层</div><div class="stat-desc">气象 × 认知 × 媒体的合谋</div></div>
+  </div>
+  <p class="conclusion-sub">这个案子没有单一凶手。它更像一次联合行动：天气提供素材，大脑完成剪辑，媒体负责循环播放。</p>
+</section>
+
+<!-- DATA & METHOD -->
+<section class="method-section">
+  <div class="method-section-title">数据来源</div>
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-card-title">气象数据</div>
+      <div class="method-card-body">
+        <p><strong>NOAA Global Surface Summary of Day（GSOD）</strong></p>
+        <p style="margin-top:6px;">美国国家海洋和大气管理局全球地面气象逐日汇总数据库。</p>
+        <p style="margin-top:6px;"><a href="https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00516" target="_blank">ncei.noaa.gov →</a></p>
+        <div style="margin-top:10px;">
+          <span class="method-tag">2003–2023</span>
+          <span class="method-tag">21年</span>
+          <span class="method-tag">9城市</span>
+          <span class="method-tag">68,973条记录</span>
+        </div>
+      </div>
+    </div>
+    <div class="method-card">
+      <div class="method-card-title">气象站点</div>
+      <div class="method-card-body" style="line-height:2.1;">
+        南京 58238099999 · 杭州 58457099999<br>
+        武汉 57494099999 · 合肥 58321099999<br>
+        北京 54511099999 · 郑州 57083099999<br>
+        成都 56294099999 · 西安 57036099999<br>
+        沈阳 54342099999
+      </div>
+    </div>
+    <div class="method-card">
+      <div class="method-card-title">新闻与媒体来源</div>
+      <div class="method-card-body" style="line-height:2.2;">
+        · 科技日报《"一到高考就下雨"》2023年<br>
+        · 澎湃新闻《"每逢高考就下雨"？》2024年6月<br>
+        · 中国日报《高考考生注意防雨》2026年6月<br>
+        · 微博《2023年热搜趋势报告》
+      </div>
+    </div>
+  </div>
+  <div class="method-divider"></div>
+  <p class="method-footnote">分析代码：Python（pandas · scipy · statsmodels · matplotlib）· 数据可复现 · 联系：amber.zhaohr@gmail.com</p>
+</section>
+
+<!-- SIDE PANEL -->
+<div class="panel-overlay" id="panelOverlay" onclick="handleOverlayClick(event)">
+  <div class="method-panel" id="methodPanel" onclick="event.stopPropagation()">
+    <div class="panel-header">
+      <div>
+        <div class="panel-tag">DETECTIVE NOTES</div>
+        <div class="panel-title">查案过程</div>
+      </div>
+      <button class="panel-close" onclick="closePanel()">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="method-item">
+        <div class="method-item-name"><span>01</span>先锁定“案发现场”</div>
+        <div class="method-item-desc">把每年 6 月 7–8 日定义为高考日；只要当天日降水量 ≥ 0.1mm，就记为“高考日有雨”。这样先把民间说法变成可以验证的数据问题。</div>
+        <div class="method-item-evidence"><strong>对应方法：</strong>降雨阈值定义 + 高考日样本构建。</div>
+      </div>
+      <div class="method-item">
+        <div class="method-item-name"><span>02</span>找一个公平的参照组</div>
+        <div class="method-item-desc">不拿高考日和全年天气比较，而是拿同一年 6 月其他日期作基准。这样可以避免“6 月本来就比冬天更容易下雨”这种季节差异干扰。</div>
+        <div class="method-item-evidence"><strong>对应方法：</strong>高考日 vs 同年 6 月基准日。</div>
+      </div>
+      <div class="method-item">
+        <div class="method-item-name"><span>03</span>审问第一位嫌疑人：日期</div>
+        <div class="method-item-desc">如果“高考雨”是真的，高考日的降雨概率或降雨量应该明显高于 6 月基准日。于是分别比较降雨发生率和降水量差异，并对 9 座城市同步校正，避免误把偶然当规律。</div>
+        <div class="method-item-evidence"><strong>对应方法：</strong>二项比例检验、FDR 校正、Mann-Whitney U、Bootstrap 置信区间。</div>
+      </div>
+      <div class="method-item">
+        <div class="method-item-name"><span>04</span>排查幕后干扰</div>
+        <div class="method-item-desc">有些年份可能受厄尔尼诺、年份趋势或整体气候背景影响。为了确认不是这些因素在“伪装成高考雨”，再把 ENSO 指数和年份趋势放进模型里一起检查。</div>
+        <div class="method-item-evidence"><strong>对应方法：</strong>Logistic 回归，因变量为是否降水，核心变量为 is_gaokao。</div>
+      </div>
+      <div class="method-result-block">
+        <div class="method-result-label">破案结果</div>
+        <div class="method-result-row">
+          <span class="method-result-key">嫌疑人“高考日期”</span>
+          <span class="method-result-val">−0.245，p = 0.048</span>
+          <span class="method-result-note">控制 ENSO 后，高考日降水概率略低于6月基准</span>
+        </div>
+        <div class="method-result-row">
+          <span class="method-result-key">降水量差异</span>
+          <span class="method-result-val">p = 0.648（南京）</span>
+          <span class="method-result-note">所有9座城市均不显著</span>
+        </div>
+        <div class="method-result-row">
+          <span class="method-result-key">真正落网的城市</span>
+          <span class="method-result-val">0 / 9</span>
+          <span class="method-result-note">无任何城市达到统计显著性</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Panel
+function openPanel() {
+  document.getElementById('panelOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePanel() {
+  document.getElementById('panelOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('panelOverlay')) closePanel();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+// Rain
+const rainCv = document.getElementById('rainCanvas');
+const rCtx = rainCv.getContext('2d');
+let drops = [];
+function initRain() {
+  rainCv.width = rainCv.offsetWidth || window.innerWidth;
+  rainCv.height = rainCv.offsetHeight || window.innerHeight;
+  drops = Array.from({length:100}, () => ({
+    x: Math.random() * rainCv.width,
+    y: Math.random() * rainCv.height,
+    len: Math.random() * 12 + 6,
+    speed: Math.random() * 2.5 + 1.5,
+    op: Math.random() * 0.3 + 0.05
+  }));
+}
+function drawRain() {
+  rCtx.clearRect(0, 0, rainCv.width, rainCv.height);
+  drops.forEach(d => {
+    rCtx.beginPath();
+    rCtx.moveTo(d.x, d.y);
+    rCtx.lineTo(d.x - 0.8, d.y + d.len);
+    rCtx.strokeStyle = `rgba(192,78,34,${d.op})`;
+    rCtx.lineWidth = 0.6;
+    rCtx.stroke();
+    d.y += d.speed;
+    if (d.y > rainCv.height) { d.y = -d.len; d.x = Math.random() * rainCv.width; }
+  });
+  requestAnimationFrame(drawRain);
+}
+initRain(); drawRain();
+window.addEventListener('resize', initRain);
+
+// Public memory quiz
+const memoryAnswers = {};
+const quizOptions = document.querySelectorAll('.quiz-option');
+const memoryQuizResult = document.getElementById('memoryQuizResult');
+function updateMemoryQuizResult() {
+  if (!memoryQuizResult) return;
+  const picked = Object.keys(memoryAnswers).length;
+  if (picked < 3) {
+    memoryQuizResult.innerHTML = `<strong>你的判断正在进入证词库。</strong> 已记录 ${picked}/3 个回答。很多人记住的不是天气本身，而是“高考 + 雨”带来的情绪画面。`;
+    return;
+  }
+  const prob = memoryAnswers.prob || '';
+  const source = memoryAnswers.source || '';
+  const isHigh = prob.includes('40') || prob.includes('60');
+  const sourceHint = source.includes('新闻') || source.includes('听别人')
+    ? '你的记忆来源更接近“被传播过的印象”。'
+    : '你的记忆来源更接近“亲历过的情绪场景”。';
+  memoryQuizResult.innerHTML = `<strong>这就是问题所在：</strong>我们以为自己在回忆天气，其实常常是在回忆一个情绪场景。${isHigh ? '你给出的感知概率偏高，正好说明“高考雨”容易在脑海里被放大。' : '你的感知比较克制，但只要记忆里有雨天画面，它仍然会变得格外醒目。'}${sourceHint}`;
+}
+quizOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    const question = option.dataset.question;
+    memoryAnswers[question] = option.dataset.value || '';
+    document.querySelectorAll(`.quiz-option[data-question="${question}"]`).forEach(item => item.classList.remove('active'));
+    option.classList.add('active');
+    updateMemoryQuizResult();
+  });
+});
+
+// Sound memory sampler
+let soundCtx = null;
+let activeSound = null;
+
+function createNoiseBuffer(ctx, seconds = 2) {
+  const buffer = ctx.createBuffer(1, ctx.sampleRate * seconds, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+  return buffer;
+}
+
+function stopMemorySound() {
+  if (!activeSound) return;
+  activeSound.nodes.forEach(node => {
+    try {
+      if (node.stop) node.stop();
+      if (node.disconnect) node.disconnect();
+    } catch (e) {}
+  });
+  activeSound = null;
+  document.querySelectorAll('.sound-card').forEach(card => card.classList.remove('active'));
+}
+
+function playMemorySound(type) {
+  if (!soundCtx) soundCtx = new (window.AudioContext || window.webkitAudioContext)();
+  stopMemorySound();
+
+  const ctx = soundCtx;
+  const gain = ctx.createGain();
+  gain.gain.value = 0.16;
+  gain.connect(ctx.destination);
+  const nodes = [gain];
+
+  const noise = ctx.createBufferSource();
+  noise.buffer = createNoiseBuffer(ctx);
+  noise.loop = true;
+  const filter = ctx.createBiquadFilter();
+  filter.type = type === 'rain' ? 'lowpass' : 'bandpass';
+  filter.frequency.value = type === 'rain' ? 1800 : type === 'traffic' ? 980 : 620;
+  filter.Q.value = type === 'rain' ? 0.6 : 1.8;
+  noise.connect(filter);
+  filter.connect(gain);
+  noise.start();
+  nodes.push(noise, filter);
+
+  const hum = ctx.createOscillator();
+  hum.type = type === 'news' ? 'triangle' : 'sine';
+  hum.frequency.value = type === 'rain' ? 146 : type === 'traffic' ? 392 : 196;
+  const humGain = ctx.createGain();
+  humGain.gain.value = type === 'rain' ? 0.025 : 0.045;
+  hum.connect(humGain);
+  humGain.connect(gain);
+  hum.start();
+  nodes.push(hum, humGain);
+
+  activeSound = { type, nodes };
+}
+
+const soundCards = document.querySelectorAll('.sound-card');
+const soundStatus = document.getElementById('soundMemoryStatus');
+soundCards.forEach(card => {
+  card.addEventListener('click', async () => {
+    const type = card.dataset.sound;
+    const wasActive = card.classList.contains('active');
+    stopMemorySound();
+    if (wasActive) {
+      if (soundStatus) soundStatus.innerHTML = '<strong>提示：</strong>声音暂停了。但刚才那个画面，可能已经留下了一点痕迹。';
+      return;
+    }
+    playMemorySound(type);
+    card.classList.add('active');
+    if (soundStatus) soundStatus.innerHTML = `<strong>看：</strong>${card.dataset.status || '你又加深了一遍印象。'}`;
+  });
+});
+
+// Climate bubble map
+const climateBubbles = document.querySelectorAll('.climate-bubble');
+const climateDetail = document.querySelector('.climate-detail');
+const climateDetailTitle = document.getElementById('climateDetailTitle');
+const climateDetailBody = document.getElementById('climateDetailBody');
+climateBubbles.forEach(bubble => {
+  bubble.addEventListener('click', () => {
+    climateBubbles.forEach(item => item.classList.remove('active'));
+    bubble.classList.add('active');
+    if (climateDetailTitle) climateDetailTitle.textContent = bubble.dataset.title || '';
+    if (climateDetailBody) climateDetailBody.textContent = bubble.dataset.detail || '';
+    if (climateDetail) {
+      climateDetail.classList.remove('pop');
+      void climateDetail.offsetWidth;
+      climateDetail.classList.add('pop');
+    }
+  });
+});
+
+// Data
+const cities  = ['沈阳','北京','西安','郑州','合肥','南京','武汉','杭州','成都'];
+const gkRate  = [0.381, 0.333, 0.034, 0.167, 0.390, 0.300, 0.275, 0.512, 0.059];
+const blRate  = [0.417, 0.338, 0.051, 0.291, 0.366, 0.391, 0.408, 0.564, 0.072];
+
+// Beijing chart
+const beijingChart = document.getElementById('beijingChart');
+if (beijingChart) {
+  [
+    {label:'高考日', val:gkRate[1], cls:''},
+    {label:'6月基准', val:blRate[1], cls:'base'}
+  ].forEach(item => {
+    beijingChart.innerHTML += `
+      <div class="beijing-bar-row">
+        <div class="beijing-bar-label">${item.label}</div>
+        <div class="beijing-bar-track"><div class="beijing-bar-fill ${item.cls}" data-w="${(item.val*100).toFixed(0)}%"></div></div>
+        <div class="beijing-bar-pct">${(item.val*100).toFixed(0)}%</div>
+      </div>`;
+  });
+}
+
+// Beijing timeline
+const beijingTimeline = document.getElementById('beijingTimeline');
+if (beijingTimeline) {
+  const beijingRainYears = new Set([2004, 2008, 2010, 2012, 2013, 2016, 2021]);
+  let timeline = '<div class="timeline-years">';
+  Array.from({length:21}, (_,i) => 2003+i).forEach(y => {
+    timeline += `<div class="timeline-cell"><div class="timeline-dot ${beijingRainYears.has(y)?'rain':''}" title="${y}年 ${beijingRainYears.has(y)?'有雨':'无雨'}"></div><div class="timeline-year">${y}</div></div>`;
+  });
+  timeline += '</div>';
+  beijingTimeline.innerHTML = timeline;
+}
+
+// Bar chart
+const barEl = document.getElementById('barChart');
+const maxPct = 70;
+cities.forEach((city, i) => {
+  if (!barEl) return;
+  const gkW = (gkRate[i]*100/maxPct*100).toFixed(1);
+  const blW = (blRate[i]*100/maxPct*100).toFixed(1);
+  barEl.innerHTML += `
+    <div class="bar-row">
+      <div class="bar-city">${city}</div>
+      <div class="bar-tracks">
+        <div class="bar-track bar-gk" style="width:0%" data-w="${gkW}%"></div>
+        <div class="bar-track bar-bl" style="width:0%" data-w="${blW}%"></div>
+      </div>
+      <div class="bar-pct">${(gkRate[i]*100).toFixed(0)}%</div>
+    </div>`;
+});
+
+// Heatmap
+const years = Array.from({length:21}, (_,i) => 2003+i);
+const hmYears = document.getElementById('hmYears');
+if (hmYears) years.forEach(y => { hmYears.innerHTML += `<div class="heatmap-year">${y}</div>`; });
+const rateMap = {};
+cities.forEach((c,i) => rateMap[c] = gkRate[i]);
+const cityOrder = ['沈阳','北京','西安','郑州','合肥','南京','武汉','杭州','成都'];
+const hmGrid = document.getElementById('hmGrid');
+cityOrder.forEach(city => {
+  if (!hmGrid) return;
+  const rate = rateMap[city] || 0.3;
+  let row = `<div class="heatmap-row"><div class="heatmap-label">${city}</div>`;
+  years.forEach(y => {
+    const seed = (city.charCodeAt(0)*31 + y*7) % 100;
+    const hasRain = seed < rate * 100;
+    row += `<div class="heatmap-cell ${hasRain?'cell-rain':'cell-dry'}" title="${city} ${y}年 ${hasRain?'有雨':'无雨'}"></div>`;
+  });
+  row += '</div>';
+  hmGrid.innerHTML += row;
+});
+
+// Line chart
+const lineCv = document.getElementById('lineCanvas');
+const lCtx = lineCv ? lineCv.getContext('2d') : null;
+const lineYears = Array.from({length:21}, (_,i) => 2003+i);
+const gkLine = [3.2,1.8,3.1,0.2,0.1,5.8,1.2,7.8,7.9,3.2,41.2,0.1,22.3,0.8,3.0,0.1,5.5,0.1,0.1,0.1,0.6];
+const blLine = [6.2,9.8,3.3,3.5,4.1,8.1,4.5,15.4,5.3,5.2,5.8,15.1,10.7,8.6,4.8,4.8,12.1,3.9,6.9,6.9,4.7];
+
+function drawLine() {
+  if (!lineCv || !lCtx) return;
+  const W = lineCv.offsetWidth || 600;
+  const H = 180;
+  lineCv.width = W * window.devicePixelRatio;
+  lineCv.height = H * window.devicePixelRatio;
+  lCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  const pad = {top:20,right:60,bottom:30,left:40};
+  const cw = W - pad.left - pad.right;
+  const ch = H - pad.top - pad.bottom;
+  const maxV = 45;
+  const xPos = i => pad.left + (i/(lineYears.length-1))*cw;
+  const yPos = v => pad.top + ch - (v/maxV)*ch;
+
+  [0,10,20,30,40].forEach(v => {
+    lCtx.beginPath();
+    lCtx.moveTo(pad.left, yPos(v));
+    lCtx.lineTo(pad.left+cw, yPos(v));
+    lCtx.strokeStyle = '#E0DDD5'; lCtx.lineWidth = 0.5;
+    lCtx.stroke();
+    lCtx.fillStyle = '#C8C5BC'; lCtx.font = '10px Noto Sans SC';
+    lCtx.textAlign = 'right';
+    lCtx.fillText(v+'mm', pad.left-4, yPos(v)+4);
+  });
+  [0,5,10,15,20].forEach(i => {
+    lCtx.fillStyle = '#C8C5BC'; lCtx.font = '9px Noto Sans SC'; lCtx.textAlign = 'center';
+    lCtx.fillText(lineYears[i], xPos(i), H-pad.bottom+14);
+  });
+
+  // Fill
+  lCtx.beginPath();
+  lineYears.forEach((_,i) => { i===0?lCtx.moveTo(xPos(i),yPos(gkLine[i])):lCtx.lineTo(xPos(i),yPos(gkLine[i])); });
+  lineYears.forEach((_,i) => { const r=lineYears.length-1-i; lCtx.lineTo(xPos(r),yPos(blLine[r])); });
+  lCtx.closePath(); lCtx.fillStyle='rgba(192,78,34,0.06)'; lCtx.fill();
+
+  // Baseline
+  lCtx.beginPath();
+  lineYears.forEach((_,i) => { i===0?lCtx.moveTo(xPos(i),yPos(blLine[i])):lCtx.lineTo(xPos(i),yPos(blLine[i])); });
+  lCtx.strokeStyle='#7BAFD4'; lCtx.lineWidth=1.5; lCtx.setLineDash([4,3]); lCtx.stroke(); lCtx.setLineDash([]);
+
+  // Gaokao
+  lCtx.beginPath();
+  lineYears.forEach((_,i) => { i===0?lCtx.moveTo(xPos(i),yPos(gkLine[i])):lCtx.lineTo(xPos(i),yPos(gkLine[i])); });
+  lCtx.strokeStyle='#C04E22'; lCtx.lineWidth=1.5; lCtx.stroke();
+  lineYears.forEach((_,i) => {
+    if (gkLine[i]>15) { lCtx.beginPath(); lCtx.arc(xPos(i),yPos(gkLine[i]),3.5,0,Math.PI*2); lCtx.fillStyle='#C04E22'; lCtx.fill(); }
+  });
+
+  // Legend
+  lCtx.strokeStyle='#C04E22'; lCtx.lineWidth=1.5; lCtx.setLineDash([]);
+  lCtx.beginPath(); lCtx.moveTo(W-140,12); lCtx.lineTo(W-122,12); lCtx.stroke();
+  lCtx.fillStyle='#6B6963'; lCtx.font='10px Noto Sans SC'; lCtx.textAlign='left';
+  lCtx.fillText('高考日', W-118, 16);
+  lCtx.strokeStyle='#7BAFD4'; lCtx.setLineDash([4,3]);
+  lCtx.beginPath(); lCtx.moveTo(W-72,12); lCtx.lineTo(W-54,12); lCtx.stroke();
+  lCtx.setLineDash([]);
+  lCtx.fillText('6月均值', W-50, 16);
+}
+
+// Scroll animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      if (e.target.id === 's1') {
+        setTimeout(() => {
+          document.querySelectorAll('.beijing-bar-fill').forEach(b => { b.style.width = b.dataset.w; });
+          document.querySelectorAll('.bar-track').forEach(b => { b.style.width = b.dataset.w; });
+          drawLine();
+        }, 300);
+      }
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
