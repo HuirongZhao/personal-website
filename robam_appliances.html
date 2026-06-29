@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国·旅游零售业务研究笔记</title>
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #1A1A18;
+    --ink-light: #5A5A54;
+    --ink-faint: #9A9A90;
+    --accent: #1C5C48;
+    --accent-light: #D0E8DF;
+    --accent-mid: #3D8C6E;
+    --warn: #C04E22;
+    --warn-light: #F5E4DC;
+    --gold: #B08C3A;
+    --gold-light: #F4EDD6;
+    --rule: #D8D8D2;
+    --card-bg: #F3F3EF;
+    --serif: 'Georgia', 'Times New Roman', serif;
+    --sans: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; width: 230px; height: 100vh; background: var(--ink); color: #FAFAF8; padding: 32px 20px; display: flex; flex-direction: column; gap: 3px; z-index: 100; overflow-y: auto; }
+  .nav-brand { font-family: var(--serif); font-size: 13px; color: var(--accent-light); letter-spacing: 0.04em; margin-bottom: 4px; line-height: 1.4; }
+  .nav-sub { font-size: 11px; color: #7A7A70; margin-bottom: 20px; letter-spacing: 0.02em; }
+  .nav-funnel { font-size: 9px; color: #5A5A50; text-transform: uppercase; letter-spacing: 0.1em; margin: 14px 0 6px; padding-left: 12px; }
+  nav a { display: flex; align-items: baseline; gap: 9px; color: #B0B0A8; text-decoration: none; font-size: 12.5px; padding: 6px 12px; border-radius: 4px; transition: background 0.15s, color 0.15s; line-height: 1.35; }
+  nav a:hover, nav a.active { background: rgba(255,255,255,0.07); color: #FAFAF8; }
+  nav a .num { font-family: var(--serif); font-size: 10px; color: var(--accent-mid); flex-shrink: 0; width: 16px; }
+  .nav-divider { border: none; border-top: 1px solid #2A2A28; margin: 14px 0; }
+  .nav-updated { margin-top: auto; font-size: 10.5px; color: #4A4A44; padding-left: 12px; line-height: 1.5; }
+
+  main { margin-left: 230px; }
+
+  /* HERO */
+  .hero { background: var(--ink); color: #FAFAF8; padding: 60px 60px 52px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 16px; }
+  .hero h1 { font-family: var(--serif); font-size: 40px; font-weight: normal; line-height: 1.18; margin-bottom: 18px; }
+  .hero h1 em { font-style: normal; color: var(--accent-mid); }
+  .hero-desc { font-size: 15px; color: #9A9A90; max-width: 580px; line-height: 1.75; }
+  .hero-funnel { margin-top: 32px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11.5px; }
+  .hero-funnel span.step { padding: 5px 12px; border: 1px solid #3A3A36; border-radius: 20px; color: #B0B0A8; }
+  .hero-funnel span.step.hot { border-color: var(--accent-mid); color: var(--accent-light); background: rgba(61,140,110,0.12); }
+  .hero-funnel span.arrow { color: #4A4A44; }
+
+  /* SECTIONS */
+  section { padding: 56px 60px; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+  .layer-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-mid); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .layer-tag .funnel-pos { color: var(--ink-faint); font-size: 9px; letter-spacing: 0.05em; }
+  .layer-tag::after { content: ''; flex: 1; height: 1px; background: var(--rule); max-width: 120px; }
+  .section-title { font-family: var(--serif); font-size: 27px; font-weight: normal; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .section-intro { color: var(--ink-light); font-size: 14px; max-width: 660px; margin-bottom: 32px; line-height: 1.78; }
+
+  .bignums { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-bottom: 28px; }
+  .bignum-cell { background: var(--card-bg); padding: 22px 20px; display: flex; flex-direction: column; gap: 5px; }
+  .bignum-val { font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--ink); }
+  .bignum-val.warn { color: var(--warn); } .bignum-val.pos { color: var(--accent); }
+  .bignum-unit { font-size: 13px; color: var(--ink-light); }
+  .bignum-label { font-size: 12px; color: var(--ink-faint); margin-top: 4px; line-height: 1.45; }
+  .bignum-source { font-size: 10px; color: var(--ink-faint); margin-top: 6px; }
+  .bignum-source a { color: var(--accent-mid); text-decoration: none; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .cards-2 { grid-template-columns: 1fr 1fr; } .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--card-bg); border-radius: 8px; padding: 22px; border: 1px solid var(--rule); }
+  .card-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 10px; }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.4; }
+  .card p { font-size: 13.5px; color: var(--ink-light); line-height: 1.7; }
+  .card .cite { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); }
+  .card.accent { background: var(--accent-light); border-color: var(--accent-mid); }
+  .card.warn { background: var(--warn-light); border-color: var(--warn); }
+  .card.gold { background: var(--gold-light); border-color: var(--gold); }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 24px; }
+  .data-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); padding: 10px 16px; border-bottom: 1px solid var(--rule); font-weight: 600; }
+  .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--rule); color: var(--ink-light); vertical-align: top; line-height: 1.6; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--card-bg); }
+  .data-table td.strong { color: var(--ink); font-weight: 600; }
+  .data-table td.warn { color: var(--warn); font-weight: 600; } .data-table td.pos { color: var(--accent); font-weight: 600; }
+
+  .matrix { overflow-x: auto; margin-bottom: 24px; }
+  .matrix table { border-collapse: collapse; min-width: 640px; width: 100%; font-size: 12.5px; }
+  .matrix th, .matrix td { border: 1px solid var(--rule); padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.5; }
+  .matrix th { background: var(--ink); color: #FAFAF8; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
+  .matrix td:first-child { background: var(--card-bg); font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .matrix td { color: var(--ink-light); }
+  .matrix td.highlight { background: var(--warn-light); color: var(--warn); }
+  .matrix td.ok { background: var(--accent-light); color: var(--accent); }
+  .matrix th.diff-col { background: var(--accent); }
+  .matrix td.diff-col { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+  .matrix th.adv-col { background: var(--accent); }
+  .matrix td.adv-col { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+  .matrix th.weak-col { background: var(--warn); }
+  .matrix td.weak-col { background: var(--warn-light); color: var(--warn); font-weight: 600; }
+
+  .callout { border-left: 3px solid var(--accent-mid); padding: 14px 20px; background: var(--accent-light); border-radius: 0 6px 6px 0; margin-bottom: 24px; font-size: 13.5px; color: var(--ink-light); line-height: 1.7; }
+  .callout.warn { border-left-color: var(--warn); background: var(--warn-light); }
+  .callout.gold { border-left-color: var(--gold); background: var(--gold-light); }
+  .callout strong { color: var(--ink); }
+
+  .src { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted currentColor; margin-left: 3px; }
+  .src::before { content: '['; } .src::after { content: ']'; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+  .bar-chart { display: flex; flex-direction: column; gap: 11px; margin-bottom: 12px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 12px; color: var(--ink-light); width: 84px; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; height: 22px; background: var(--card-bg); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding: 0 8px; }
+  .bar-val { font-size: 11px; color: rgba(255,255,255,0.95); font-weight: 600; }
+  .bar-row { position: relative; }
+  .bar-row .bar-tip { position: absolute; left: 100px; bottom: 130%; z-index: 20; width: 250px; background: var(--ink); color: #FAFAF8; border-radius: 8px; padding: 12px 14px; font-size: 12px; line-height: 1.55; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+  .bar-row .bar-tip::after { content: ''; position: absolute; left: 24px; top: 100%; border: 6px solid transparent; border-top-color: var(--ink); }
+  .bar-row:hover .bar-tip { opacity: 1; visibility: visible; }
+  .bar-row .bar-tip .tip-q { font-weight: 600; color: var(--accent-light); margin-bottom: 5px; font-size: 12.5px; }
+  .bar-row .bar-tip .tip-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
+  .bar-row .bar-tip .tip-row span:last-child { font-weight: 600; }
+  .bar-row .bar-tip .tip-note { margin-top: 6px; padding-top: 6px; border-top: 1px solid #333; color: #B0B0A8; font-size: 11px; }
+  .bar-track { cursor: default; }
+
+
+  .tree { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .tree-root { background: var(--ink); color: #FAFAF8; padding: 14px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; }
+  .tree-l1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tree-node { background: var(--card-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 13px 15px; }
+  .tree-node-title { font-weight: 600; color: var(--ink); margin-bottom: 6px; font-size: 13px; }
+  .tree-node ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .tree-node ul li { font-size: 12px; color: var(--ink-light); padding-left: 11px; position: relative; }
+  .tree-node ul li::before { content: '·'; position: absolute; left: 2px; color: var(--accent-mid); }
+  /* drill-down */
+  .drill-btn { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 24px; padding: 9px 18px; background: var(--ink); color: #FAFAF8; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+  .drill-btn:hover { background: var(--accent); }
+  .drill-btn .dchev { font-size: 11px; transition: transform 0.25s; }
+  .drill-btn.done { background: var(--card-bg); color: var(--ink-faint); }
+  .drill-btn.done .dchev { transform: rotate(180deg); }
+  .drill-step { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.45s ease, opacity 0.4s ease; }
+  .drill-step.open { max-height: 2000px; opacity: 1; margin-bottom: 8px; }
+  .drill-hint { font-size: 11px; color: var(--ink-faint); margin: 0 0 4px; }
+  /* CM calculator */
+  .calc { border: 1px solid var(--accent-mid); border-radius: 10px; margin-bottom: 28px; overflow: hidden; }
+  .calc-head { background: var(--ink); color: #FAFAF8; padding: 13px 20px; font-size: 14px; font-weight: 600; }
+  .calc-head span { font-weight: 400; color: #9A9A90; font-size: 11.5px; margin-left: 8px; }
+  .calc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 24px; background: var(--card-bg); }
+  .calc-controls { display: flex; flex-direction: column; gap: 16px; }
+  .calc-slider { display: flex; flex-direction: column; gap: 6px; }
+  .calc-label { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink-light); }
+  .calc-num { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .calc-slider input[type=range] { -webkit-appearance: none; appearance: none; height: 5px; border-radius: 3px; background: var(--rule); outline: none; }
+  .calc-slider input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .calc-slider input[type=range]::-moz-range-thumb { width: 17px; height: 17px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid #fff; }
+  .calc-result { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .calc-bar-wrap { display: flex; width: 100%; height: 34px; border-radius: 6px; overflow: hidden; border: 1px solid var(--rule); }
+  .calc-bar-seg { height: 100%; transition: width 0.25s ease; }
+  .calc-bar-seg.gm-seg { background: var(--accent); }
+  .calc-bar-seg.fee-seg { background: var(--warn); }
+  .calc-legend { display: flex; gap: 18px; font-size: 11.5px; color: var(--ink-light); }
+  .calc-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+  .calc-legend .dot-gm { background: var(--accent); }
+  .calc-legend .dot-fee { background: var(--warn); }
+  .calc-big { font-size: 15px; color: var(--ink-light); margin-top: 4px; }
+  .calc-big strong { font-family: var(--serif); font-size: 32px; color: var(--accent); margin-left: 6px; }
+  .calc-big strong.warn { color: var(--warn); }
+  .calc-msg { font-size: 12px; line-height: 1.55; padding: 10px 12px; border-radius: 6px; background: var(--accent-light); color: var(--accent); }
+  .calc-msg.warn { background: var(--warn-light); color: var(--warn); }
+  @media (max-width: 900px) { .calc-body { grid-template-columns: 1fr; gap: 20px; } }
+  /* 2x2 quadrant matrix */
+  .quad { display: grid; grid-template-columns: 130px 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .quad-corner { background: var(--ink); }
+  .quad-colhead { padding: 14px 18px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+  .quad-colhead.pos { background: var(--accent); color: #fff; }
+  .quad-colhead.neg { background: var(--warn); color: #fff; }
+  .quad-colhead .ar { font-size: 15px; }
+  .quad-rowhead { background: var(--ink); color: #fff; padding: 20px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; border-top: 1px solid #2A2A28; }
+  .quad-rowhead .qr-icon { font-size: 20px; }
+  .quad-rowhead .qr-name { font-size: 14px; font-weight: 600; }
+  .quad-rowhead .qr-sub { font-size: 11px; color: #9A9A90; line-height: 1.4; }
+  .quad-cell { padding: 18px; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); background: var(--bg); }
+  .quad-cell.pos { background: linear-gradient(to bottom, var(--accent-light) 0%, var(--bg) 60%); }
+  .quad-cell.neg { background: linear-gradient(to bottom, var(--warn-light) 0%, var(--bg) 60%); }
+  .quad-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; padding: 2px 9px; border-radius: 20px; margin-bottom: 9px; }
+  .quad-tag.pos { background: var(--accent); color: #fff; }
+  .quad-tag.neg { background: var(--warn); color: #fff; }
+  .quad-cell h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
+  .quad-cell p { font-size: 12.5px; color: var(--ink-light); line-height: 1.6; }
+  .quad-cell .cite { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); }
+  @media (max-width: 900px) {
+    .quad { grid-template-columns: 1fr; }
+    .quad-corner, .quad-colhead { display: none; }
+    .quad-rowhead { flex-direction: row; align-items: center; gap: 10px; }
+    .quad-cell { border-left: none; }
+    .quad-cell::before { content: attr(data-dir); display: block; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+    .quad-cell.pos::before { color: var(--accent); }
+    .quad-cell.neg::before { color: var(--warn); }
+  }
+  /* SWOT quadrant — list items inside quad cells */
+  .quad-cell ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .quad-cell ul li { font-size: 12.5px; color: var(--ink-light); line-height: 1.55; padding-left: 14px; position: relative; }
+  .quad-cell ul li::before { content: ''; position: absolute; left: 2px; top: 7px; width: 5px; height: 5px; border-radius: 50%; }
+  .quad-cell.pos ul li::before { background: var(--accent-mid); }
+  .quad-cell.neg ul li::before { background: var(--warn); }
+  .quad-cell ul li strong { color: var(--ink); font-weight: 600; }
+  .quad-cell .qc-title { font-family: var(--serif); font-size: 16px; margin-bottom: 12px; display: flex; align-items: baseline; gap: 8px; }
+  .quad-cell .qc-title .en { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-family: var(--sans); }
+
+  .econ-flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 12px; flex-wrap: wrap; }
+  .econ-box { flex: 1; min-width: 120px; background: var(--card-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 14px; text-align: center; }
+  .econ-box .ef-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .econ-box .ef-sub { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.4; }
+  .econ-op { display: flex; align-items: center; padding: 0 8px; color: var(--accent-mid); font-size: 18px; font-weight: 600; }
+
+  /* expandable channel-overview card */
+  .expand-card { border: 1px solid var(--accent-mid); border-radius: 8px; margin-bottom: 28px; overflow: hidden; background: var(--accent-light); }
+  .expand-trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; cursor: pointer; user-select: none; font-size: 13.5px; color: var(--accent); font-weight: 600; }
+  .expand-trigger:hover { background: rgba(28,92,72,0.06); }
+  .expand-trigger .chev { transition: transform 0.25s; font-size: 12px; color: var(--accent-mid); }
+  .expand-card.open .chev { transform: rotate(180deg); }
+  .expand-body { max-height: 0; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease; padding: 0 20px; background: var(--bg); }
+  .expand-card.open .expand-body { max-height: 600px; opacity: 1; padding: 20px; }
+  .chan-tree { display: flex; flex-direction: column; gap: 10px; }
+  .chan-leg { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 6px; background: var(--card-bg); border: 1px solid var(--rule); }
+  .chan-leg.hot { background: var(--accent-light); border-color: var(--accent-mid); }
+  .chan-leg-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .chan-leg-main { flex: 1; }
+  .chan-leg-name { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .chan-leg-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.5; }
+  .chan-leg-ref { font-size: 11px; color: var(--accent-mid); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; }
+    section { padding: 36px 22px; }
+    .hero { padding: 40px 22px; }
+    .cards-2, .cards-3, .two-col, .tree-l1 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">中国·旅游零售<br>业务研究笔记</div>
+  <div class="nav-sub">SHISEIDO · 中国与旅游零售</div>
+
+  <div class="nav-funnel">母行业与市场</div>
+  <a href="#m01"><span class="num">01</span>美妆护肤行业大盘</a>
+  <a href="#m02"><span class="num">02</span>旅游零售商业模式</a>
+  <a href="#m03"><span class="num">03</span>中国政策与周期</a>
+  <a href="#m04"><span class="num">04</span>竞争格局</a>
+  <div class="nav-funnel">板块表现</div>
+  <a href="#m05"><span class="num">05</span>板块业绩追踪</a>
+  <div class="nav-funnel">渠道分析</div>
+  <a href="#m06"><span class="num">06</span>中国大陆渠道</a>
+  <a href="#m07"><span class="num">07</span>免税产品-渠道矩阵</a>
+  <div class="nav-funnel">综合判断</div>
+  <a href="#m08"><span class="num">08</span>SWOT 全景</a>
+  <div class="nav-funnel">分析框架</div>
+  <a href="#m09"><span class="num">09</span>盈利指标框架</a>
+
+  <hr class="nav-divider">
+  <div class="nav-updated">研究更新<br>截至 2026 年 6 月<br>包含 FY2026 Q1 最新结果<br><br>来源：财报 / 海关 / 研究报告</div>
+</nav>
+
+<main>
+
+<div class="hero">
+  <div class="hero-eyebrow">研究笔记 · 行业研究笔记</div>
+  <h1><em>中国·旅游零售</em><br>业务研究笔记</h1>
+  <p class="hero-desc">从整体美妆护肤市场出发，逐步聚焦到资生堂"中国·旅游零售"合并板块——涵盖中国大陆电商、线下专柜与旅游零售/免税渠道。本分析通过自上而下的研究漏斗，拆解该板块的渠道结构、业绩走势、产品打法与盈利逻辑。</p>
+  <div class="hero-funnel">
+    <span class="step">美妆大盘</span><span class="arrow">→</span>
+    <span class="step">旅游零售/免税</span><span class="arrow">→</span>
+    <span class="step">中国政策周期</span><span class="arrow">→</span>
+    <span class="step">竞争格局</span><span class="arrow">→</span>
+    <span class="step hot">板块业绩</span><span class="arrow">→</span>
+    <span class="step hot">三类渠道拆解</span><span class="arrow">→</span>
+    <span class="step">盈利框架</span>
+  </div>
+</div>
+
+<!-- ════════ 01 美妆护肤行业大盘 ════════ -->
+<section id="m01">
+  <div class="layer-tag">Layer 01 · 母行业<span class="funnel-pos">漏斗最宽层 · 定调</span></div>
+  <div class="section-title">美妆护肤行业大盘往哪走</div>
+  <p class="section-intro">在聚焦旅游零售之前，先确立母行业的方向：全球美妆仍在增长，但增长的"质地"变了——从涨价和高端化驱动，转向价格理性和功效验证。中国高端美妆尤其从流量红利期进入结构分化期。这一层为后面所有判断定调。</p>
+
+  <div class="cards cards-3">
+    <div class="card">
+      <div class="card-tag">增速换挡</div>
+      <h3>全球美妆增长放缓但不衰退</h3>
+      <p>麦肯锡预计全球美容市场到 2030 年仍保持年均约 5% 的增长，但消费者变得更价格敏感，过去依赖涨价和高端化驱动的增长动能正在减弱。<a href="https://www.mckinsey.com/industries/retail/our-insights/the-beauty-boom-and-beyond-can-the-industry-maintain-its-growth" target="_blank" class="cite">McKinsey</a></p>
+    </div>
+    <div class="card">
+      <div class="card-tag">逻辑切换</div>
+      <h3>"高端=高效"的等式在弱化</h3>
+      <p>护肤领域 premium equals performance 的逻辑正在松动，消费者越来越接受价格更低但有可见效果和临床背书的品牌；奢华护肤同时还受到医美和 wellness 服务的替代压力。<a href="https://www.mckinsey.com/industries/retail/our-insights/the-beauty-boom-and-beyond-can-the-industry-maintain-its-growth" target="_blank" class="cite">McKinsey</a></p>
+    </div>
+    <div class="card">
+      <div class="card-tag">中国市场</div>
+      <h3>高端美妆进入结构分化期</h3>
+      <p>中国高端美妆较难再仅依靠"流量红利 + 国际大牌溢价 + 电商大促"维持增长。抗老、功效护肤仍有需求，但国货功效品牌和 K-beauty 对国际品牌带来持续竞争压力，2023 年国货美妆份额首次超过 50%。<a href="https://www.cbndata.com/information/293046" target="_blank" class="cite">CBNData</a></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>对旅游零售的意涵：</strong>大盘的"价格理性化"和"结构分化"可能会传导到免税渠道——消费者跨渠道比价更频繁，对单纯"国际大牌溢价"的接受度下降，这可以作为后面理解旅游零售承压的重要背景之一。
+  </div>
+</section>
+
+<!-- ════════ 02 旅游零售这门生意 ════════ -->
+<section id="m02">
+  <div class="layer-tag">Layer 02 · 子赛道<span class="funnel-pos">从大盘聚焦到渠道</span></div>
+  <div class="section-title">旅游零售/免税：大盘里的一门特殊渠道生意</div>
+  <p class="section-intro">旅游零售（Travel Retail）指机场、市内免税店等面向旅客的免税销售渠道。它和普通商场、电商的一个重要差异在于：卖给谁、能不能便宜，都不完全由品牌自己说了算——客人是流动的旅客，价格优势来自免税政策。因此，它的生意逻辑有必要单独观察。</p>
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val">737.3<span class="bignum-unit"> 亿美元</span></span>
+      <div class="bignum-label">2024年全球免税及旅游零售预计规模</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research / 澎湃 2026.01</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">43.8%</span>
+      <div class="bignum-label">亚太地区占全球市场份额较高</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research 2024</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val">55%</span>
+      <div class="bignum-label">机场渠道占全球免税销售额比例<br>市内免税约占 40%</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research 2024</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val">18%</span>
+      <div class="bignum-label">中国免税运营商全球份额<br>（2019年为 11%）</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">穆迪达维特 / 澎湃 2026.01</a></div>
+    </div>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:28px;">注：全球免税市场规模为年度统计口径，由行业研究机构（Generation Research、穆迪达维特）发布，存在约一年滞后。2025 全年数据尚未出齐，此处采用目前可得的最新 2024 年度数据；公司级财报（如第 05 节资生堂）更新更快，已至 2026Q1。</p>
+
+  <div class="expand-card" id="chanCard">
+    <div class="expand-trigger" onclick="document.getElementById('chanCard').classList.toggle('open')">
+      <span>📊 本节聚焦"免税"这条腿 —— 点击查看资生堂板块的三渠道全貌</span>
+      <span class="chev">▼</span>
+    </div>
+    <div class="expand-body">
+      <p style="font-size:12.5px; color:var(--ink-light); line-height:1.65; margin-bottom:14px;">资生堂"中国·旅游零售"是一个合并板块，含三条渠道腿。<strong>本节（Layer 02）只拆"免税"这条腿的生意逻辑</strong>——因为它有独立于其他渠道的特殊经济学（政策、客流、价差），值得作为"子赛道"单独研究。另两条腿（大陆电商、大陆线下）属于板块内部渠道，在后面专门展开。</p>
+      <div class="chan-tree">
+        <div class="chan-leg">
+          <span class="chan-leg-icon">🛒</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">中国大陆 · 线上电商</div>
+            <div class="chan-leg-desc">天猫、抖音等，2025 年主要修复来源之一，体量较大</div>
+          </div>
+          <span class="chan-leg-ref">详见 Layer 06</span>
+        </div>
+        <div class="chan-leg">
+          <span class="chan-leg-icon">🏬</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">中国大陆 · 线下专柜</div>
+            <div class="chan-leg-desc">百货专柜等，调整中回暖，承担高端体验</div>
+          </div>
+          <span class="chan-leg-ref">详见 Layer 06</span>
+        </div>
+        <div class="chan-leg hot">
+          <span class="chan-leg-icon">✈️</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">旅游零售 / 免税　<span style="color:var(--accent-mid); font-size:11px;">★ 本节聚焦</span></div>
+            <div class="chan-leg-desc">海南、机场、市内免税店（含香港），跌幅较深、关注度较高</div>
+          </div>
+          <span class="chan-leg-ref">本节 + Layer 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">这门生意的独特经济学：销售由四个变量驱动</p>
+  <div class="econ-flow">
+    <div class="econ-box"><div class="ef-label">客流</div><div class="ef-sub">旅客数量、出行恢复、签证政策</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">转化率</div><div class="ef-sub">进店、停留时长、购买资格</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">客单价</div><div class="ef-sub">件单数 × 单价、套装、高端线</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">价差</div><div class="ef-sub">免税 vs 正价 / 电商大促价的吸引力，及代购风险</div></div>
+  </div>
+  <p style="font-size:12px; color:var(--ink-faint); margin-bottom:24px;">与普通零售相比，旅游零售多了"客流由旅游和政策决定""价差既是吸引力也是风险"两个特殊变量——这决定了它的波动性远高于本土渠道。</p>
+
+  <div class="callout warn" style="margin-bottom:32px;">
+    <strong>一个需要纳入的变量：国内电商与免税可能存在板块内联动。</strong>上面四个变量描述的是免税渠道<em>内部</em>的运转，但还需要结合一个口径事实——在资生堂的组织和财报里，<strong>中国大陆电商、线下专柜和旅游零售/免税同属"中国·旅游零售"一个事业部</strong>（2025年3月合并，详见 Layer 05）。因此，电商和免税未必只是"板块内外的对手"，也可以理解为<strong>同一板块下的不同销售出口</strong>，彼此可能相互影响：<br><br>① <strong>分流面（cannibalization）</strong>：免税的重要吸引力之一是"比正价便宜"，但中国双11、618 折扣较大，叠加平台券、直播补贴和赠品后，<strong>天猫/抖音到手价有时会接近免税价</strong>。部分消费者可能从"出行时一次性囤货"转向"日常随时下单"，从而对免税渠道的<strong>客流、转化率与客单价</strong>形成一定分流。按海关全年件数/购物人数测算，海南 2024 年人均购物件数约 5.8 件，较 2021–22 年曾经超过 10 件的阶段明显回落；电商便利性与价格因素可能是影响因素之一。<br><br>② <strong>协同面</strong>：但因为同属一个板块，消费者最终从电商还是免税下单，都可能纳入同一业务单元管理。这也是合并管理的逻辑之一——统一价格体系、降低渠道摩擦，让电商和免税从互相竞争转向更协调的分工。2025 年该板块的复苏，资生堂官方也提到"<strong>电商回升 + 线下回暖</strong>"的带动。<br><br>因此可以更谨慎地理解为：<strong>"价差"不宜只对标正价专柜，也需要关注国内电商大促到手价；管理目标更像是在板块内协调定价和渠道分工，而不是单纯比较某一个渠道输赢。</strong>这也呼应了 Layer 01 中"消费者跨渠道比价更频繁"的大盘趋势。</div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">两大渠道场景的分工</p>
+      <div class="cards" style="grid-template-columns:1fr;">
+        <div class="card">
+          <div class="card-tag">约 55%</div>
+          <h3>机场口岸免税</h3>
+          <p>客流大、停留时间短，适合标准化、高认知度的大单品快速转化（精华、防晒、经典套装）。盈利重点是用高认知产品快速成交，同时控制折扣。</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">约 40%</div>
+          <h3>市内免税店</h3>
+          <p>购物时间更长、客单价更高，适合高端线体验、套装销售和会员运营。海南三亚国际免税城经营面积已达 20 万平方米，汇聚约 900 个国际品牌。<a href="https://www.hainan.gov.cn/hainan/5309/202412/ba4ecbc8c46a4cda84ede198693382c0.shtml" target="_blank" class="cite">海南省政府</a></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">亚太区内部正在两极分化</p>
+      <table class="data-table">
+        <thead><tr><th>市场</th><th>趋势</th><th>核心驱动 / 拖累</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">日本机场</td><td class="pos">稳健复苏</td><td>入境外国游客增加，日元贬值吸引欧美客</td></tr>
+          <tr><td class="strong">海南离岛</td><td class="warn">调整压力较大</td><td>出境游分流、消费疲软、价格敏感上升</td></tr>
+          <tr><td class="strong">韩国免税</td><td class="warn">持续承压</td><td>中国游客消费缩水、代购萎缩</td></tr>
+          <tr><td class="strong">东南亚机场</td><td class="pos">温和增长</td><td>出境游恢复、当地中产升级</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="font-size:13px;">同样是亚太旅游零售，日本机场（入境客驱动）与海南/韩国（中国出境客驱动）走势不同，这是理解资生堂业绩结构的一个重要视角。</div>
+    </div>
+  </div>
+</section>
+<!-- ════════ 03 中国政策与周期 ════════ -->
+<section id="m03">
+  <div class="layer-tag">Layer 03 · 区域<span class="funnel-pos">聚焦中国 / 海南</span></div>
+  <div class="section-title">中国旅游零售的政策环境与周期定位</div>
+  <p class="section-intro">海南是资生堂旅游零售在中国的重要场景。理解中国旅游零售，可以从两条线展开：一条是免税政策（离岛免税、封关），一条是行业周期（疫情红利 → 调整期 → 初步企稳）。美妆（香化）长期占离岛免税销售额 50% 以上。</p>
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val warn">309.4<span class="bignum-unit"> 亿元</span></span>
+      <div class="bignum-label">2024年海南离岛免税购物金额<br>同比 −29.3%</div>
+      <div class="bignum-source"><a href="https://www.hi.chinanews.com.cn/hnnew/2025-01-03/716743.html" target="_blank">海口海关 / 中国新闻网</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">568<span class="bignum-unit"> 万人次</span></span>
+      <div class="bignum-label">2024年购物游客<br>同比 −15.9%</div>
+      <div class="bignum-source"><a href="https://www.hi.chinanews.com.cn/hnnew/2025-01-03/716743.html" target="_blank">海口海关 / 中国新闻网</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">~5.8<span class="bignum-unit"> 件</span></span>
+      <div class="bignum-label">2024年全年人均购物件数<br>按 3308.2 万件 / 568.3 万人次测算</div>
+      <div class="bignum-source"><a href="https://www.chinanews.com.cn/cj/2025/01-02/10346701.shtml" target="_blank">海口海关 / 中国新闻网（测算）</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">+22.6%</span>
+      <div class="bignum-label">新政后半年销售额同比<br>（2025.11–2026.04）</div>
+      <div class="bignum-source"><a href="https://www.sina.cn/news/detail/5297429093024515.html" target="_blank">新浪新闻 2026.05</a></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">周期定位：从红利到调整再到企稳</p>
+      <div class="cards" style="grid-template-columns:1fr;">
+        <div class="card accent">
+          <div class="card-tag">2020–2022 · 红利期</div>
+          <h3>疫情催生海南免税繁荣</h3>
+          <p>出境受阻，消费回流海南。免税额度提至每年 10 万元，海南成为推动亚洲旅游零售增长的引擎，资生堂 2010 年即进入海南市场。</p>
+        </div>
+        <div class="card warn">
+          <div class="card-tag">2023–2024 · 调整期</div>
+          <h3>多重压力下的回落</h3>
+          <p>① 出境游恢复可能分流客群（2024 上半年全国出入境人次同比 +70.9%）<a href="https://www.nia.gov.cn/n741440/n741567/c1660177/content.html" target="_blank" class="cite">国家移民管理局</a>；② 海南离岛免税人均购物金额下降约 26% <a href="https://www.21jingji.com/article/20240905/herald/1249fb81ac95f443e356cd4d939ec836.html" target="_blank" class="cite">21世纪经济报道</a>；③ 核污染水排海事件冲击日系品牌信任。</p>
+        </div>
+        <div class="card gold">
+          <div class="card-tag">2025末–2026 · 初步企稳</div>
+          <h3>新政 + 封关带来修复信号</h3>
+          <p>离岛免税新政（2025.11）扩容品类与人群；海南全岛封关（2025.12.18）后进口商品免关税。新政后半年销售额同比 +22.6%，资生堂 2026Q1 也确认海南呈积极复苏迹象。</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">关键政策时间线</p>
+      <table class="data-table">
+        <thead><tr><th>时间</th><th>政策 / 事件</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">2025.11.01</td><td>离岛免税新政实施：新增商品品类，扩大适用人群至岛内居民，覆盖离境旅客 <a class="src" href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">澎湃</a></td></tr>
+          <tr><td class="strong">2025.12.18</td><td>海南全岛正式封关运作：进口商品免关税，消费税增值税仍照征（离岛免税额度内三税全免）<a class="src" href="https://www.cbndata.com/information/294262" target="_blank">CBNData</a></td></tr>
+          <tr><td class="strong">2026.04</td><td>新政后半年（11月起）监管购物金额 222.2 亿元，购物人数同比 +9.4% <a class="src" href="https://www.sina.cn/news/detail/5297429093024515.html" target="_blank">新浪</a></td></tr>
+          <tr><td class="strong">目标 2027</td><td>海南省目标离岛免税经营主体销售额超 600 亿元（2024 年 470 亿元为经营主体销售额口径，不同于海关监管购物金额 309.4 亿元）<a class="src" href="https://www.hi.chinanews.com.cn/hnnew/2025-04-13/720913.html" target="_blank">中国新闻网</a></td></tr>
+        </tbody>
+      </table>
+      <div class="callout gold" style="font-size:13px;"><strong>封关的意义：</strong>对国际美妆品牌而言，封关后进口环节免关税有望降低运营成本，但零售税负结构需重新梳理。资生堂中国已表态高度关注封关带来的发展机遇。<a class="src" href="https://www.cbndata.com/information/294262" target="_blank">CBNData</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 04 竞争格局 ════════ -->
+<section id="m04">
+  <div class="layer-tag">Layer 04 · 格局<span class="funnel-pos">市场内谁在竞争</span></div>
+  <div class="section-title">竞争格局：两个场景，两套打法</div>
+  <p class="section-intro">"中国·旅游零售"板块横跨两个竞争强度不同的场景：<strong>大陆电商/线下</strong>面临国货崛起、流量竞争和价格促销压力，是资生堂需要重点关注的压力来源之一；<strong>免税渠道</strong>则更侧重渠道质量、产品结构和价格纪律。本节先看竞争更集中的大陆，再看免税。</p>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 6px;">场景一 · 大陆电商 / 线下：国货增长，日妆承压</p>
+  <p style="font-size:13px; color:var(--ink-light); max-width:660px; line-height:1.7; margin-bottom:16px;">大陆是资生堂竞争压力较集中的场景。国货美妆份额 2023 年已超 50%，珀莱雅连续三年天猫双11 三连冠、韩束登顶抖音；日妆集团在部分榜单中的位置相对靠后——2025 双11 资生堂主品牌天猫约第 17、抖音约 TOP20，CPB 约第 11。资生堂的高端品牌（CPB/NARS）仍能在大促中增长，但主品牌 SHISEIDO 已连续三年跌出天猫美妆 TOP10。</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>竞争方</th><th>代表品牌</th><th>打法</th><th class="weak-col">对资生堂的压力</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>国货功效护肤</td><td>珀莱雅、薇诺娜、可复美</td><td>成分功效直给、性价比、内容种草快；珀莱雅天猫三连冠</td><td class="weak-col">在功效心智与中端市场形成竞争，主品牌需要回应</td></tr>
+        <tr><td>国货 / 抖音新势力</td><td>韩束、谷雨、自然堂</td><td>抖音达人直播、流量打法积极；韩束登顶抖音双11</td><td class="weak-col">内容电商声量偏弱，日妆在抖音 TOP 总榜中的存在感有限</td></tr>
+        <tr><td>欧美高端（同台）</td><td>欧莱雅、雅诗兰黛、兰蔻</td><td>天猫头部品牌集中度较高，多品牌矩阵 + 大促资源，稳居 TOP5</td><td class="weak-col">大陆电商高端区竞争较强，日妆排名承压</td></tr>
+        <tr><td>日妆同侪</td><td>SK-II、花王、高丝</td><td>同受核污染水与国货竞争影响，处于调整阶段；SK-II 通过折扣回升</td><td class="weak-col">日系整体需要修复消费者信任与增长动能</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:8px;">来源：<a class="src" href="https://m.pinguan.com/article/detail/id/22323" target="_blank">品观网·2025双11终榜</a><a class="src" href="https://36kr.com/p/3552768919198083" target="_blank">36氪·双11观察</a><a class="src" href="https://m.cbndata.com/information/293395" target="_blank">CBNData·日妆掉队</a></p>
+
+  <div class="callout warn" style="margin-bottom:36px;">
+    <strong>大陆渠道的观察：</strong>竞争正在从单纯价格促销，转向品牌价值、内容表达和功效验证的综合竞争。资生堂在大陆面临两类压力：一方面，国货品牌用功效和性价比提升中端心智；另一方面，高端区也有欧莱雅、雅诗兰黛等多品牌矩阵竞争。主品牌 SHISEIDO 的年轻化沟通仍需加强，CPB/NARS 则在一定程度上支撑高端线增长。
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 6px;">场景二 · 免税渠道：高端国际品牌的精细化运营</p>
+  <p style="font-size:13px; color:var(--ink-light); max-width:660px; line-height:1.7; margin-bottom:16px;">免税场景的竞争维度和大陆不同——相比流量大促，更看重渠道质量、产品结构和价格纪律：在不打乱价格体系的前提下，用合适的产品在合适的渠道获取更稳定的利润。这里资生堂主要面对欧美系与日韩系高端品牌。</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>品牌</th><th>母集团</th><th>免税核心产品</th><th class="adv-col">资生堂相对优势</th><th class="weak-col">资生堂相对短板</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>兰蔻 Lancôme</td><td>欧莱雅</td><td>小黑瓶精华、菁纯</td><td class="adv-col">日系研发背书，抗老护肤心智更聚焦</td><td class="weak-col">中国声量与内容营销不及兰蔻</td></tr>
+        <tr><td>赫莲娜 HR</td><td>欧莱雅</td><td>黑绷带面霜、绿宝瓶</td><td class="adv-col">时光琉璃定位接近，可对标超高端</td><td class="weak-col">超高端品牌认知度有差距</td></tr>
+        <tr><td>SK-II</td><td>宝洁</td><td>神仙水 / Pitera</td><td class="adv-col">产品线更完整，护肤梯队齐全</td><td class="weak-col">红腰子免税认知弱于神仙水大单品</td></tr>
+        <tr><td>雅诗兰黛 EL</td><td>雅诗兰黛</td><td>小棕瓶、ANR 眼霜</td><td class="adv-col">日系高端心智，套装/折扣空间可控</td><td class="weak-col">全球旅游零售布局深度不及，且同步承压</td></tr>
+        <tr><td>CPB 肌肤之钥</td><td>资生堂集团</td><td>隔离乳、流光粉底</td><td class="adv-col">同集团协同，研发与渠道资源共享</td><td class="weak-col">集团内客群分流，定位部分重叠</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>2024 年：行业压力较集中。</strong>各大集团的 <strong>2024 财年财报</strong>均提到"海南及亚洲旅游零售疲软"——欧莱雅称北亚是其少数下滑区域之一，雅诗兰黛把旅游零售从增长引擎重新定位为"补充性渠道"。这说明 2024 年的下滑更像是行业性结构压力，而非单一品牌的经营问题。
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:28px 0 14px;">2025–2026：从集体承压到"分化复苏"</p>
+  <p style="font-size:13.5px; color:var(--ink-light); max-width:660px; line-height:1.75; margin-bottom:20px;">进入 2025 年后，行业修复节奏并不一致，而是出现较明显的<strong>分化</strong>：本土正价渠道（尤其中国大陆）率先复苏，而旅游零售内部也存在差异——机场渠道随客流回升转正，依赖代购的市内免税店仍处在调整中。欧莱雅 CEO 也用"两极分化"形容这一渠道现状。</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>集团</th><th>中国/本土最新表现</th><th>旅游零售渠道状态</th><th>战略动作</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>欧莱雅</td>
+          <td class="ok">北亚 2025 年可比口径 +0.5%；剔除旅游零售后，下半年增速约 +4%，中国大陆由低个位数提升至中个位数</td>
+          <td class="highlight">旅游零售仍承压；另据管理层口径，机场约 +8%，海南仍约 −25%</td>
+          <td>剔除旅游零售后北亚才转正；加码医美（高德美）、收购开云美妆补强高端</td>
+        </tr>
+        <tr>
+          <td>雅诗兰黛</td>
+          <td class="ok">中国大陆 FY25 Q3/Q4 零售额恢复增长，Q4 十个品牌增长</td>
+          <td class="highlight">FY25 旅游零售净销售 −28%，占比降至 15%；2025年5月海南转正</td>
+          <td>主动削库存、把 TR 降为"补充性渠道"，中国大陆升为独立报告区域</td>
+        </tr>
+        <tr>
+          <td>资生堂</td>
+          <td class="ok">中国·TR 板块 2026Q1 +4.5%、利润 +18%，首次转正</td>
+          <td class="ok">海南呈积极复苏迹象；日本机场入境消费结构变化致拖累</td>
+          <td>2025 年合并中国与 TR 为同一事业部，强化区域协同与价格统筹</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:24px;">来源：<a class="src" href="https://www.loreal-finance.com/eng/press-release/2025-annual-results" target="_blank">L'Oréal FY2025</a><a class="src" href="https://finance.sina.com.cn/jjxw/2025-07-31/doc-infikkxp2680994.shtml" target="_blank">新浪·欧莱雅两极分化</a><a class="src" href="https://www.nbd.com.cn/articles/2025-08-21/4021959.html" target="_blank">每经·雅诗兰黛FY25</a><a class="src" href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank">新京报·资生堂2026Q1</a></p>
+
+  <div class="callout">
+    <strong>对资生堂的意涵：</strong>在共同的外部压力下，竞争重点正在从"渠道数量扩张"转向"渠道质量与产品结构的精细化管理"。如果能够逐步降低代购依赖、修复价格体系，并让真实游客消费贡献更稳定的增长，品牌会更有机会在复苏阶段改善表现。资生堂 2026Q1 板块转正、海南出现修复信号，与同业的分化恢复节奏基本一致，这也引出后面对其自身业绩与产品结构的分析。
+  </div>
+</section>
+<!-- ════════ 05 资生堂业绩追踪 ════════ -->
+<section id="m05">
+  <div class="layer-tag">Layer 05 · 板块业绩<span class="funnel-pos">合并板块整体表现</span></div>
+  <div class="section-title">中国·旅游零售板块业绩追踪：2024 → 2026Q1</div>
+  <p class="section-intro">资生堂旅游零售业务从 2024 年的明显下滑，到 2025 年逐季修复，再到 2026Q1 首次转正，呈现出阶段性修复轨迹。需要特别注意的是，2025 年起口径发生重大变化——中国业务与旅游零售业务合并为同一事业部，板块数据同时包含中国大陆电商、线下和免税三类渠道，"板块增速"不等于"免税增速"。</p>
+
+  <div class="callout"><strong>口径说明（重要）：</strong>2025年3月31日起，资生堂将"中国业务"与"旅游零售业务"合并为同一事业部"中国·旅游零售"，由同一位 CEO 统管；自2025年中报起财务也合并报告，成为集团第一大业务区域。<strong>这个板块同时包含三类渠道：① 中国大陆线上电商（天猫、抖音等）、② 中国大陆线下渠道（百货专柜等）、③ 旅游零售/免税（海南、机场、市内免税店，香港市场也在内）。</strong>因此 2024 年旅游零售<strong>单独口径</strong>净销售额（1,078 亿日元，同比 −18.6%）与 2025 年起的<strong>合并口径</strong>板块数据不可直接加总对比——后者规模大得多，且涨跌由三类渠道共同决定。<a class="src" href="https://www.jiemian.com/article/12769833.html" target="_blank">界面新闻</a><a class="src" href="https://finance.sina.cn/2025-08-07/detail-infkepat4314347.d.html" target="_blank">新浪财经</a></div>
+
+  <div class="callout gold"><strong>为什么这件事对理解业绩很重要：</strong>合并后，板块的增长不能只看免税——资生堂官方把 2025 年的复苏归因于"<strong>电商渠道回升 + 线下市场回暖</strong>"的共同带动。也就是说，免税（海南/机场）虽然跌幅较大、关注度较高，但只是这个大板块的一部分；2026Q1 板块整体转正，可能更多受到中国大陆电商和线下修复的拉动，免税自身仍处在初步修复阶段。读下面的数据时要记住：<strong>"板块增速"≠"免税增速"。</strong></div>
+
+  <p style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:28px 0 6px;">▌ 2024 基准年（合并前 · 两个独立口径）</p>
+  <p style="font-size:11.5px; color:var(--ink-faint); margin-bottom:14px;">2024 年"中国业务"与"旅游零售"尚未合并、各自单独披露。中国地区体量是旅游零售的两倍多，是后来合并板块的大头；下方两组数据在 2025 年起合并为同一"中国·旅游零售"板块。</p>
+
+  <p style="font-size:12.5px; font-weight:600; color:var(--accent); margin-bottom:8px;">中国地区（2024 单独口径）</p>
+  <div class="bignums" style="margin-bottom:18px;">
+    <div class="bignum-cell"><span class="bignum-val">2,500<span class="bignum-unit"> 亿日元</span></span><div class="bignum-label">中国地区净销售额，同比 +0.8%<br>剔汇率实际 −4.6%（精确值 2,499.5 亿）</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">资生堂 FY2024 官方财报</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val pos">123<span class="bignum-unit"> 亿日元</span></span><div class="bignum-label">中国地区核心营业利润，同比 +53 亿<br>利润端已现拐点</div><div class="bignum-source"><a href="https://m.bjnews.com.cn/detail/1739456701168756.html" target="_blank">新京报（援引财报）</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val">25.2%</span><div class="bignum-label">占集团净销售额比例<br>集团核心市场之一</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">资生堂 FY2024 官方财报</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">主品牌遇冷</span><div class="bignum-label">线下疲软、SHISEIDO 下滑<br>但双11 CPB/NARS/安热沙增长</div><div class="bignum-source"><a href="https://www.jiemian.com/article/12367477.html" target="_blank">界面新闻 2025.02</a></div></div>
+  </div>
+
+  <p style="font-size:12.5px; font-weight:600; color:var(--warn); margin-bottom:8px;">旅游零售 / 免税（2024 单独口径）</p>
+  <div class="bignums">
+    <div class="bignum-cell"><span class="bignum-val warn">1,078<span class="bignum-unit"> 亿日元</span></span><div class="bignum-label">旅游零售净销售额，同比 −18.6%<br>（精确值 1,078.34 亿日元）</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">资生堂 FY2024 官方财报</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val">50<span class="bignum-unit"> 亿日元</span></span><div class="bignum-label">旅游零售核心营业利润<br>同比 −70.7%</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">资生堂 FY2024 官方财报</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">−121<span class="bignum-unit"> 亿日元</span></span><div class="bignum-label">旅游零售核心营业利润同比减少额<br>降幅较为明显</div><div class="bignum-source"><a href="https://www.jiemian.com/article/12367477.html" target="_blank">界面新闻 2025.02</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">−30%+</span><div class="bignum-label">海南岛 + 韩国渠道同比下滑<br>2024年主要拖累项之一</div><div class="bignum-source"><a href="https://c.m.163.com/news/a/JO9I1QAA05199DKK.html" target="_blank">网易财经 2025.02</a></div></div>
+  </div>
+
+  <p style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:28px 0 12px;">▌ 2025–2026Q1 季度追踪（中国·旅游零售合并板块）</p>
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>报告期</th><th>板块净销售额</th><th>同比</th><th>核心营业利润</th><th>利润同比</th><th>关键事件 / 拖累</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>2025 Q1</strong><br><small>1–3月</small></td><td>749.6亿日元</td><td class="highlight">−12.1%</td><td>133.1亿日元</td><td class="highlight">−16.1%</td><td>本土消费疲软、海南低迷、百货客流锐减；电商（妇女节）CPB/NARS双位数增长</td></tr>
+        <tr><td><strong>2025 H1</strong><br><small>1–6月</small></td><td>1,739.4亿日元</td><td class="highlight">−12.4%</td><td>388.1亿日元</td><td class="highlight">−15.7%</td><td>占集团37%；618大促CPB/NARS正增长，线下仍负增长；海南韩国继续承压</td></tr>
+        <tr><td><strong>2025 Q3</strong><br><small>7–9月 / 单季</small></td><td style="color:var(--ink-light)">前三季度累计 2,400.4亿日元<br><small>Q3单季 +8%</small></td><td class="ok">单季转正<br><small>9M −7.6%</small></td><td>466.8亿日元<br><small>前三季度累计</small></td><td class="highlight">−5.9%</td><td>Q3首个转正季度，CPB/NARS/SHISEIDO三大核心品牌均正增长；集团营业利润累计亏损 333.5亿日元（含减值等非经常项目）</td></tr>
+        <tr><td><strong>2025 全年</strong></td><td>3,422亿日元</td><td class="highlight">−3.5%</td><td colspan="2" style="color:var(--ink-light)">板块核心营业利润率约 18.7%<br><small>高于集团平均</small></td><td>Q4中国大陆正增长，双11核心品牌超市场增速，SHISEIDO重回正增长</td></tr>
+        <tr><td><strong>2026 Q1 ✦最新</strong><br><small>1–3月</small></td><td>783.3亿日元</td><td class="ok">+4.5%</td><td>157.1亿日元</td><td class="ok">+18%</td><td>板块首次转正；CPB/NARS强劲；海南积极复苏；日本机场入境消费下滑</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:24px;">来源（一手）：<a class="src" href="https://corp.shiseido.com/en/ir/" target="_blank">资生堂官方 IR 季度财报</a>；媒体核对：<a class="src" href="https://www.jiemian.com/article/12769833.html" target="_blank">界面 2025Q1</a><a class="src" href="https://m.bjnews.com.cn/detail/1755070435168816.html" target="_blank">新京报 2025H1</a><a class="src" href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank">北京商报 2025Q3</a><a class="src" href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank">2025全年</a><a class="src" href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank">新京报 2026Q1</a></p>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:14px;">板块净销售额同比增速：V 型修复轨迹　<span style="font-weight:400; color:var(--ink-faint); font-size:11px;">（悬停查看每期详情）</span></p>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">2025 Q1</span><div class="bar-track"><div class="bar-fill" style="width:36%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−12.1%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 Q1（1–3月）</div><div class="tip-row"><span>净销售额</span><span>749.6 亿日元</span></div><div class="tip-row"><span>核心营业利润</span><span>133.1 亿日元</span></div><div class="tip-row"><span>利润同比</span><span style="color:#E89B7A;">−16.1%</span></div><div class="tip-note">本土消费疲软、海南低迷、百货客流锐减；电商妇女节 CPB/NARS 双位数增长</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 H1</span><div class="bar-track"><div class="bar-fill" style="width:37%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−12.4%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 H1（1–6月）</div><div class="tip-row"><span>净销售额</span><span>1,739.4 亿日元</span></div><div class="tip-row"><span>核心营业利润</span><span>388.1 亿日元</span></div><div class="tip-row"><span>占集团</span><span>约 37%</span></div><div class="tip-note">618 大促 CPB/NARS 正增长，线下仍负增长；海南韩国继续承压</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 Q3单季</span><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--gold);"><span class="bar-val" style="color:var(--ink);">+8%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 Q3 单季</div><div class="tip-row"><span>单季板块增速</span><span style="color:#9FD4BE;">+8%（转正）</span></div><div class="tip-row"><span>9M累计净销售额</span><span>2,400.4 亿日元</span></div><div class="tip-row"><span>9M累计核心营业利润</span><span>466.8 亿日元</span></div><div class="tip-note">首个转正季度，CPB +12% / SHISEIDO +6% / NARS +2%；电商回升 + 线下回暖双引擎</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 全年</span><div class="bar-track"><div class="bar-fill" style="width:14%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−3.5%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 全年</div><div class="tip-row"><span>净销售额</span><span>3,422 亿日元</span></div><div class="tip-row"><span>核心营业利润率</span><span>约 18.7%</span></div><div class="tip-row"><span>板块地位</span><span>集团第一大</span></div><div class="tip-note">Q4 大陆正增长，双11 核心品牌超市场增速，SHISEIDO 重回正增长</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2026 Q1 ✦</span><div class="bar-track"><div class="bar-fill" style="width:16%; background:var(--accent);"><span class="bar-val">+4.5%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2026 Q1（1–3月）✦ 最新</div><div class="tip-row"><span>净销售额</span><span>783.3 亿日元</span></div><div class="tip-row"><span>核心营业利润</span><span>157.1 亿日元</span></div><div class="tip-row"><span>利润同比</span><span style="color:#9FD4BE;">+18%</span></div><div class="tip-note">板块首次转正；CPB/NARS 强劲；海南积极复苏；日本机场入境消费下滑</div></div>
+    </div>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:28px;">注：全年 −3.5% 含全年累计效应，单季看 Q3 起已转正；2026Q1 为板块首个完整正增长季度。</p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">集团层面：2025全年关键业绩</p>
+      <table class="data-table">
+        <thead><tr><th>指标</th><th>2025全年</th><th>vs 2024</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">集团净销售额</td><td>9,700亿日元</td><td class="warn">−2.1%</td></tr>
+          <tr><td class="strong">核心营业利润</td><td>445亿日元</td><td class="pos">+22.4%</td></tr>
+          <tr><td class="strong">归母净利润</td><td>−407亿日元</td><td class="warn">亏损（商誉减值）</td></tr>
+          <tr><td class="strong">中国·TR板块</td><td>3,422亿日元</td><td class="warn">−3.5%</td></tr>
+          <tr><td class="strong">成本削减</td><td>约270亿日元</td><td class="pos">超额完成目标</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--ink-faint);margin-top:6px;">注：为 2025 全年财报实际值（2026.02 发布）；集团此前全年指引为核心营业利润 365 亿日元，实际超出指引。可与<a class="src" href="https://corp.shiseido.com/en/ir/" target="_blank">资生堂官方 IR</a> 最新年报核对。<a class="src" href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank">财报解读</a></p>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">2026 全年目标（"行动计划"收官）</p>
+      <div class="card gold" style="margin-bottom:12px;">
+        <div class="card-tag">核心目标</div>
+        <h3>核心营业利润率 7%</h3>
+        <p>"2025–2026行动计划"最终目标。2025年实际约 4.6%，距 7% 仍差 2.4 个百分点。<a href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank" class="cite">新京报 2026.05</a></p>
+      </div>
+      <div class="card gold">
+        <div class="card-tag">利润目标</div>
+        <h3>核心营业利润 690亿日元</h3>
+        <p>2026Q1 财报维持集团全年目标不变；Q1 集团核心营业利润约 130.29 亿日元，全年目标仍为 690 亿日元。<a href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank" class="cite">新京报 2026.05</a></p>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 14px;">核心品牌季度表现（全球口径，反映板块趋势）</p>
+  <div class="matrix">
+    <table>
+      <thead><tr><th>品牌</th><th>2025 Q1</th><th>2025 H1</th><th>2025 Q3</th><th>2025 全年</th><th>2026 Q1</th></tr></thead>
+      <tbody>
+        <tr><td>SHISEIDO 主品牌</td><td class="highlight">−7%（剔TR +2%）</td><td class="highlight">负增长</td><td class="ok">+6%</td><td class="ok">全年约持平<br><small>Q4转正，未单独披露增速</small></td><td class="highlight">−4%</td></tr>
+        <tr><td>CPB 肌肤之钥</td><td class="ok">+2%（剔TR +7%）</td><td class="ok">618强劲</td><td class="ok">+12%</td><td class="ok">+4%</td><td class="highlight">−2%</td></tr>
+        <tr><td>NARS</td><td class="ok">+7%</td><td class="ok">双位数增长</td><td class="ok">+2%</td><td class="ok">+3%</td><td class="ok">+7%</td></tr>
+        <tr><td>ANESSA 安热沙</td><td class="highlight">−双位数</td><td class="highlight">下滑</td><td>—</td><td class="highlight">−9%（H2回暖）</td><td class="highlight">−17%</td></tr>
+        <tr><td>ELIXIR 怡丽丝尔</td><td class="ok">+11%</td><td class="ok">增长</td><td>—</td><td class="ok">+9%</td><td class="ok">+4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════ 06 中国大陆渠道（电商+线下） ════════ -->
+<section id="m06">
+  <div class="layer-tag">Layer 06 · 渠道拆解<span class="funnel-pos">板块的另两条腿</span></div>
+  <div class="section-title">中国大陆渠道：电商与线下</div>
+  <p class="section-intro">"中国·旅游零售"板块里，免税只是三条腿之一。中国大陆的<strong>线上电商</strong>和<strong>线下专柜</strong>合计体量更大（2024 年中国地区单独口径净销售额约 2,500 亿日元，是旅游零售的两倍多，详见 Layer 05 基准年），也是 2025 年板块修复的重要来源。免税跌幅较深、关注度较高，但板块回到正增长，可能更多来自大陆电商和线下的回暖——这一节专门拆这两条腿。</p>
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val pos">&gt;40%</span>
+      <div class="bignum-label">电商占中国市场收入比例<br>线上是大陆重要渠道（历史峰值口径）</div>
+      <div class="bignum-source"><a href="https://www.bbtnews.com.cn/2025/0811/566000.shtml" target="_blank">北京商报</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">双位数</span>
+      <div class="bignum-label">2025 妇女节/618/双11，CPB、NARS 电商连续双位数增长<br>电商是修复来源之一</div>
+      <div class="bignum-source"><a href="https://news.qq.com/rain/a/20241203A06SYG00" target="_blank">腾讯</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">2025 Q4</span>
+      <div class="bignum-label">中国大陆重回同比正增长<br>线下回暖 + 电商回升＝双引擎</div>
+      <div class="bignum-source"><a href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank">北京商报 2025Q3</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">连续 3 年</span>
+      <div class="bignum-label">主品牌 SHISEIDO 跌出天猫双11美妆 TOP10<br>（2023 年起，电商端隐忧）</div>
+      <div class="bignum-source"><a href="https://m.winshang.com/news731141.html" target="_blank">赢商网 2025.02</a></div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">两条腿 × 一推一拖：板块复苏的力学</p>
+  <p class="drill-hint" style="margin-bottom:14px;">电商和线下各有推动修复的力量，也存在需要观察的隐忧；板块转正，可能来自正面力量对负面因素的阶段性覆盖。</p>
+  <div class="quad">
+    <div class="quad-corner"></div>
+    <div class="quad-colhead pos"><span class="ar">↑</span> 推动复苏的力量</div>
+    <div class="quad-colhead neg"><span class="ar">↓</span> 拖累板块的隐忧</div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🛒</span><span class="qr-name">线上电商</span><span class="qr-sub">大陆重要渠道<br>体量较大</span></div>
+    <div class="quad-cell pos" data-dir="↑ 推动复苏">
+      <span class="quad-tag pos">修复来源</span>
+      <h4>天猫 / 抖音 对修复有贡献</h4>
+      <p>2025 妇女节、618、双11 三大节点，CPB、NARS 均双位数增长；双11 核心品牌超市场增速，CPB 挤进天猫抢先购美妆前 10。电商是"新增 300 亿日元营销投入"的重点投向。<a href="https://news.qq.com/rain/a/20241203A06SYG00" target="_blank" class="cite">腾讯</a></p>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ 拖累板块">
+      <span class="quad-tag neg">隐忧</span>
+      <h4>主品牌承压 + 投流影响利润</h4>
+      <p>主品牌 SHISEIDO 自 2023 年核污染水事件后连续跌出天猫双11 TOP10；同时投流成本较高——单场近万单直播投流费可达近 10 万元，叠加物流与抽成，可能出现"销售表现较好，但利润贡献有限"的情况。<a href="https://m.thepaper.cn/newsDetail_forward_29532123" target="_blank" class="cite">澎湃</a></p>
+    </div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🏬</span><span class="qr-name">线下专柜</span><span class="qr-sub">调整中回暖<br>高端体验触点</span></div>
+    <div class="quad-cell pos" data-dir="↑ 推动复苏">
+      <span class="quad-tag pos">回暖</span>
+      <h4>Q4 起线下重回正增长</h4>
+      <p>2025 四季度中国大陆实现同比正增长，线下回暖与电商回升共同构成"双引擎"。高端美妆复苏节奏加快，CPB、NARS 在专柜的高端体验仍是重要触点。<a href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank" class="cite">2025全年财报</a></p>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ 拖累板块">
+      <span class="quad-tag neg">承压</span>
+      <h4>百货客流锐减，主动收缩</h4>
+      <p>2025Q1 线下客流锐减拖累板块，IPSA 等品牌频繁撤柜。2024 年起资生堂在中国削减固定成本、优化组织结构、关闭亏损门店，对线下做"瘦身"。<a href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank" class="cite">北京商报</a></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>大陆渠道 vs 免税：板块内的阶段性差异。</strong>2024 年中国地区（不含免税单列时）实际销售额剔汇率后 −4.6%，免税同期跌超 30%——两条腿都在下滑，但免税跌幅更大。2025 年大陆电商和线下率先修复，免税到 2026Q1 才出现更积极的信号。因此<strong>"板块转正"较可能主要受到大陆渠道拉动，免税仍是需要继续观察的一环</strong>。这也可以解释为什么资生堂要把三者合并管理——用回暖的大陆渠道平滑免税波动，并统一价格体系减少渠道摩擦。
+  </div>
+</section>
+
+<!-- ════════ 07 免税产品渠道矩阵 ════════ -->
+<section id="m07">
+  <div class="layer-tag">Layer 07 · 渠道拆解<span class="funnel-pos">免税这条腿的产品打法</span></div>
+  <div class="section-title">免税产品线与渠道矩阵</div>
+  <p class="section-intro">回到免税这条腿。旅游零售对产品的要求与大陆正价渠道不同——旅行便利性、套装价值感、大单品辨识度和高端体验感各有侧重。下面梳理主要产品线在免税场景的角色定位，再用"渠道 × 产品"矩阵观察各自更适合的位置。</p>
+
+  <table class="data-table">
+    <thead><tr><th>产品线</th><th>旅游零售角色</th><th>适合渠道</th><th>重点关注指标</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">红腰子精华<br>Ultimune</td><td>大单品 / 流量入口，认知度较高</td><td>机场口岸较适配，各渠道可布局</td><td>动销率、折扣率、套装占比、贡献利润率</td></tr>
+      <tr><td class="strong">悦薇<br>Vital Perfection</td><td>高端抗老线，提升客单价和高端线占比</td><td>市内免税（最优）、精品体验</td><td>高端线占比、客单价、BA推荐转化率</td></tr>
+      <tr><td class="strong">时光琉璃<br>Future Solution LX</td><td>奢华高端线，承担品牌高度与高利润率</td><td>精品店 / 高端旅客场景</td><td>贡献利润率、精品店占比、体验转化</td></tr>
+      <tr><td class="strong">安热沙防晒<br>ANESSA</td><td>旅行场景强相关，季节性明显</td><td>机场口岸、海南（旅游季）</td><td>季节销售、连带率、旺季缺货率</td></tr>
+      <tr><td class="strong">Travel Exclusive 套装</td><td>提升客单价与件单数，体现免税专属价值</td><td>多渠道可用，市内免税较适配</td><td>ATV、UPT、折扣率、套装毛利率</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 14px;">渠道 × 产品 角色矩阵</p>
+  <div class="matrix">
+    <table>
+      <thead><tr><th>产品 ＼ 渠道</th><th>机场免税</th><th>市内 / 海南</th><th>线上预订</th><th>精品店 / 快闪</th></tr></thead>
+      <tbody>
+        <tr><td>红腰子</td><td class="ok">流量主力</td><td>套装动销</td><td>价差敏感</td><td>拉新转化</td></tr>
+        <tr><td>悦薇</td><td>高客单转化</td><td class="ok">高端线主场</td><td>促销敏感</td><td>BA推荐</td></tr>
+        <tr><td>时光琉璃</td><td>高端旅客</td><td>品牌形象</td><td>非主渠道</td><td class="ok">高端体验主场</td></tr>
+        <tr><td>安热沙</td><td class="ok">即时需求</td><td>海岛场景</td><td>季节促销</td><td>场景营销</td></tr>
+        <tr><td>套装</td><td>UPT/ATV</td><td class="ok">库存消化主力</td><td>折扣率</td><td>活动ROI</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><strong>产品分工观察：</strong>红腰子更偏规模与认知，悦薇更偏客单价，时光琉璃更偏高端利润与品牌形象，安热沙更贴近旅行场景，套装则有助于连带与免税转化。产品投放不宜只看销量，也需要结合渠道适配度与贡献利润。</div>
+</section>
+
+<!-- ════════ 08 SWOT 全景 ════════ -->
+<section id="m08">
+  <div class="layer-tag">Layer 08 · 综合<span class="funnel-pos">收口前七模块</span></div>
+  <div class="section-title">中国·旅游零售 SWOT 全景</div>
+  <p class="section-intro">把前面七个模块的观察——行业大盘、渠道经济学、中国周期、竞争格局、板块业绩、大陆电商与线下、免税产品结构——收拢成一张战略全景图，作为通向盈利分析的枢纽。</p>
+
+  <div class="quad">
+    <div class="quad-corner"></div>
+    <div class="quad-colhead pos"><span class="ar">↑</span> 正面 / 助力</div>
+    <div class="quad-colhead neg"><span class="ar">↓</span> 负面 / 阻力</div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🏢</span><span class="qr-name">内部</span><span class="qr-sub">资生堂<br>自身能力</span></div>
+    <div class="quad-cell pos" data-dir="↑ 内部 · 正面">
+      <div class="qc-title">优势 <span class="en">Strengths</span></div>
+      <ul>
+        <li><strong>品牌历史与研发背书</strong>：日系高端护肤心智，红腰子/悦薇/时光琉璃形成抗老功效梯队</li>
+        <li><strong>高端线利润质量</strong>：2025全年板块核心营业利润率约18.7%，高于集团平均</li>
+        <li><strong>China×TR 组织协同</strong>：2025年合并管理后，区域联动与价格统筹能力有望增强</li>
+        <li><strong>核心品牌企稳</strong>：CPB/NARS持续增长，是板块修复的重要支撑</li>
+      </ul>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ 内部 · 负面">
+      <div class="qc-title">劣势 <span class="en">Weaknesses</span></div>
+      <ul>
+        <li><strong>主品牌年轻化沟通仍需加强</strong>：SHISEIDO 2026Q1仍 −4%，跌出天猫双11美妆TOP10</li>
+        <li><strong>免税大单品记忆点仍需强化</strong>：红腰子在TR的记忆点弱于SK-II神仙水</li>
+        <li><strong>安热沙持续下滑</strong>：2026Q1 −17%，旅行场景强相关品类反而承压</li>
+        <li><strong>板块内价格体系压力</strong>：电商/线下/海南/香港/出境多渠道同属一盘货，可能形成价差与渠道摩擦</li>
+      </ul>
+    </div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🌐</span><span class="qr-name">外部</span><span class="qr-sub">市场<br>政策环境</span></div>
+    <div class="quad-cell pos" data-dir="↑ 外部 · 正面">
+      <div class="qc-title">机会 <span class="en">Opportunities</span></div>
+      <ul>
+        <li><strong>海南封关 + 新政</strong>：进口免关税降本，新政后半年销售 +22.6%</li>
+        <li><strong>板块出现修复信号</strong>：2026Q1板块 +4.5%、利润 +18%，修复窗口开始显现</li>
+        <li><strong>东南亚新兴市场</strong>：资生堂明确转向适应亚洲游客消费模式</li>
+        <li><strong>全渠道会员运营</strong>：合并口径后可做更精细的跨区域消费者经营</li>
+      </ul>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ 外部 · 负面">
+      <div class="qc-title">挑战 <span class="en">Threats</span></div>
+      <ul>
+        <li><strong>价格促销依赖</strong>：双11/免税促销可能拉低价格预期，影响贡献利润</li>
+        <li><strong>渠道摩擦与代购</strong>：电商大促价可能分流免税购买，免税低价回流正价市场也会影响价格体系</li>
+        <li><strong>国货强化功效心智</strong>：2023年国货份额已超50%，反应速度较快</li>
+        <li><strong>消费信心与汇率波动</strong>：高端护肤对宏观情绪较为敏感</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>承上启下：</strong>SWOT呈现出一个需要持续观察的问题——板块在<em>恢复增长</em>，但增长的<em>质量</em>（是否依赖折扣换销售、是否影响价格体系）同样重要。因此下一步需要建立一套以"贡献利润"为中心的盈利指标框架，辅助判断增长是否健康。</div>
+</section>
+
+<!-- ════════ 09 盈利指标框架 ════════ -->
+<section id="m09">
+  <div class="layer-tag">Layer 09 · 分析<span class="funnel-pos">漏斗最底层 · 方法论</span></div>
+  <div class="section-title">盈利指标框架：跨渠道看板块健康度</div>
+  <p class="section-intro">分析"中国·旅游零售"板块盈利健康度的基本逻辑：先看结果（利润/利润率/费用率），再拆原因（收入/毛利/费用），最后按渠道（电商/线下/免税）和产品下钻。重点在于不能只看销售额和毛利率——电商投流、免税折扣赠品等费用都可能影响真实盈利。</p>
+
+  <div style="margin-bottom:24px;">
+    <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-faint); margin-bottom:12px;">核心指标：贡献利润</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; font-size:13.5px; color:var(--ink);">
+      <div style="background:var(--ink); color:#FAFAF8; padding:10px 16px; border-radius:6px; font-weight:600;">贡献利润</div>
+      <span style="color:var(--ink-faint)">=</span>
+      <div style="background:var(--card-bg); border:1px solid var(--rule); padding:10px 14px; border-radius:6px;">净销售额</div>
+      <span>−</span>
+      <div style="background:var(--card-bg); border:1px solid var(--rule); padding:10px 14px; border-radius:6px;">产品成本</div>
+      <span>−</span>
+      <div style="background:var(--warn-light); border:1px solid var(--warn); padding:10px 14px; border-radius:6px; color:var(--warn);">直接销售费用<br><small style="font-size:11px;">折扣+赠品+促销+渠道费</small></div>
+    </div>
+    <p style="font-size:12px; color:var(--ink-faint); margin-top:10px;"><strong>贡献利润率 = 毛利率 − 费用率</strong>　·　毛利率看"产品本身赚不赚钱"，贡献利润率看"这个渠道/产品扣掉销售投入后到底值不值得做"</p>
+  </div>
+
+  <div class="calc" id="cmCalc">
+    <div class="calc-head">🧮 贡献利润率小计算器 <span>拖动滑块，看费用如何吃掉利润</span></div>
+    <div class="calc-body">
+      <div class="calc-controls">
+        <div class="calc-slider">
+          <div class="calc-label"><span>毛利率（产品本身）</span><span class="calc-num" id="gmOut">70%</span></div>
+          <input type="range" min="40" max="85" value="70" id="gm" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>折扣率</span><span class="calc-num" id="discOut">10%</span></div>
+          <input type="range" min="0" max="40" value="10" id="disc" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>赠品成本率（GWP）</span><span class="calc-num" id="gwpOut">8%</span></div>
+          <input type="range" min="0" max="25" value="8" id="gwp" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>活动 / 渠道费用率</span><span class="calc-num" id="actOut">12%</span></div>
+          <input type="range" min="0" max="30" value="12" id="act" oninput="recalcCM()">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-bar-wrap">
+          <div class="calc-bar-seg gm-seg" id="segGM" title="毛利率"></div>
+          <div class="calc-bar-seg fee-seg" id="segFee" title="被费用侵蚀"></div>
+        </div>
+        <div class="calc-legend"><span><i class="dot-gm"></i>贡献利润率</span><span><i class="dot-fee"></i>被费用侵蚀</span></div>
+        <div class="calc-big">贡献利润率 <strong id="cmBig">40%</strong></div>
+        <div class="calc-msg" id="cmMsg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tree">
+    <div class="tree-root">第一层：盈利结果总览（先看这一层，而非先拆销售额）</div>
+    <div class="tree-l1">
+      <div class="tree-node"><div class="tree-node-title">💰 利润金额</div><ul><li>净销售额 Net Sales</li><li>毛利额 Gross Profit</li><li>贡献利润 Contribution Profit</li><li>目标达成率 vs Budget</li></ul></div>
+      <div class="tree-node"><div class="tree-node-title">📊 利润率质量</div><ul><li>毛利率 Gross Margin</li><li>贡献利润率 CM%</li><li>同比 / 环比变化</li><li>与预算偏差</li></ul></div>
+      <div class="tree-node"><div class="tree-node-title">💸 费用结构</div><ul><li>总直接费用 / 费用率</li><li>折扣率 Discount Rate</li><li>赠品成本率 GWP Rate</li><li>活动费用率</li></ul></div>
+    </div>
+  </div>
+
+  <p class="drill-hint">↓ 第一层发现利润/利润率异常后，再逐层下钻找原因</p>
+  <button class="drill-btn" id="drill1" onclick="drillStep(1)"><span class="dchev">▼</span> 下钻第二、三层：利润变化来自哪个渠道、哪个产品？</button>
+
+  <div class="drill-step" id="dstep1">
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; margin-bottom:12px;">第二层：按渠道下钻（三类渠道）</p>
+      <table class="data-table">
+        <thead><tr><th>渠道</th><th>重点指标</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">大陆电商</td><td>GMV、投流费用率、ROI、复购率、利润率（防"光鲜不赚钱"）</td></tr>
+          <tr><td class="strong">大陆线下</td><td>单柜销售、BA人效、撤柜/开柜净变化、高端线体验转化</td></tr>
+          <tr><td class="strong">机场免税</td><td>客流转化率、大单品销量、缺货率</td></tr>
+          <tr><td class="strong">市内/海南免税</td><td>高端线占比、套装ATV、活动ROI、库存周转</td></tr>
+          <tr><td class="strong">免税精品/快闪</td><td>活动ROI、高端线体验转化、新客成本</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; margin-bottom:12px;">第三层：按产品线下钻</p>
+      <table class="data-table">
+        <thead><tr><th>产品线</th><th>盈利判断重点</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">红腰子</td><td>销量规模 vs 折扣率，是否在拉低整体CM%</td></tr>
+          <tr><td class="strong">悦薇</td><td>高端线占比提升幅度，客单价是否同步</td></tr>
+          <tr><td class="strong">时光琉璃</td><td>CM%是否高于平均，精品店品牌价值</td></tr>
+          <tr><td class="strong">套装</td><td>套装CM% vs 正装，是真增量还是转移</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div><!-- /dstep1 -->
+
+  <button class="drill-btn" id="drill2" onclick="drillStep(2)" style="display:none;"><span class="dchev">▼</span> 下钻第四层：库存是否健康、渠道是否互搏？</button>
+
+  <div class="drill-step" id="dstep2">
+  <p style="font-size:13px; font-weight:600; margin-bottom:12px;">第四层：库存健康与渠道平衡</p>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-tag">库存健康</div><h3>Sell-in / Sell-out 比率</h3><p>出货与动销是否匹配；Sell-out 远低于 Sell-in 时渠道库存可能积压，未来出货也可能承压。</p></div>
+    <div class="card"><div class="card-tag">动销效率</div><h3>动销率 / 库存天数</h3><p>Sell-through Rate、Inventory Days、缺货率(OOS)同时追踪，保证主力SKU不断货、非主力不滞销。</p></div>
+    <div class="card"><div class="card-tag">渠道平衡</div><h3>板块内价差 / 渠道分流</h3><p>因电商、线下、免税同属一个板块，重点看三者价差是否协同：电商大促到手价 vs 免税价 vs 正价专柜是否在合理区间；电商低价是否过度分流免税购买(cannibalization)，从而造成渠道间相互分流，而非整体增量。</p></div>
+  </div>
+  </div><!-- /dstep2 -->
+
+  <div class="callout"><strong>一句话框架：</strong>旅游零售可重点观察"贡献利润"，再拆成渠道贡献、产品贡献、价格促销、库存健康与渠道平衡——判断增长是否同时带来较健康的利润、价格体系与长期品牌价值。尤其在中国大陆电商、线下与免税同属一个板块的口径下，除了看单一渠道卖得多不多，也需要看<strong>三类渠道能否协同定价、减少彼此分流，并把消费者留在同一个品牌生态里</strong>。这也呼应了资生堂"从大量铺货转向以游客真实消费驱动"、合并管理求协同的战略方向。</div>
+</section>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(s => observer.observe(s));
+
+  // C: progressive drill-down
+  function drillStep(n) {
+    if (n === 1) {
+      const s = document.getElementById('dstep1');
+      const b = document.getElementById('drill1');
+      const open = s.classList.toggle('open');
+      b.classList.toggle('done', open);
+      document.getElementById('drill2').style.display = open ? 'inline-flex' : 'none';
+      if (!open) { document.getElementById('dstep2').classList.remove('open'); document.getElementById('drill2').classList.remove('done'); }
+    } else {
+      const s = document.getElementById('dstep2');
+      const b = document.getElementById('drill2');
+      b.classList.toggle('done', s.classList.toggle('open'));
+    }
+  }
+
+  // F: contribution-margin calculator
+  function recalcCM() {
+    const gm = +document.getElementById('gm').value;
+    const disc = +document.getElementById('disc').value;
+    const gwp = +document.getElementById('gwp').value;
+    const act = +document.getElementById('act').value;
+    document.getElementById('gmOut').textContent = gm + '%';
+    document.getElementById('discOut').textContent = disc + '%';
+    document.getElementById('gwpOut').textContent = gwp + '%';
+    document.getElementById('actOut').textContent = act + '%';
+    const fees = disc + gwp + act;
+    let cm = gm - fees;
+    if (cm < 0) cm = 0;
+    // bar widths relative to net sales (100%): gm portion shown, fees eat into it
+    const cmW = Math.max(cm, 0);
+    const feeW = Math.min(fees, gm);
+    document.getElementById('segGM').style.width = cmW + '%';
+    document.getElementById('segFee').style.width = feeW + '%';
+    const big = document.getElementById('cmBig');
+    big.textContent = cm + '%';
+    const msg = document.getElementById('cmMsg');
+    big.classList.toggle('warn', cm < 30);
+    msg.classList.toggle('warn', cm < 30);
+    if (cm >= 45) {
+      msg.textContent = '较健康：毛利 ' + gm + '% 扣掉 ' + fees + '% 费用后，仍剩 ' + cm + '% 贡献利润率——这类渠道/产品可以考虑继续投入资源。';
+    } else if (cm >= 30) {
+      msg.textContent = '需要观察：毛利看起来不错（' + gm + '%），但 ' + fees + '% 的费用已经明显影响贡献利润，贡献利润率为 ' + cm + '%。需要进一步判断销售增长与利润质量是否匹配。';
+    } else {
+      msg.textContent = '偏谨慎：' + fees + '% 的折扣/赠品/活动费用对 ' + gm + '% 的毛利形成较大压力，贡献利润率为 ' + cm + '%。这提示免税大促或电商投流需要同时观察销量与利润贡献。';
+    }
+  }
+  recalcCM();
+</script>
+
+</body>
+</html>

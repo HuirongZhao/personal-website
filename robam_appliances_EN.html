@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China · Travel Retail Business Research Notes</title>
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --ink: #1A1A18;
+    --ink-light: #5A5A54;
+    --ink-faint: #9A9A90;
+    --accent: #1C5C48;
+    --accent-light: #D0E8DF;
+    --accent-mid: #3D8C6E;
+    --warn: #C04E22;
+    --warn-light: #F5E4DC;
+    --gold: #B08C3A;
+    --gold-light: #F4EDD6;
+    --rule: #D8D8D2;
+    --card-bg: #F3F3EF;
+    --serif: 'Georgia', 'Times New Roman', serif;
+    --sans: -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; width: 230px; height: 100vh; background: var(--ink); color: #FAFAF8; padding: 32px 20px; display: flex; flex-direction: column; gap: 3px; z-index: 100; overflow-y: auto; }
+  .nav-brand { font-family: var(--serif); font-size: 13px; color: var(--accent-light); letter-spacing: 0.04em; margin-bottom: 4px; line-height: 1.4; }
+  .nav-sub { font-size: 11px; color: #7A7A70; margin-bottom: 20px; letter-spacing: 0.02em; }
+  .nav-funnel { font-size: 9px; color: #5A5A50; text-transform: uppercase; letter-spacing: 0.1em; margin: 14px 0 6px; padding-left: 12px; }
+  nav a { display: flex; align-items: baseline; gap: 9px; color: #B0B0A8; text-decoration: none; font-size: 12.5px; padding: 6px 12px; border-radius: 4px; transition: background 0.15s, color 0.15s; line-height: 1.35; }
+  nav a:hover, nav a.active { background: rgba(255,255,255,0.07); color: #FAFAF8; }
+  nav a .num { font-family: var(--serif); font-size: 10px; color: var(--accent-mid); flex-shrink: 0; width: 16px; }
+  .nav-divider { border: none; border-top: 1px solid #2A2A28; margin: 14px 0; }
+  .nav-updated { margin-top: auto; font-size: 10.5px; color: #4A4A44; padding-left: 12px; line-height: 1.5; }
+
+  main { margin-left: 230px; }
+
+  /* HERO */
+  .hero { background: var(--ink); color: #FAFAF8; padding: 60px 60px 52px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 16px; }
+  .hero h1 { font-family: var(--serif); font-size: 40px; font-weight: normal; line-height: 1.18; margin-bottom: 18px; }
+  .hero h1 em { font-style: normal; color: var(--accent-mid); }
+  .hero-desc { font-size: 15px; color: #9A9A90; max-width: 580px; line-height: 1.75; }
+  .hero-funnel { margin-top: 32px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11.5px; }
+  .hero-funnel span.step { padding: 5px 12px; border: 1px solid #3A3A36; border-radius: 20px; color: #B0B0A8; }
+  .hero-funnel span.step.hot { border-color: var(--accent-mid); color: var(--accent-light); background: rgba(61,140,110,0.12); }
+  .hero-funnel span.arrow { color: #4A4A44; }
+
+  /* SECTIONS */
+  section { padding: 56px 60px; border-bottom: 1px solid var(--rule); }
+  section:last-child { border-bottom: none; }
+  .layer-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-mid); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .layer-tag .funnel-pos { color: var(--ink-faint); font-size: 9px; letter-spacing: 0.05em; }
+  .layer-tag::after { content: ''; flex: 1; height: 1px; background: var(--rule); max-width: 120px; }
+  .section-title { font-family: var(--serif); font-size: 27px; font-weight: normal; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .section-intro { color: var(--ink-light); font-size: 14px; max-width: 660px; margin-bottom: 32px; line-height: 1.78; }
+
+  .bignums { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-bottom: 28px; }
+  .bignum-cell { background: var(--card-bg); padding: 22px 20px; display: flex; flex-direction: column; gap: 5px; }
+  .bignum-val { font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--ink); }
+  .bignum-val.warn { color: var(--warn); } .bignum-val.pos { color: var(--accent); }
+  .bignum-unit { font-size: 13px; color: var(--ink-light); }
+  .bignum-label { font-size: 12px; color: var(--ink-faint); margin-top: 4px; line-height: 1.45; }
+  .bignum-source { font-size: 10px; color: var(--ink-faint); margin-top: 6px; }
+  .bignum-source a { color: var(--accent-mid); text-decoration: none; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .cards-2 { grid-template-columns: 1fr 1fr; } .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--card-bg); border-radius: 8px; padding: 22px; border: 1px solid var(--rule); }
+  .card-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 10px; }
+  .card h3 { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.4; }
+  .card p { font-size: 13.5px; color: var(--ink-light); line-height: 1.7; }
+  .card .cite { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); }
+  .card.accent { background: var(--accent-light); border-color: var(--accent-mid); }
+  .card.warn { background: var(--warn-light); border-color: var(--warn); }
+  .card.gold { background: var(--gold-light); border-color: var(--gold); }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 24px; }
+  .data-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); padding: 10px 16px; border-bottom: 1px solid var(--rule); font-weight: 600; }
+  .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--rule); color: var(--ink-light); vertical-align: top; line-height: 1.6; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--card-bg); }
+  .data-table td.strong { color: var(--ink); font-weight: 600; }
+  .data-table td.warn { color: var(--warn); font-weight: 600; } .data-table td.pos { color: var(--accent); font-weight: 600; }
+
+  .matrix { overflow-x: auto; margin-bottom: 24px; }
+  .matrix table { border-collapse: collapse; min-width: 640px; width: 100%; font-size: 12.5px; }
+  .matrix th, .matrix td { border: 1px solid var(--rule); padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.5; }
+  .matrix th { background: var(--ink); color: #FAFAF8; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; }
+  .matrix td:first-child { background: var(--card-bg); font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .matrix td { color: var(--ink-light); }
+  .matrix td.highlight { background: var(--warn-light); color: var(--warn); }
+  .matrix td.ok { background: var(--accent-light); color: var(--accent); }
+  .matrix th.diff-col { background: var(--accent); }
+  .matrix td.diff-col { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+  .matrix th.adv-col { background: var(--accent); }
+  .matrix td.adv-col { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+  .matrix th.weak-col { background: var(--warn); }
+  .matrix td.weak-col { background: var(--warn-light); color: var(--warn); font-weight: 600; }
+
+  .callout { border-left: 3px solid var(--accent-mid); padding: 14px 20px; background: var(--accent-light); border-radius: 0 6px 6px 0; margin-bottom: 24px; font-size: 13.5px; color: var(--ink-light); line-height: 1.7; }
+  .callout.warn { border-left-color: var(--warn); background: var(--warn-light); }
+  .callout.gold { border-left-color: var(--gold); background: var(--gold-light); }
+  .callout strong { color: var(--ink); }
+
+  .src { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted currentColor; margin-left: 3px; }
+  .src::before { content: '['; } .src::after { content: ']'; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+
+  .bar-chart { display: flex; flex-direction: column; gap: 11px; margin-bottom: 12px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 12px; color: var(--ink-light); width: 84px; flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; height: 22px; background: var(--card-bg); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding: 0 8px; }
+  .bar-val { font-size: 11px; color: rgba(255,255,255,0.95); font-weight: 600; }
+  .bar-row { position: relative; }
+  .bar-row .bar-tip { position: absolute; left: 100px; bottom: 130%; z-index: 20; width: 250px; background: var(--ink); color: #FAFAF8; border-radius: 8px; padding: 12px 14px; font-size: 12px; line-height: 1.55; opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+  .bar-row .bar-tip::after { content: ''; position: absolute; left: 24px; top: 100%; border: 6px solid transparent; border-top-color: var(--ink); }
+  .bar-row:hover .bar-tip { opacity: 1; visibility: visible; }
+  .bar-row .bar-tip .tip-q { font-weight: 600; color: var(--accent-light); margin-bottom: 5px; font-size: 12.5px; }
+  .bar-row .bar-tip .tip-row { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
+  .bar-row .bar-tip .tip-row span:last-child { font-weight: 600; }
+  .bar-row .bar-tip .tip-note { margin-top: 6px; padding-top: 6px; border-top: 1px solid #333; color: #B0B0A8; font-size: 11px; }
+  .bar-track { cursor: default; }
+
+
+  .tree { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .tree-root { background: var(--ink); color: #FAFAF8; padding: 14px 18px; border-radius: 6px; font-size: 14px; font-weight: 600; }
+  .tree-l1 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tree-node { background: var(--card-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 13px 15px; }
+  .tree-node-title { font-weight: 600; color: var(--ink); margin-bottom: 6px; font-size: 13px; }
+  .tree-node ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .tree-node ul li { font-size: 12px; color: var(--ink-light); padding-left: 11px; position: relative; }
+  .tree-node ul li::before { content: '·'; position: absolute; left: 2px; color: var(--accent-mid); }
+  /* drill-down */
+  .drill-btn { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 24px; padding: 9px 18px; background: var(--ink); color: #FAFAF8; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+  .drill-btn:hover { background: var(--accent); }
+  .drill-btn .dchev { font-size: 11px; transition: transform 0.25s; }
+  .drill-btn.done { background: var(--card-bg); color: var(--ink-faint); }
+  .drill-btn.done .dchev { transform: rotate(180deg); }
+  .drill-step { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.45s ease, opacity 0.4s ease; }
+  .drill-step.open { max-height: 2000px; opacity: 1; margin-bottom: 8px; }
+  .drill-hint { font-size: 11px; color: var(--ink-faint); margin: 0 0 4px; }
+  /* CM calculator */
+  .calc { border: 1px solid var(--accent-mid); border-radius: 10px; margin-bottom: 28px; overflow: hidden; }
+  .calc-head { background: var(--ink); color: #FAFAF8; padding: 13px 20px; font-size: 14px; font-weight: 600; }
+  .calc-head span { font-weight: 400; color: #9A9A90; font-size: 11.5px; margin-left: 8px; }
+  .calc-body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 24px; background: var(--card-bg); }
+  .calc-controls { display: flex; flex-direction: column; gap: 16px; }
+  .calc-slider { display: flex; flex-direction: column; gap: 6px; }
+  .calc-label { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink-light); }
+  .calc-num { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .calc-slider input[type=range] { -webkit-appearance: none; appearance: none; height: 5px; border-radius: 3px; background: var(--rule); outline: none; }
+  .calc-slider input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 17px; height: 17px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .calc-slider input[type=range]::-moz-range-thumb { width: 17px; height: 17px; border-radius: 50%; background: var(--accent); cursor: pointer; border: 2px solid #fff; }
+  .calc-result { display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .calc-bar-wrap { display: flex; width: 100%; height: 34px; border-radius: 6px; overflow: hidden; border: 1px solid var(--rule); }
+  .calc-bar-seg { height: 100%; transition: width 0.25s ease; }
+  .calc-bar-seg.gm-seg { background: var(--accent); }
+  .calc-bar-seg.fee-seg { background: var(--warn); }
+  .calc-legend { display: flex; gap: 18px; font-size: 11.5px; color: var(--ink-light); }
+  .calc-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+  .calc-legend .dot-gm { background: var(--accent); }
+  .calc-legend .dot-fee { background: var(--warn); }
+  .calc-big { font-size: 15px; color: var(--ink-light); margin-top: 4px; }
+  .calc-big strong { font-family: var(--serif); font-size: 32px; color: var(--accent); margin-left: 6px; }
+  .calc-big strong.warn { color: var(--warn); }
+  .calc-msg { font-size: 12px; line-height: 1.55; padding: 10px 12px; border-radius: 6px; background: var(--accent-light); color: var(--accent); }
+  .calc-msg.warn { background: var(--warn-light); color: var(--warn); }
+  @media (max-width: 900px) { .calc-body { grid-template-columns: 1fr; gap: 20px; } }
+  /* 2x2 quadrant matrix */
+  .quad { display: grid; grid-template-columns: 130px 1fr 1fr; gap: 0; border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 28px; }
+  .quad-corner { background: var(--ink); }
+  .quad-colhead { padding: 14px 18px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+  .quad-colhead.pos { background: var(--accent); color: #fff; }
+  .quad-colhead.neg { background: var(--warn); color: #fff; }
+  .quad-colhead .ar { font-size: 15px; }
+  .quad-rowhead { background: var(--ink); color: #fff; padding: 20px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; border-top: 1px solid #2A2A28; }
+  .quad-rowhead .qr-icon { font-size: 20px; }
+  .quad-rowhead .qr-name { font-size: 14px; font-weight: 600; }
+  .quad-rowhead .qr-sub { font-size: 11px; color: #9A9A90; line-height: 1.4; }
+  .quad-cell { padding: 18px; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); background: var(--bg); }
+  .quad-cell.pos { background: linear-gradient(to bottom, var(--accent-light) 0%, var(--bg) 60%); }
+  .quad-cell.neg { background: linear-gradient(to bottom, var(--warn-light) 0%, var(--bg) 60%); }
+  .quad-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; padding: 2px 9px; border-radius: 20px; margin-bottom: 9px; }
+  .quad-tag.pos { background: var(--accent); color: #fff; }
+  .quad-tag.neg { background: var(--warn); color: #fff; }
+  .quad-cell h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 7px; line-height: 1.4; }
+  .quad-cell p { font-size: 12.5px; color: var(--ink-light); line-height: 1.6; }
+  .quad-cell .cite { font-size: 11px; color: var(--accent-mid); text-decoration: none; border-bottom: 1px dotted var(--accent-mid); }
+  @media (max-width: 900px) {
+    .quad { grid-template-columns: 1fr; }
+    .quad-corner, .quad-colhead { display: none; }
+    .quad-rowhead { flex-direction: row; align-items: center; gap: 10px; }
+    .quad-cell { border-left: none; }
+    .quad-cell::before { content: attr(data-dir); display: block; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+    .quad-cell.pos::before { color: var(--accent); }
+    .quad-cell.neg::before { color: var(--warn); }
+  }
+  /* SWOT quadrant — list items inside quad cells */
+  .quad-cell ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .quad-cell ul li { font-size: 12.5px; color: var(--ink-light); line-height: 1.55; padding-left: 14px; position: relative; }
+  .quad-cell ul li::before { content: ''; position: absolute; left: 2px; top: 7px; width: 5px; height: 5px; border-radius: 50%; }
+  .quad-cell.pos ul li::before { background: var(--accent-mid); }
+  .quad-cell.neg ul li::before { background: var(--warn); }
+  .quad-cell ul li strong { color: var(--ink); font-weight: 600; }
+  .quad-cell .qc-title { font-family: var(--serif); font-size: 16px; margin-bottom: 12px; display: flex; align-items: baseline; gap: 8px; }
+  .quad-cell .qc-title .en { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-family: var(--sans); }
+
+  .econ-flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 12px; flex-wrap: wrap; }
+  .econ-box { flex: 1; min-width: 120px; background: var(--card-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 14px; text-align: center; }
+  .econ-box .ef-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .econ-box .ef-sub { font-size: 10.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.4; }
+  .econ-op { display: flex; align-items: center; padding: 0 8px; color: var(--accent-mid); font-size: 18px; font-weight: 600; }
+
+  /* expandable channel-overview card */
+  .expand-card { border: 1px solid var(--accent-mid); border-radius: 8px; margin-bottom: 28px; overflow: hidden; background: var(--accent-light); }
+  .expand-trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; cursor: pointer; user-select: none; font-size: 13.5px; color: var(--accent); font-weight: 600; }
+  .expand-trigger:hover { background: rgba(28,92,72,0.06); }
+  .expand-trigger .chev { transition: transform 0.25s; font-size: 12px; color: var(--accent-mid); }
+  .expand-card.open .chev { transform: rotate(180deg); }
+  .expand-body { max-height: 0; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease; padding: 0 20px; background: var(--bg); }
+  .expand-card.open .expand-body { max-height: 600px; opacity: 1; padding: 20px; }
+  .chan-tree { display: flex; flex-direction: column; gap: 10px; }
+  .chan-leg { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 6px; background: var(--card-bg); border: 1px solid var(--rule); }
+  .chan-leg.hot { background: var(--accent-light); border-color: var(--accent-mid); }
+  .chan-leg-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .chan-leg-main { flex: 1; }
+  .chan-leg-name { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .chan-leg-desc { font-size: 12.5px; color: var(--ink-light); line-height: 1.5; }
+  .chan-leg-ref { font-size: 11px; color: var(--accent-mid); white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; }
+    section { padding: 36px 22px; }
+    .hero { padding: 40px 22px; }
+    .cards-2, .cards-3, .two-col, .tree-l1 { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">China · Travel Retail<br>Business Research Notes</div>
+  <div class="nav-sub">SHISEIDO · China & Travel Retail</div>
+
+  <div class="nav-funnel">Industry & Market</div>
+  <a href="#m01"><span class="num">01</span>Beauty & Skincare Market Overview</a>
+  <a href="#m02"><span class="num">02</span>Travel Retail Business Model</a>
+  <a href="#m03"><span class="num">03</span>China Policy & Cycle</a>
+  <a href="#m04"><span class="num">04</span>Competitive Landscape</a>
+  <div class="nav-funnel">Segment Performance</div>
+  <a href="#m05"><span class="num">05</span>Segment Performance Tracking</a>
+  <div class="nav-funnel">Channel Analysis</div>
+  <a href="#m06"><span class="num">06</span>China Mainland Channels</a>
+  <a href="#m07"><span class="num">07</span>Duty-Free Product-Channel Matrix</a>
+  <div class="nav-funnel">Synthesis</div>
+  <a href="#m08"><span class="num">08</span>SWOT Overview</a>
+  <div class="nav-funnel">Analysis</div>
+  <a href="#m09"><span class="num">09</span>Profitability Framework</a>
+
+  <hr class="nav-divider">
+  <div class="nav-updated">Research Update<br>As of June 2026<br>Including FY2026 Q1 Latest Results<br><br>Source: Financial Reports / Customs / Research Reports</div>
+</nav>
+
+<main>
+
+<div class="hero">
+  <div class="hero-eyebrow">Research Notes · Industry Research Notes</div>
+  <h1><em>China · Travel Retail</em><br>Business Research Notes</h1>
+  <p class="hero-desc">Starting from the overall beauty & skincare market and progressively narrowing focus to Shiseido's "China · Travel Retail" merged segment—encompassing mainland China e-commerce, offline counters, and travel retail/duty-free channels. This analysis deconstructs the segment's channel structure, performance trajectory, product strategy, and profitability logic through a top-down research funnel.</p>
+  <div class="hero-funnel">
+    <span class="step">Beauty Market</span><span class="arrow">→</span>
+    <span class="step">Travel Retail/Duty-Free</span><span class="arrow">→</span>
+    <span class="step">China Policy Cycle</span><span class="arrow">→</span>
+    <span class="step">Competitive Landscape</span><span class="arrow">→</span>
+    <span class="step hot">Segment Performance</span><span class="arrow">→</span>
+    <span class="step hot">Three-Channel Breakdown</span><span class="arrow">→</span>
+    <span class="step">Profitability Framework</span>
+  </div>
+</div>
+
+<!-- ════════ 01 Beauty & Skincare Market Overview ════════ -->
+<section id="m01">
+  <div class="layer-tag">Layer 01 · Parent Industry<span class="funnel-pos">Widest funnel layer · Setting direction</span></div>
+  <div class="section-title">Trajectory of Global Beauty & Skincare Market</div>
+  <p class="section-intro">Before focusing on travel retail, establish the direction of the parent industry: global beauty continues to grow, but the "quality" of growth has shifted—from pricing increases and premiumization to price rationality and efficacy validation. Premium beauty in China especially transitions from a traffic-driven boom phase into a structural differentiation phase. This layer sets the tone for all subsequent analysis.</p>
+
+  <div class="cards cards-3">
+    <div class="card">
+      <div class="card-tag">Growth Slowdown</div>
+      <h3>Global Beauty Growth Slows but Does Not Decline</h3>
+      <p>McKinsey projects the global beauty market will maintain approximately 5% annual growth through 2030, yet consumers become more price-sensitive. The growth momentum historically driven by pricing power and premiumization is weakening. <a href="https://www.mckinsey.com/industries/retail/our-insights/the-beauty-boom-and-beyond-can-the-industry-maintain-its-growth" target="_blank" class="cite">McKinsey</a></p>
+    </div>
+    <div class="card">
+      <div class="card-tag">Logic Shift</div>
+      <h3>"Premium = High Efficacy" Equation Weakens</h3>
+      <p>In skincare, the premium-equals-performance logic is loosening. Consumers increasingly accept lower-priced brands with visible results and clinical validation. Luxury skincare simultaneously faces substitution pressure from medical aesthetics and wellness services. <a href="https://www.mckinsey.com/industries/retail/our-insights/the-beauty-boom-and-beyond-can-the-industry-maintain-its-growth" target="_blank" class="cite">McKinsey</a></p>
+    </div>
+    <div class="card">
+      <div class="card-tag">China Market</div>
+      <h3>Premium Beauty Enters Structural Differentiation</h3>
+      <p>China's premium beauty market has become harder to grow solely through "traffic dividends + international brand premium + e-commerce mega sales." Anti-aging and efficacy skincare remain in demand, while Chinese efficacy brands and K-beauty continue to bring competitive pressure to international brands. In 2023, Chinese beauty market share exceeded 50% for the first time. <a href="https://www.cbndata.com/information/293046" target="_blank" class="cite">CBNData</a></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Implications for Travel Retail:</strong> The industry's "price rationalization" and "structural differentiation" may transmit to duty-free channels—consumers compare prices across channels and are less willing to accept pure "international brand premium." This is an important context for understanding travel retail's headwinds in subsequent layers.
+  </div>
+</section>
+
+<!-- ════════ 02 Travel Retail Business Model ════════ -->
+<section id="m02">
+  <div class="layer-tag">Layer 02 · Sub-segment<span class="funnel-pos">Narrowing from market to channel</span></div>
+  <div class="section-title">Travel Retail/Duty-Free: A Unique Channel Business Within the Market</div>
+  <p class="section-intro">Travel Retail (TR) refers to duty-free sales at airports, in-store duty-free shops and similar locations serving traveling passengers. An important difference from regular shopping malls and e-commerce: who you sell to and price flexibility are not entirely brand-controlled—customers are transient passengers, and price advantages derive from duty-free policy. Thus, its business logic benefits from separate analysis.</p>
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val">73.7<span class="bignum-unit"> billion USD</span></span>
+      <div class="bignum-label">Estimated 2024 global duty-free and travel retail market scale</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research / The Paper 2026.01</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">43.8%</span>
+      <div class="bignum-label">Asia-Pacific region's share of global market (relatively high)</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research 2024</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val">55%</span>
+      <div class="bignum-label">Airport channels' share of global duty-free sales<br>In-store duty-free approximately 40%</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Generation Research 2024</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val">18%</span>
+      <div class="bignum-label">China's duty-free operator global market share<br>(11% in 2019)</div>
+      <div class="bignum-source"><a href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">Moody's / The Paper 2026.01</a></div>
+    </div>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:28px;">Note: Global duty-free market scale is an annual statistical basis published by research institutions (Generation Research, Moody's) with approximately one-year lag. Full-year 2025 data not yet complete; latest available 2024 data used here. Corporate financial reports (such as Shiseido in Section 05) update faster, now through FY2026 Q1.</p>
+
+  <div class="expand-card" id="chanCard">
+    <div class="expand-trigger" onclick="document.getElementById('chanCard').classList.toggle('open')">
+          <span>📊 This section focuses on the "duty-free" leg —— Click to see Shiseido segment's three-channel overview</span>
+      <span class="chev">▼</span>
+    </div>
+    <div class="expand-body">
+      <p style="font-size:12.5px; color:var(--ink-light); line-height:1.65; margin-bottom:14px;">Shiseido's "China · Travel Retail" is a merged segment containing three channel legs. <strong>This section (Layer 02) primarily unpacks the "duty-free" leg's business logic</strong>—because it has relatively unique economics (policy, passenger flow, price differentials) and is worth observing as a "sub-segment." The other two legs (mainland e-commerce, mainland offline) are segment-internal channels addressed in detail later.</p>
+      <div class="chan-tree">
+        <div class="chan-leg">
+          <span class="chan-leg-icon">🛒</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">China Mainland · Online E-commerce</div>
+            <div class="chan-leg-desc">Tmall, Douyin, etc.; one of 2025 recovery drivers; relatively large volume</div>
+          </div>
+          <span class="chan-leg-ref">See Layer 06</span>
+        </div>
+        <div class="chan-leg">
+          <span class="chan-leg-icon">🏬</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">China Mainland · Offline Counters</div>
+            <div class="chan-leg-desc">Department store counters, etc.; warming amid adjustments; delivering premium experience</div>
+          </div>
+          <span class="chan-leg-ref">See Layer 06</span>
+        </div>
+        <div class="chan-leg hot">
+          <span class="chan-leg-icon">✈️</span>
+          <div class="chan-leg-main">
+            <div class="chan-leg-name">Travel Retail / Duty-Free　<span style="color:var(--accent-mid); font-size:11px;">★ Focus of this section</span></div>
+            <div class="chan-leg-desc">Hainan, airports, in-store duty-free shops (including Hong Kong); relatively deep decline, high attention</div>
+          </div>
+          <span class="chan-leg-ref">This section + Layer 07</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">This business's unique economics: sales driven by four variables</p>
+  <div class="econ-flow">
+    <div class="econ-box"><div class="ef-label">Passenger Flow</div><div class="ef-sub">Traveler volume, travel recovery, visa policy</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">Conversion Rate</div><div class="ef-sub">Store entry, dwell time, purchase eligibility</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">Average Transaction Value</div><div class="ef-sub">Units per transaction × unit price, bundled sets, premium lines</div></div>
+    <div class="econ-op">×</div>
+    <div class="econ-box"><div class="ef-label">Price Differential</div><div class="ef-sub">Duty-free vs. regular price / e-commerce promo price appeal; parallel trading risk</div></div>
+  </div>
+  <p style="font-size:12px; color:var(--ink-faint); margin-bottom:24px;">Compared to regular retail, travel retail adds two unique variables: "passenger flow determined by travel and policy" and "price differential is both attraction and risk"—these can make its volatility higher than domestic channels.</p>
+
+  <div class="callout warn" style="margin-bottom:32px;">
+    <strong>A variable worth including: domestic e-commerce and duty-free may interact within the same segment.</strong> The four variables above describe the <em>internal</em> operation of the duty-free channel, yet this accounting fact matters—in Shiseido's organization and financial reports, <strong>mainland e-commerce, offline counters, and travel retail/duty-free all belong to the "China · Travel Retail" single business unit</strong> (merged March 2025, see Layer 05). So e-commerce and duty-free are not simply "segment-external competitors" but <strong>different sales outlets inside the same managed pool</strong>, with both diversion and coordination effects:<br><br>① <strong>Diversion:</strong> Duty-free's appeal is often "cheaper than regular price," yet China's Double 11 and 618 discounts can be substantial; stacked with platform coupons, livestream subsidies, and gifts, <strong>Tmall/Douyin delivered prices may approximate or undercut duty-free pricing</strong>. Consumers may buy similarly priced goods without flying to Hainan, without quota and unit limits, creating some diversion in duty-free <strong>passenger flow, conversion rates, and transaction values</strong>. Based on annual customs items / shoppers, Hainan's 2024 average items per shopper was about 5.8 units, down from the 10+ unit range seen in 2021–22; e-commerce convenience and pricing may be one influence.<br><br>② <strong>Synergy:</strong> Because both are managed within one business unit, whether consumers order from e-commerce or duty-free, <strong>sales are still recorded within the same business unit</strong>. This was one reason for merged management—unified pricing, reduced channel friction, making e-commerce and duty-free become "two legs of one inventory" rather than working at cross-purposes. Shiseido's 2025 segment recovery was attributed to "<strong>e-commerce rebound + offline market warming</strong> dual engines."<br><br>So a fuller understanding: <strong>"Price differential" should not benchmark only against regular counters, but also against mainland e-commerce big-promo delivered prices; the management goal is to coordinate pricing and channel roles within the segment, keeping consumers within its own pool where possible.</strong> This also echoes Layer 01's "consumers compare prices across channels and are less willing to accept pure international brand premium."</div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">Functional segmentation of two major retail scenes</p>
+      <div class="cards" style="grid-template-columns:1fr;">
+        <div class="card">
+          <div class="card-tag">Approx. 55%</div>
+          <h3>Airport Border Duty-Free</h3>
+          <p>Large passenger flow, short dwell time; suited for standardized, high-awareness flagship products enabling rapid conversion (serums, sunscreen, classic sets). Profitability priority: rapid conversion on flagship products while controlling discounts.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Approx. 40%</div>
+          <h3>In-Store Duty-Free Shops</h3>
+          <p>Longer shopping time, higher transaction value; suited for premium line experience, bundled sales, and loyalty programs. Hainan's Sanya International Duty Free City now spans 200,000 sqm with ~900 international brands. <a href="https://www.hainan.gov.cn/hainan/5309/202412/ba4ecbc8c46a4cda84ede198693382c0.shtml" target="_blank" class="cite">Hainan Provincial Government</a></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">Internal Asia-Pacific differentiation underway</p>
+      <table class="data-table">
+        <thead><tr><th>Market</th><th>Trend</th><th>Core Driver / Headwind</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Japan Airports</td><td class="pos">Steady Recovery</td><td>Rising inbound foreign visitors; weak yen attracts EU/US travelers</td></tr>
+          <tr><td class="strong">Hainan Offshore</td><td class="warn">Adjustment Period</td><td>Outbound tourism diversion, consumer fatigue, rising price sensitivity</td></tr>
+          <tr><td class="strong">Korea Duty-Free</td><td class="warn">Persistent Headwind</td><td>Chinese tourist spending shrink, parallel trading decline</td></tr>
+          <tr><td class="strong">Southeast Asia Airports</td><td class="pos">Moderate Growth</td><td>Outbound tourism recovery, local middle-class upgrade</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="font-size:13px;">Same Asia-Pacific travel retail, different trajectories: Japan airports (inbound-driven) vs. Hainan/Korea (China outbound-driven) show different patterns—this is useful for understanding Shiseido's segment structure.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 03 China Policy & Cycle ════════ -->
+<section id="m03">
+  <div class="layer-tag">Layer 03 · Region<span class="funnel-pos">Focus on China / Hainan</span></div>
+  <div class="section-title">China Travel Retail Policy Environment & Cycle Positioning</div>
+  <p class="section-intro">Hainan is an important location for Shiseido's travel retail in China. Understanding China's travel retail can start from two threads: one is duty-free policy (offshore duty-free, comprehensive closure), the other is industry cycle (pandemic dividend → adjustment period → initial stabilization). Beauty/fragrances have historically accounted for over 50% of Hainan offshore duty-free retail sales.</p>
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val warn">30.94<span class="bignum-unit"> billion RMB</span></span>
+      <div class="bignum-label">2024 Hainan offshore duty-free shopping amount<br>YoY −29.3%</div>
+      <div class="bignum-source"><a href="https://www.hi.chinanews.com.cn/hnnew/2025-01-03/716743.html" target="_blank">Haikou Customs / China News</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">5.68<span class="bignum-unit"> million pax</span></span>
+      <div class="bignum-label">2024 shopping visitors<br>YoY −15.9%</div>
+      <div class="bignum-source"><a href="https://www.hi.chinanews.com.cn/hnnew/2025-01-03/716743.html" target="_blank">Haikou Customs / China News</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">~5.8<span class="bignum-unit"> units</span></span>
+      <div class="bignum-label">2024 full-year average items per shopper<br>Calculated from 33.082m items / 5.683m shoppers</div>
+      <div class="bignum-source"><a href="https://www.chinanews.com.cn/cj/2025/01-02/10346701.shtml" target="_blank">Haikou Customs / China News (calculated)</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">+22.6%</span>
+      <div class="bignum-label">New policy post-launch half-year sales YoY<br>(2025.11–2026.04)</div>
+      <div class="bignum-source"><a href="https://www.sina.cn/news/detail/5297429093024515.html" target="_blank">Sina News 2026.05</a></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">Cycle positioning: from dividend to adjustment to stabilization</p>
+      <div class="cards" style="grid-template-columns:1fr;">
+        <div class="card accent">
+          <div class="card-tag">2020–2022 · Dividend Period</div>
+          <h3>Pandemic Catalyzed Hainan Duty-Free Boom</h3>
+          <p>Outbound travel restrictions, consumption returned to Hainan. Duty-free quota increased to 100,000 RMB annually, Hainan became the engine driving Asia-Pacific travel retail growth. Shiseido entered Hainan market in 2010.</p>
+        </div>
+        <div class="card warn">
+          <div class="card-tag">2023–2024 · Deep Adjustment</div>
+          <h3>Triple Pressure Compounded Decline</h3>
+          <p>① Outbound tourism recovery may divert some customers (China national inbound/outbound pax YoY +70.9% in 2024 H1) <a href="https://www.nia.gov.cn/n741440/n741567/c1660177/content.html" target="_blank" class="cite">National Immigration Administration</a>; ② Hainan offshore duty-free per-capita spending fell about 26% <a href="https://www.21jingji.com/article/20240905/herald/1249fb81ac95f443e356cd4d939ec836.html" target="_blank" class="cite">21st Century Business Herald</a>; ③ Japanese nuclear wastewater discharge damaged Japanese brand credibility.</p>
+        </div>
+        <div class="card gold">
+          <div class="card-tag">2025 H2–2026 · Initial Stabilization</div>
+          <h3>New Policy + Comprehensive Closure Signals Repair</h3>
+          <p>Offshore duty-free new policy (Nov 2025) expands product categories and eligible people; Hainan comprehensive closure (18 Dec 2025) post-implementation duty-free on imported goods. Post-policy H2 sales YoY +22.6%, Shiseido 2026 Q1 also confirms positive Hainan recovery signals.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">Key policy timeline</p>
+      <table class="data-table">
+        <thead><tr><th>Date</th><th>Policy / Event</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">2025.11.01</td><td>Offshore duty-free new policy effective: new product categories, expanded eligible people to include island residents and outbound travelers. <a class="src" href="https://www.thepaper.cn/newsDetail_forward_32325615" target="_blank">The Paper</a></td></tr>
+          <tr><td class="strong">2025.12.18</td><td>Hainan comprehensive closure launched: imported goods duty-free; consumption tax & VAT still applicable (offshore duty-free: three taxes fully waived within quota). <a class="src" href="https://www.cbndata.com/information/294262" target="_blank">CBNData</a></td></tr>
+          <tr><td class="strong">2026.04</td><td>Post-policy H2 (from Nov) monitored shopping amount 22.22 billion RMB, visitor count YoY +9.4%. <a class="src" href="https://www.sina.cn/news/detail/5297429093024515.html" target="_blank">Sina</a></td></tr>
+          <tr><td class="strong">Target 2027</td><td>Hainan Province targets offshore duty-free operating entity sales exceeding 60 billion RMB (2024: 47 billion RMB on operator-sales basis, different from the customs-monitored shopping amount of 30.94 billion RMB). <a class="src" href="https://www.hi.chinanews.com.cn/hnnew/2025-04-13/720913.html" target="_blank">China News</a></td></tr>
+        </tbody>
+      </table>
+      <div class="callout gold" style="font-size:13px;"><strong>Significance of Comprehensive Closure:</strong> For international beauty brands, post-closure duty-free on import may lower operational costs, yet retail tax structure requires recalibration. Shiseido China has stated high focus on comprehensive closure development opportunities. <a class="src" href="https://www.cbndata.com/information/294262" target="_blank">CBNData</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 04 Competitive Landscape ════════ -->
+<section id="m04">
+  <div class="layer-tag">Layer 04 · Landscape<span class="funnel-pos">Market competitors</span></div>
+  <div class="section-title">Competitive Landscape: Two Scenes, Two Playbooks</div>
+  <p class="section-intro">"China · Travel Retail" segment spans two competitive scenes with different intensities: <strong>Mainland e-commerce/offline</strong> faces fast domestic-brand growth and pricing promotion pressure—one important pressure source for Shiseido; <strong>duty-free channels</strong> is where premium international brands compete on channel quality, product mix, and pricing discipline. This section first examines the more intense mainland competition, then duty-free.</p>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 6px;">Scene One · Mainland E-commerce / Offline: Chinese Brands Grow, Japanese Beauty Under Pressure</p>
+  <p style="font-size:13px; color:var(--ink-light); max-width:660px; line-height:1.7; margin-bottom:16px;">Mainland is a competition-heavy scene for Shiseido. Chinese beauty brands' market share exceeded 50% in 2023; Pola leads Tmall Double 11 three years running, Hanskin performs strongly on Douyin; while Japanese beauty's relative ranking is under pressure—2025 Double 11: Shiseido main brand ~17th on Tmall, ~TOP20 on Douyin; CPB ~11th. Shiseido's premium brands (CPB/NARS) show growth in big sales, yet main brand SHISEIDO has stayed outside Tmall beauty TOP 10 for three straight years.</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>Competitor</th><th>Representative Brands</th><th>Playbook</th><th class="weak-col">Pressure on Shiseido</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Chinese Efficacy Skincare</td><td>Pola, Winona, Kome</td><td>Direct ingredient communication, value pricing, fast content seeding; Pola Tmall three-peat champion</td><td class="weak-col">Strengthening efficacy mindshare and mid-market presence; main brand faces direct pressure</td></tr>
+        <tr><td>Chinese / Douyin New Forces</td><td>Hanskin, Guyu, Naturals</td><td>Douyin KOL livestreaming, aggressive content strategy; Hanskin Double 11 Douyin champion</td><td class="weak-col">E-commerce content presence still needs improvement; Japanese beauty appears less often in Douyin TOP overall rankings</td></tr>
+        <tr><td>Western Premium (Same Tier)</td><td>L'Oréal, Estée Lauder, Lancôme</td><td>Strong Tmall position, multi-brand matrix + sales resources, stable TOP 5</td><td class="weak-col">Creates pressure in premium e-commerce rankings (Shiseido ranking softened)</td></tr>
+        <tr><td>Japanese Peers</td><td>SK-II, Kao, Kosé</td><td>Hit by nuclear wastewater + domestic-brand pressure, collectively adjusting; SK-II bouncing back via discounting</td><td class="weak-col">Japanese beauty's overall halo has weakened; category-level share loss needs attention</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn" style="margin-bottom:36px;">
+    <strong>Mainland channel observation:</strong> Competition has evolved from pure "price war" toward "brand value + content capability." Shiseido's mainland challenge is twofold—domestic brands pressure the mid-market with efficacy and value, while premium space is influenced by L'Oréal's multi-brand matrix; main brand SHISEIDO's youth engagement still needs strengthening; CPB/NARS two premium brands sustain growth momentum.
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 6px;">Scene Two · Duty-Free Channels: International Premium Brands' Refined Operations</p>
+  <p style="font-size:13px; color:var(--ink-light); max-width:660px; line-height:1.7; margin-bottom:16px;">Duty-free competition dimensions differ from mainland—compared with traffic and mega sales, it puts more weight on channel quality, product mix, and pricing discipline: whether a brand can maintain relatively healthy margins without disrupting price architecture while deploying suitable products in suitable channels. Here Shiseido mainly faces Western and Japanese premium brands.</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>Brand</th><th>Parent</th><th>Duty-Free Core Products</th><th class="adv-col">Shiseido Relative Strength</th><th class="weak-col">Shiseido Relative Weakness</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Lancôme</td><td>L'Oréal</td><td>Black Bottle Serum, Genifique</td><td class="adv-col">Japanese R&D backing, anti-aging skincare mindshare more focused</td><td class="weak-col">China voice + content marketing trail Lancôme</td></tr>
+        <tr><td>Helena Rubinstein</td><td>L'Oréal</td><td>Black Bandage Cream, Green Bottle</td><td class="adv-col">Timing aligns with super-premium positioning</td><td class="weak-col">Super-premium brand awareness gap</td></tr>
+        <tr><td>SK-II</td><td>Procter & Gamble</td><td>Immortal Water / Pitera</td><td class="adv-col">More complete product line, skincare hierarchy complete</td><td class="weak-col">Red Essence duty-free awareness weak vs. Immortal Water mega-product</td></tr>
+        <tr><td>Estée Lauder</td><td>Estée Lauder</td><td>Advanced Night Repair, ANR Eye Cream</td><td class="adv-col">Japanese premium mindshare, bundled/discount room controlled</td><td class="weak-col">Global TR layout depth trails, similarly under pressure</td></tr>
+        <tr><td>CPB Skin Key</td><td>Shiseido Group</td><td>Isolating Cream, Luminous Liquid Foundation</td><td class="adv-col">Same group synergy, R&D and channel resources shared</td><td class="weak-col">Group-internal customer overlap, positioning partial duplication</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <strong>2024: Industry-wide pressure was concentrated.</strong> Major conglomerates' <strong>2024 FY results</strong> uniformly mentioned "Hainan and Asia-Pacific travel retail weakness"—L'Oréal cited North Asia as one of the few declining regions, Estée Lauder repositioned TR from "growth engine" to "supplementary channel." This suggests 2024's decline was more of a structural industry pressure than only a single-brand operating issue.
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:28px 0 14px;">2025–2026: From Collective Pressure to "Differentiated Recovery"</p>
+  <p style="font-size:13.5px; color:var(--ink-light); max-width:660px; line-height:1.75; margin-bottom:20px;">Entering 2025, industry not uniformly warming—evident <strong>differentiation</strong>: domestic regular-price channels (esp. mainland China) recovered first, while TR further split internally—airport channels rebounded with passenger recovery, in-store duty-free still deep in adjustment. L'Oréal CEO directly termed this "polarization" of channel status.</p>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>Conglomerate</th><th>Latest China/Domestic Performance</th><th>Travel Retail Channel Status</th><th>Strategic Action</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>L'Oréal</td>
+          <td class="ok">North Asia +0.5% LFL in 2025; excluding travel retail, H2 growth was ~+4%, with mainland China improving from low single digit to mid single digit</td>
+          <td class="highlight">TR still under pressure; management commentary also cited airports ~+8% and Hainan still around −25%</td>
+          <td>TR exclusion shows North Asia turned positive; upped med aesthetics (Galderma), acquired Kering beauty to reinforce premium</td>
+        </tr>
+        <tr>
+          <td>Estée Lauder</td>
+          <td class="ok">China mainland FY25 Q3/Q4 retail sales returned to growth; ten brands grew in Q4</td>
+          <td class="highlight">FY25 TR net sales −28%, share dropped to 15%; May 2025 Hainan recovered</td>
+          <td>Proactive inventory reduction, repositioned TR to "supplementary channel," China mainland promoted to independent reporting region</td>
+        </tr>
+        <tr>
+          <td>Shiseido</td>
+          <td class="ok">China·TR segment 2026 Q1 +4.5%, profit +18%, first recovery</td>
+          <td class="ok">Hainan shows positive recovery signals; Japan airport inbound consumption mix shift dragging</td>
+          <td>2025 merged China and TR as single business unit, strengthening regional synergy and price coordination</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:24px;">Source: <a class="src" href="https://www.loreal-finance.com/eng/press-release/2025-annual-results" target="_blank">L'Oréal FY2025</a><a class="src" href="https://finance.sina.com.cn/jjxw/2025-07-31/doc-infikkxp2680994.shtml" target="_blank">Sina·L'Oréal Polarization</a><a class="src" href="https://www.nbd.com.cn/articles/2025-08-21/4021959.html" target="_blank">NBD·Estée Lauder FY25</a><a class="src" href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank">Beijing News·Shiseido 2026 Q1</a></p>
+
+  <div class="callout">
+    <strong>Implications for Shiseido:</strong> Under shared external headwinds, competition is shifting from "channel expansion volume" toward "channel quality and product mix refinement." If Shiseido can gradually reduce dependence on parallel-trading demand, repair price architecture, and let genuine tourist consumption contribute more to growth, it may have a better chance in the recovery cycle. Shiseido's 2026 Q1 segment turnover and Hainan recovery signals suggest a recovery window worth watching. This segues to analyzing its own performance and product structure.
+  </div>
+</section>
+
+<!-- ════════ 05 Segment Performance Tracking ════════ -->
+<section id="m05">
+  <div class="layer-tag">Layer 05 · Segment Performance<span class="funnel-pos">Merged segment overall</span></div>
+  <div class="section-title">China · Travel Retail Segment Performance Tracking: 2024 → 2026 Q1</div>
+  <p class="section-intro">Shiseido's travel retail business declined notably in 2024, gradually recovered through 2025, and turned positive in 2026 Q1, tracing a stage-by-stage recovery pattern. A significant accounting change in 2025 should be noted: "China business" and "travel retail business" merged into single business unit, with combined segment data now including mainland e-commerce, offline, and duty-free three channels; "segment growth rate" ≠ "duty-free growth rate."</p>
+
+  <div class="callout"><strong>Accounting Note (Critical):</strong> From 31 Mar 2025, Shiseido merged "China Business" and "Travel Retail Business" into single business unit "China · Travel Retail" under same CEO; from 2025 H1 report, financials also merged into unified reporting, becoming Group's #1 business region. <strong>This segment contains three channels: ① Mainland online e-commerce (Tmall, Douyin, etc.), ② Mainland offline (department store counters, etc.), ③ Travel Retail/Duty-Free (Hainan, airports, in-store duty-free, Hong Kong).</strong> So 2024 TR <strong>standalone</strong> net sales (107.834 billion yen, YoY −18.6%) and 2025+ <strong>merged</strong> segment data cannot directly add-sum compare—latter scale much larger, growth/decline driven by all three channels combined. <a class="src" href="https://www.jiemian.com/article/12769833.html" target="_blank">Jiemian</a><a class="src" href="https://finance.sina.cn/2025-08-07/detail-infkepat4314347.d.html" target="_blank">Sina Finance</a></div>
+
+  <div class="callout gold"><strong>Why this accounting fact matters for earnings understanding:</strong> Post-merger, segment growth no longer just watches duty-free—Shiseido attributed 2025 recovery to "<strong>e-commerce surge + offline market warming</strong> dual engines." So duty-free (Hainan/airports), while a relatively weak and closely watched piece, is only ~1/3 of this big segment; 2026 Q1 segment overall turnover may be driven more by mainland channel recovery, while duty-free itself only began showing recovery signals. Reading data below remember: <strong>"Segment growth rate" ≠ "Duty-Free growth rate."</strong></div>
+
+  <p style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:28px 0 6px;">▌ 2024 Base Year (Pre-Merger · Two Independent Accounting Lines)</p>
+  <p style="font-size:11.5px; color:var(--ink-faint); margin-bottom:14px;">2024 "China Business" and "Travel Retail" still standalone, separately reported. China territory volume 2x+ travel retail, main component of post-merger segment; below two data sets merged as unified "China · Travel Retail" segment from 2025 onwards.</p>
+
+  <p style="font-size:12.5px; font-weight:600; color:var(--accent); margin-bottom:8px;">China Region (2024 Standalone)</p>
+  <div class="bignums" style="margin-bottom:18px;">
+    <div class="bignum-cell"><span class="bignum-val">2,500<span class="bignum-unit"> billion yen</span></span><div class="bignum-label">China region net sales, YoY +0.8%<br>Actual after FX −4.6% (precise 249.95 billion)</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">Shiseido FY2024 Official Results</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val pos">12.3<span class="bignum-unit"> billion yen</span></span><div class="bignum-label">China region core operating profit, YoY +5.3 billion<br>Profit already showed inflection</div><div class="bignum-source"><a href="https://m.bjnews.com.cn/detail/1739456701168756.html" target="_blank">Beijing News (citing results)</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val">25.2%</span><div class="bignum-label">Group net sales share<br>Core market</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">Shiseido FY2024 Official Results</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">Main brand Cold</span><div class="bignum-label">Offline soft, SHISEIDO declining<br>But Double 11: CPB/NARS/ANESSA grew</div><div class="bignum-source"><a href="https://www.jiemian.com/article/12367477.html" target="_blank">Jiemian 2025.02</a></div></div>
+  </div>
+
+  <p style="font-size:12.5px; font-weight:600; color:var(--warn); margin-bottom:8px;">Travel Retail / Duty-Free (2024 Standalone)</p>
+  <div class="bignums">
+    <div class="bignum-cell"><span class="bignum-val warn">107.834<span class="bignum-unit"> billion yen</span></span><div class="bignum-label">TR net sales, YoY −18.6%<br>(precise 107.834 billion yen)</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">Shiseido FY2024 Official Results</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val">5<span class="bignum-unit"> billion yen</span></span><div class="bignum-label">TR core operating profit<br>YoY −70.7%</div><div class="bignum-source"><a href="https://corp.shiseido.com/en/ir/pdf/ir20250210_167.pdf" target="_blank">Shiseido FY2024 Official Results</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">−12.1<span class="bignum-unit"> billion yen</span></span><div class="bignum-label">TR profit YoY reduction magnitude<br>Most severe regional decline</div><div class="bignum-source"><a href="https://www.jiemian.com/article/12367477.html" target="_blank">Jiemian 2025.02</a></div></div>
+    <div class="bignum-cell"><span class="bignum-val warn">−30%+</span><div class="bignum-label">Hainan + Korea channels YoY drop<br>2024's single largest drag</div><div class="bignum-source"><a href="https://c.m.163.com/news/a/JO9I1QAA05199DKK.html" target="_blank">NetEase Finance 2025.02</a></div></div>
+  </div>
+
+  <p style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:28px 0 12px;">▌ 2025–2026 Q1 Quarterly Tracking (China · Travel Retail Merged Segment)</p>
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr><th>Period</th><th>Segment Net Sales</th><th>YoY</th><th>Core Op. Profit</th><th>Profit YoY</th><th>Key Events / Headwinds</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>2025 Q1</strong><br><small>Jan–Mar</small></td><td>74.96B yen</td><td class="highlight">−12.1%</td><td>13.31B yen</td><td class="highlight">−16.1%</td><td>Domestic consumption soft, Hainan weak, department foot traffic weakened; e-commerce Women's Day CPB/NARS double-digit growth</td></tr>
+        <tr><td><strong>2025 H1</strong><br><small>Jan–Jun</small></td><td>173.94B yen</td><td class="highlight">−12.4%</td><td>38.81B yen</td><td class="highlight">−15.7%</td><td>37% of group; 618 big sale CPB/NARS positive, offline still negative; Hainan Korea persistent pressure</td></tr>
+        <tr><td><strong>2025 Q3</strong><br><small>Jul–Sep / single quarter</small></td><td style="color:var(--ink-light);">9M cumulative 240.04B yen<br><small>Q3 single quarter +8%</small></td><td class="ok">Single quarter positive<br><small>9M −7.6%</small></td><td>46.68B yen<br><small>9M cumulative</small></td><td class="highlight">−5.9%</td><td>Q3 first positive quarter, CPB/NARS/SHISEIDO three cores all positive; group cumulative operating loss was 33.35B yen (including impairment and other non-recurring items)</td></tr>
+        <tr><td><strong>2025 Full Year</strong></td><td>342.2B yen</td><td class="highlight">−3.5%</td><td colspan="2" style="color:var(--ink-light);">Segment core margin ~18.7%<br><small>Above group average</small></td><td>Q4 mainland positive, Double 11 cores beat market growth, SHISEIDO back to positive</td></tr>
+        <tr><td><strong>2026 Q1 ✦Latest</strong><br><small>Jan–Mar</small></td><td>78.33B yen</td><td class="ok">+4.5%</td><td>15.71B yen</td><td class="ok">+18%</td><td>Segment first turnover; CPB/NARS robust; Hainan positive recovery; Japan airport inbound consumption mix drag</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:24px;">Primary source: <a class="src" href="https://corp.shiseido.com/en/ir/" target="_blank">Shiseido Official IR Quarterly Results</a>; Media verify: <a class="src" href="https://www.jiemian.com/article/12769833.html" target="_blank">Jiemian 2025 Q1</a><a class="src" href="https://m.bjnews.com.cn/detail/1755070435168816.html" target="_blank">Beijing News 2025 H1</a><a class="src" href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank">Beijing Bus. Times 2025 Q3</a><a class="src" href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank">2025 Full Year</a><a class="src" href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank">Beijing News 2026 Q1</a></p>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:14px;">Segment Net Sales YoY: V-Shaped Recovery　<span style="font-weight:400; color:var(--ink-faint); font-size:11px;">(Hover for each period details)</span></p>
+  <div class="bar-chart">
+    <div class="bar-row"><span class="bar-label">2025 Q1</span><div class="bar-track"><div class="bar-fill" style="width:36%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−12.1%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 Q1 (Jan–Mar)</div><div class="tip-row"><span>Net Sales</span><span>74.96B yen</span></div><div class="tip-row"><span>Core Op. Profit</span><span>13.31B yen</span></div><div class="tip-row"><span>Profit YoY</span><span style="color:#E89B7A;">−16.1%</span></div><div class="tip-note">Domestic soft, Hainan weak, dept foot traffic plummet; e-commerce Women's Day CPB/NARS double-digit</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 H1</span><div class="bar-track"><div class="bar-fill" style="width:37%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−12.4%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 H1 (Jan–Jun)</div><div class="tip-row"><span>Net Sales</span><span>173.94B yen</span></div><div class="tip-row"><span>Core Op. Profit</span><span>38.81B yen</span></div><div class="tip-row"><span>Group % Share</span><span>~37%</span></div><div class="tip-note">618 sale CPB/NARS positive, offline negative; Hainan Korea pressure continues</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 Q3 single</span><div class="bar-track"><div class="bar-fill" style="width:20%; background:var(--gold);"><span class="bar-val" style="color:var(--ink);">+8%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 Q3 Single Quarter</div><div class="tip-row"><span>Single-quarter Segment Growth</span><span style="color:#9FD4BE;">+8% (Positive)</span></div><div class="tip-row"><span>9M Net Sales</span><span>240.04B yen</span></div><div class="tip-row"><span>9M Core Op. Profit</span><span>46.68B yen</span></div><div class="tip-note">First positive quarter; CPB +12% / SHISEIDO +6% / NARS +2%; e-commerce surge + offline warm dual engines</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2025 Full Year</span><div class="bar-track"><div class="bar-fill" style="width:14%; background:var(--warn); justify-content:flex-end;"><span class="bar-val">−3.5%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2025 Full Year</div><div class="tip-row"><span>Net Sales</span><span>342.2B yen</span></div><div class="tip-row"><span>Core Op. Margin</span><span>~18.7%</span></div><div class="tip-row"><span>Segment Position</span><span>Group #1</span></div><div class="tip-note">Q4 mainland positive, Double 11 cores beat market, SHISEIDO back to positive</div></div>
+    </div>
+    <div class="bar-row"><span class="bar-label">2026 Q1 ✦</span><div class="bar-track"><div class="bar-fill" style="width:16%; background:var(--accent);"><span class="bar-val">+4.5%</span></div></div>
+      <div class="bar-tip"><div class="tip-q">2026 Q1 (Jan–Mar) ✦ Latest</div><div class="tip-row"><span>Net Sales</span><span>78.33B yen</span></div><div class="tip-row"><span>Core Op. Profit</span><span>15.71B yen</span></div><div class="tip-row"><span>Profit YoY</span><span style="color:#9FD4BE;">+18%</span></div><div class="tip-note">Segment first full positive; CPB/NARS strong; Hainan positive signals; Japan airport inbound mix drag</div></div>
+    </div>
+  </div>
+  <p style="font-size:11px; color:var(--ink-faint); margin-bottom:28px;">Note: Full-year −3.5% includes full-year cumulative effect; Q3+ already positive per quarter; 2026 Q1 first complete positive recovery quarter.</p>
+
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">Group Level: 2025 Full Year Key Metrics</p>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>2025 Full Year</th><th>vs 2024</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Group Net Sales</td><td>970.0B yen</td><td class="warn">−2.1%</td></tr>
+          <tr><td class="strong">Core Op. Profit</td><td>44.5B yen</td><td class="pos">+22.4%</td></tr>
+          <tr><td class="strong">Net Profit Attributable</td><td>−40.7B yen</td><td class="warn">Loss (Goodwill impairment)</td></tr>
+          <tr><td class="strong">China·TR Segment</td><td>342.2B yen</td><td class="warn">−3.5%</td></tr>
+          <tr><td class="strong">Cost Reduction</td><td>~27.0B yen</td><td class="pos">Exceeded Target</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--ink-faint);margin-top:6px;">Note: 2025 full-year actual values (released 2026.02); Group prior full-year guidance 36.5B yen core op. profit, actual exceeded guidance. Cross-reference with <a class="src" href="https://corp.shiseido.com/en/ir/" target="_blank">Shiseido Official IR</a> latest annual report. <a class="src" href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank">Results Breakdown</a></p>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px;">2026 Targets ("Action Plan" Closure)</p>
+      <div class="card gold" style="margin-bottom:12px;">
+        <div class="card-tag">Core Target</div>
+        <h3>Core Op. Profit Margin 7%</h3>
+        <p>"2025–2026 Action Plan" final target. 2025 actual ~4.6%, 2.4pp gap to 7%. <a href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank" class="cite">Beijing News 2026.05</a></p>
+      </div>
+      <div class="card gold">
+        <div class="card-tag">Profit Target</div>
+        <h3>Core Op. Profit 69.0B yen</h3>
+        <p>2026 Q1 report maintains the group full-year target unchanged; group core operating profit was about 13.03B yen in Q1, while the full-year target remains 69.0B yen. <a href="https://m.bjnews.com.cn/detail/1780038403168386.html" target="_blank" class="cite">Beijing News 2026.05</a></p>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 14px;">Core Brand Quarterly Performance (Global Basis, Reflecting Segment Trend)</p>
+  <div class="matrix">
+    <table>
+      <thead><tr><th>Brand</th><th>2025 Q1</th><th>2025 H1</th><th>2025 Q3</th><th>2025 Full Yr</th><th>2026 Q1</th></tr></thead>
+      <tbody>
+        <tr><td>SHISEIDO Main</td><td class="highlight">−7% (Ex-TR +2%)</td><td class="highlight">Negative</td><td class="ok">+6%</td><td class="ok">FY ~Flat<br><small>Q4 Positive, undisclosed</small></td><td class="highlight">−4%</td></tr>
+        <tr><td>CPB Skin Key</td><td class="ok">+2% (Ex-TR +7%)</td><td class="ok">618 Strong</td><td class="ok">+12%</td><td class="ok">+4%</td><td class="highlight">−2%</td></tr>
+        <tr><td>NARS</td><td class="ok">+7%</td><td class="ok">Double-digit</td><td class="ok">+2%</td><td class="ok">+3%</td><td class="ok">+7%</td></tr>
+        <tr><td>ANESSA Suncare</td><td class="highlight">−Double-digit</td><td class="highlight">Decline</td><td>—</td><td class="highlight">−9% (H2 Rebound)</td><td class="highlight">−17%</td></tr>
+        <tr><td>ELIXIR Elixir</td><td class="ok">+11%</td><td class="ok">Growth</td><td>—</td><td class="ok">+9%</td><td class="ok">+4%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════ 06 China Mainland Channels ════════ -->
+<section id="m06">
+  <div class="layer-tag">Layer 06 · Channel Deconstruction<span class="funnel-pos">Other two segment legs</span></div>
+  <div class="section-title">China Mainland Channels: E-commerce & Offline</div>
+  <p class="section-intro">"China · Travel Retail" segment's duty-free is just one of three legs. China mainland's <strong>online e-commerce</strong> and <strong>offline counters</strong> combined are larger in volume (2024 China standalone net sales ~250.0B yen, ~2x travel retail, see Layer 05 base year), and were important sources of 2025 segment recovery. Duty-free declined more visibly and attracts attention, but segment-level positive growth may have come more from mainland e-commerce and offline warming—this section unpacks these two legs.
+
+  <div class="bignums">
+    <div class="bignum-cell">
+      <span class="bignum-val pos">&gt;40%</span>
+      <div class="bignum-label">E-commerce revenue % of China market<br>Online is an important mainland channel (historical peak)</div>
+      <div class="bignum-source"><a href="https://www.bbtnews.com.cn/2025/0811/566000.shtml" target="_blank">Beijing Bus. Times</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">Double-digit</span>
+      <div class="bignum-label">2025 Women's Day / 618 / Double 11: CPB, NARS e-commerce consecutive double-digit growth<br>E-commerce is one recovery source</div>
+      <div class="bignum-source"><a href="https://news.qq.com/rain/a/20241203A06SYG00" target="_blank">Tencent</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val pos">2025 Q4</span>
+      <div class="bignum-label">China mainland back to YoY positive growth<br>Offline warm + e-commerce surge = dual engine</div>
+      <div class="bignum-source"><a href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank">Beijing Bus. Times 2025 Q3</a></div>
+    </div>
+    <div class="bignum-cell">
+      <span class="bignum-val warn">Three Years</span>
+      <div class="bignum-label">Main brand SHISEIDO dropped out Tmall Double 11 beauty TOP 10<br>(From 2023, e-commerce hidden peril)</div>
+      <div class="bignum-source"><a href="https://m.winshang.com/news731141.html" target="_blank">Winshang 2025.02</a></div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px;">Two Legs × Push & Drag: Segment Recovery Mechanics</p>
+  <p class="drill-hint" style="margin-bottom:14px;">E-commerce and offline each carry recovery momentum and drag factors; segment turnover may mean recovery forces temporarily outweigh drag factors.</p>
+  <div class="quad">
+    <div class="quad-corner"></div>
+    <div class="quad-colhead pos"><span class="ar">↑</span> Recovery Driving Forces</div>
+    <div class="quad-colhead neg"><span class="ar">↓</span> Segment Dragging Headwinds</div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🛒</span><span class="qr-name">Online E-commerce</span><span class="qr-sub">Important mainland channel<br>Relatively large volume</span></div>
+    <div class="quad-cell pos" data-dir="↑ Driving Recovery">
+      <span class="quad-tag pos">Recovery Source</span>
+      <h4>Tmall / Douyin Contribute to Recovery</h4>
+      <p>2025 Women's Day, 618, Double 11 three checkpoints all: CPB, NARS double-digit growth; Double 11 cores beat market growth, CPB into Tmall advance-purchase beauty TOP 10. E-commerce is "300B new marketing" investment focus. <a href="https://news.qq.com/rain/a/20241203A06SYG00" target="_blank" class="cite">Tencent</a></p>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ Dragging Segment">
+      <span class="quad-tag neg">Peril</span>
+      <h4>Main Brand Under Pressure + Investment Margin Squeeze</h4>
+      <p>SHISEIDO main brand post-2023 nuclear incident stayed outside Tmall Double 11 beauty TOP 10 for three years; simultaneous high investment costs—single livestream near 10k orders direct streaming invest reaching ~100k RMB, stacked with logistics and platform commissions, can create "sales visible, profit thin." <a href="https://m.thepaper.cn/newsDetail_forward_29532123" target="_blank" class="cite">The Paper</a></p>
+    </div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🏬</span><span class="qr-name">Offline Counters</span><span class="qr-sub">Adjusting & Warming<br>Premium experience touchpoint</span></div>
+    <div class="quad-cell pos" data-dir="↑ Driving Recovery">
+      <span class="quad-tag pos">Warming</span>
+      <h4>Q4 Offline Back to Positive Growth</h4>
+      <p>2025 Q4 mainland achieved YoY positive growth, offline warming and e-commerce surge jointly contributed to recovery. Premium beauty recovery showed improvement, CPB, NARS offline premium experience remains important touchpoint. <a href="https://zhuanlan.zhihu.com/p/2009366513396782036" target="_blank" class="cite">2025 Full Year Results</a></p>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ Dragging Segment">
+      <span class="quad-tag neg">Pressure</span>
+      <h4>Department Foot Traffic Weakens, Proactive Retrenchment</h4>
+      <p>2025 Q1 offline foot traffic weakened and dragged segment performance; IPSA etc. brands withdrew some counters. From 2024 Shiseido in China cut fixed costs, restructured org, closed unprofitable locations, executing offline "slimming." <a href="https://www.bbtnews.com.cn/2025/1111/575571.shtml" target="_blank" class="cite">Beijing Bus. Times</a></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Mainland vs duty-free: segment-internal dynamics.</strong> 2024 China region (duty-free separate) actual ex-FX −4.6%, duty-free dropped 30%+ simultaneously—both down but duty-free steeper. 2025 mainland e-commerce and offline recovered first, duty-free recovery lagged until 2026 Q1. Hence <strong>"segment turnover" may be driven more by mainland channels, while duty-free remains a piece that needs continued observation</strong>. This explains why Shiseido merged three into unified management—using rebounding mainland channels to offset duty-free volatility and unified price architecture to reduce friction.
+  </div>
+</section>
+
+<!-- ════════ 07 Duty-Free Product-Channel Matrix ════════ -->
+<section id="m07">
+  <div class="layer-tag">Layer 07 · Channel Deconstruction<span class="funnel-pos">Duty-free leg's product strategy</span></div>
+  <div class="section-title">Duty-Free Product Line & Channel Matrix</div>
+  <p class="section-intro">Back to duty-free leg. Travel retail makes different product demands than mainland regular-price—travel convenience, bundled value, flagship recognizability, premium experience each have different emphasis. Below outlines main product lines' role in duty-free, then visualizes "channel × product" matrix showing optimal positioning for each.</p>
+
+  <table class="data-table">
+    <thead><tr><th>Product Line</th><th>Travel Retail Role</th><th>Ideal Channels</th><th>Key Monitor Metrics</th></tr></thead>
+    <tbody>
+      <tr><td class="strong">Red Essence Serum<br>Ultimune</td><td>Flagship / traffic gateway, highest awareness</td><td>Airport border (optimal), all channels adapting</td><td>Sell-through rate, discount rate, bundle %, contribution margin</td></tr>
+      <tr><td class="strong">Vital Perfection<br>Vital-Perfection</td><td>Premium anti-aging line, upgrade ATV & premium line %</td><td>In-store duty-free (optimal), curated experience</td><td>Premium line %, ATV, BA recommendation conversion</td></tr>
+      <tr><td class="strong">Future Solution LX<br>Future-Solution-LX</td><td>Luxury premium line, brand prestige & high margin</td><td>Curated shops / premium traveler scenes</td><td>Contribution margin %, curated shop %, experience conversion</td></tr>
+      <tr><td class="strong">ANESSA Suncare<br>ANESSA</td><td>Travel scenario strong relevance, seasonal marked</td><td>Airport border, Hainan (tour season)</td><td>Seasonal sales, bundled rate, peak-season stockout %</td></tr>
+      <tr><td class="strong">Travel Exclusive Sets</td><td>Upgrade ATV & UPT, duty-free exclusive value</td><td>All channels, in-store duty-free optimal</td><td>ATV, UPT, discount rate, set-bundle margin rate</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px; font-weight:600; color:var(--ink); margin:8px 0 14px;">Channel × Product Role Matrix</p>
+  <div class="matrix">
+    <table>
+      <thead><tr><th>Product ＼ Channel</th><th>Airport Duty-Free</th><th>In-Store / Hainan</th><th>Online Pre-Order</th><th>Curated Shops / Pop-Up</th></tr></thead>
+      <tbody>
+        <tr><td>Red Essence</td><td class="ok">Traffic Lead</td><td>Set Movement</td><td>Price Sensitive</td><td>New Customer Conv.</td></tr>
+        <tr><td>Vital Perfection</td><td>Premium Conv.</td><td class="ok">Premium Line Hub</td><td>Promo Sensitive</td><td>BA Recommendation</td></tr>
+        <tr><td>Future Solution LX</td><td>Premium Traveler</td><td>Brand Prestige</td><td>Non-Primary</td><td class="ok">Premium Experience Hub</td></tr>
+        <tr><td>ANESSA</td><td class="ok">Immediate Need</td><td>Island Scenario</td><td>Seasonal Promo</td><td>Scene Marketing</td></tr>
+        <tr><td>Sets</td><td>UPT/ATV</td><td class="ok">Inventory Clear Lead</td><td>Discount Rate</td><td>Activity ROI</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><strong>Core Logic:</strong> Red Essence handles scale, Vital Perfection handles ATV, Future Solution LX handles premium profit & brand image, ANESSA handles travel scenes, sets handle bundled & TR conversion. Not highest-selling-always gets most stock—each product excels where contributing healthy profit optimally. This reflects Shiseido's "from heavy distribution toward consumer-driven growth" and unified price coordination strategy.</div>
+</section>
+
+<!-- ════════ 08 SWOT Overview ════════ -->
+<section id="m08">
+  <div class="layer-tag">Layer 08 · Synthesis<span class="funnel-pos">Modules 1–7 collection</span></div>
+  <div class="section-title">China · Travel Retail SWOT Overview</div>
+  <p class="section-intro">Consolidate observations from preceding seven modules—industry market, channel economics, China cycle, competitive landscape, segment metrics, mainland e-commerce/offline, duty-free product mix—into comprehensive strategic landscape, bridging to profitability analysis.</p>
+
+  <div class="quad">
+    <div class="quad-corner"></div>
+    <div class="quad-colhead pos"><span class="ar">↑</span> Positive / Supporting</div>
+    <div class="quad-colhead neg"><span class="ar">↓</span> Negative / Obstructing</div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🏢</span><span class="qr-name">Internal</span><span class="qr-sub">Shiseido<br>Own Capability</span></div>
+    <div class="quad-cell pos" data-dir="↑ Internal · Positive">
+      <div class="qc-title">Strengths <span class="en">Strengths</span></div>
+      <ul>
+        <li><strong>Brand History & R&D Backing:</strong> Japanese premium skincare mindshare, Red Essence/Vital Perfection/Future Solution LX form anti-aging efficacy gradient</li>
+        <li><strong>Premium Line Profit Quality:</strong> 2025 segment core op. margin ~18.7%, above group average</li>
+        <li><strong>China×TR Org Synergy:</strong> Post-2025 merger management, regional coordination & price governance capability may be strengthened</li>
+        <li><strong>Key Brand Stabilization:</strong> CPB/NARS sustained growth, already important recovery support</li>
+      </ul>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ Internal · Negative">
+      <div class="qc-title">Weaknesses <span class="en">Weaknesses</span></div>
+      <ul>
+        <li><strong>Main Brand Youth Engagement Needs Improvement:</strong> SHISEIDO 2026 Q1 still −4%, stayed outside Tmall Double 11 beauty TOP 10 for three years</li>
+        <li><strong>Duty-Free Flagship Awareness Weak:</strong> Red Essence TR mindshare weaker than SK-II Immortal Water</li>
+        <li><strong>ANESSA Persistent Decline:</strong> 2026 Q1 −17%, travel-scenario-relevant category paradoxically under pressure</li>
+        <li><strong>Segment-Internal Price System Stress:</strong> E-commerce/offline/Hainan/Hong Kong/outbound multiple channels same inventory, creating potential friction and diversion risks</li>
+      </ul>
+    </div>
+
+    <div class="quad-rowhead"><span class="qr-icon">🌐</span><span class="qr-name">External</span><span class="qr-sub">Market<br>Policy Environment</span></div>
+    <div class="quad-cell pos" data-dir="↑ External · Positive">
+      <div class="qc-title">Opportunities <span class="en">Opportunities</span></div>
+      <ul>
+        <li><strong>Hainan Closure + New Policy:</strong> Import duty-free post-closure lowers costs, post-policy H2 sales +22.6%</li>
+        <li><strong>Segment Bottom Rebound:</strong> 2026 Q1 +4.5%, profit +18%, recovery window opening</li>
+        <li><strong>Southeast Asia Emerging Markets:</strong> Shiseido explicitly shifting toward adapting Asia traveler consumption patterns</li>
+        <li><strong>Omnichannel Member Ops:</strong> Merged accounting enables finer cross-region consumer management</li>
+      </ul>
+    </div>
+    <div class="quad-cell neg" data-dir="↓ External · Negative">
+      <div class="qc-title">Challenges <span class="en">Challenges</span></div>
+      <ul>
+        <li><strong>Price Promotion Dependency:</strong> Double 11 / Duty-free promotions lower price expectations and may erode contribution margin</li>
+        <li><strong>Segment-Internal Friction & Parallel Trading:</strong> E-commerce mega-promo may divert some duty-free purchase, duty-free low-price backflows regular market, both complicate price governance</li>
+        <li><strong>Chinese Brands Strengthening Efficacy Mindshare:</strong> 2023 Chinese beauty share exceeded 50%, reacting faster</li>
+        <li><strong>Consumer Confidence & FX Volatility:</strong> Premium skincare is relatively sensitive to macro sentiment swings</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><strong>Bridge Forward:</strong> SWOT suggests a key tension—segment <em>recovering growth</em>, yet growth <em>quality</em> (discount-fueled vs. price-stable, diversion vs. synergy) still needs attention. This motivates next step building a "contribution profit" centered profitability framework assessing growth healthiness.</div>
+</section>
+
+<!-- ════════ 09 Profitability Framework ════════ -->
+<section id="m09">
+  <div class="layer-tag">Layer 09 · Analysis<span class="funnel-pos">Funnel bottom layer · Methodology</span></div>
+  <div class="section-title">Profitability Framework: Cross-Channel Segment Health Scorecard</div>
+  <p class="section-intro">"China · Travel Retail" segment profitability health analysis basic logic: first review outcomes (profit/margin/expense rates), then deconstruct drivers (revenue/gross profit/expenses), finally drill by channel (e-commerce/offline/duty-free) and product. Key: it is not enough to watch only sales & gross margin—e-commerce streaming costs and duty-free discount/gifts can materially affect real profitability.</p>
+
+  <div style="margin-bottom:24px;">
+    <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-faint); margin-bottom:12px;">Core Metric: Contribution Profit</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; font-size:13.5px; color:var(--ink);">
+      <div style="background:var(--ink); color:#FAFAF8; padding:10px 16px; border-radius:6px; font-weight:600;">Contribution Profit</div>
+      <span style="color:var(--ink-faint);">=</span>
+      <div style="background:var(--card-bg); border:1px solid var(--rule); padding:10px 14px; border-radius:6px;">Net Sales</div>
+      <span>−</span>
+      <div style="background:var(--card-bg); border:1px solid var(--rule); padding:10px 14px; border-radius:6px;">Product Cost</div>
+      <span>−</span>
+      <div style="background:var(--warn-light); border:1px solid var(--warn); padding:10px 14px; border-radius:6px; color:var(--warn);">Direct Sales Spend<br><small style="font-size:11px;">Discount+Gift+Promo+Channel</small></div>
+    </div>
+    <p style="font-size:12px; color:var(--ink-faint); margin-top:10px;"><strong>Contribution Margin % = Gross Margin % − Expense Rate %</strong>　·　Gross margin watches "product itself money-making," contribution margin watches "this channel/product post-sales-spending actually worth pursuing"</p>
+  </div>
+
+  <div class="calc" id="cmCalc">
+    <div class="calc-head">🧮 Contribution Margin Quick Calculator <span>Drag sliders to see how expenses eat profit</span></div>
+    <div class="calc-body">
+      <div class="calc-controls">
+        <div class="calc-slider">
+          <div class="calc-label"><span>Gross Margin (Product Itself)</span><span class="calc-num" id="gmOut">70%</span></div>
+          <input type="range" min="40" max="85" value="70" id="gm" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>Discount Rate</span><span class="calc-num" id="discOut">10%</span></div>
+          <input type="range" min="0" max="40" value="10" id="disc" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>Gift Cost Rate (GWP)</span><span class="calc-num" id="gwpOut">8%</span></div>
+          <input type="range" min="0" max="25" value="8" id="gwp" oninput="recalcCM()">
+        </div>
+        <div class="calc-slider">
+          <div class="calc-label"><span>Activity / Channel Spend Rate</span><span class="calc-num" id="actOut">12%</span></div>
+          <input type="range" min="0" max="30" value="12" id="act" oninput="recalcCM()">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-bar-wrap">
+          <div class="calc-bar-seg gm-seg" id="segGM" title="Contribution Margin %"></div>
+          <div class="calc-bar-seg fee-seg" id="segFee" title="Expense-Eaten"></div>
+        </div>
+        <div class="calc-legend"><span><i class="dot-gm"></i>Contribution Margin %</span><span><i class="dot-fee"></i>Expense-Eroded</span></div>
+        <div class="calc-big">Contribution Margin <strong id="cmBig">40%</strong></div>
+        <div class="calc-msg" id="cmMsg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tree">
+    <div class="tree-root">Layer 1: Profitability Outcome Overview (Watch This First, Not Sales $)</div>
+    <div class="tree-l1">
+      <div class="tree-node"><div class="tree-node-title">💰 Profit Amount</div><ul><li>Net Sales Amount</li><li>Gross Profit Amount</li><li>Contribution Profit Amount</li><li>Budget Achievement %</li></ul></div>
+      <div class="tree-node"><div class="tree-node-title">📊 Profit Rate Quality</div><ul><li>Gross Margin %</li><li>Contribution Margin %</li><li>YoY / QoQ Change</li><li>Budget Gap</li></ul></div>
+      <div class="tree-node"><div class="tree-node-title">💸 Expense Structure</div><ul><li>Total Direct Spend / Spend Rate</li><li>Discount Rate</li><li>Gift Cost Rate</li><li>Activity Spend Rate</li></ul></div>
+    </div>
+  </div>
+
+  <p class="drill-hint">↓ Layer 1 anomalies found, then drill Layers 2–3: which channel/product caused it?</p>
+  <button class="drill-btn" id="drill1" onclick="drillStep(1)"><span class="dchev">▼</span> Drill Layers 2–3: Which Channel, Which Product Drove Change?</button>
+
+  <div class="drill-step" id="dstep1">
+  <div class="two-col">
+    <div>
+      <p style="font-size:13px; font-weight:600; margin-bottom:12px;">Layer 2: Channel Drill (Three Channel Types)</p>
+      <table class="data-table">
+        <thead><tr><th>Channel</th><th>Key Metrics</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Mainland E-commerce</td><td>GMV, streaming spend rate, ROI, repeat %, margin rate (watch for "visible sales, thin profit")</td></tr>
+          <tr><td class="strong">Mainland Offline</td><td>Counter-level sales, BA productivity, counter net adds/closures, premium line experience conversion</td></tr>
+          <tr><td class="strong">Airport Duty-Free</td><td>Passenger flow conversion %, flagship unit volume, stockout %</td></tr>
+          <tr><td class="strong">In-Store / Hainan Duty-Free</td><td>Premium line %, set ATV, activity ROI, inventory turn</td></tr>
+          <tr><td class="strong">Duty-Free Curated / Pop-up</td><td>Activity ROI, premium experience conversion, new customer cost</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p style="font-size:13px; font-weight:600; margin-bottom:12px;">Layer 3: Product Line Drill</p>
+      <table class="data-table">
+        <thead><tr><th>Product Line</th><th>Profitability Assessment Focus</th></tr></thead>
+        <tbody>
+          <tr><td class="strong">Red Essence</td><td>Sales volume vs. discount rate—whether dragging segment-wide CM%</td></tr>
+          <tr><td class="strong">Vital Perfection</td><td>Premium line % uplift magnitude, ATV sync improving</td></tr>
+          <tr><td class="strong">Future Solution LX</td><td>CM% above average?, curated-shop brand prestige impact</td></tr>
+          <tr><td class="strong">Sets</td><td>Set CM% vs. singles; true increments vs. mix-shift</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div><!-- /dstep1 -->
+
+  <button class="drill-btn" id="drill2" onclick="drillStep(2)" style="display:none;"><span class="dchev">▼</span> Drill Layer 4: Inventory Healthy? Channels Pulling Against Each Other?</button>
+
+  <div class="drill-step" id="dstep2">
+  <p style="font-size:13px; font-weight:600; margin-bottom:12px;">Layer 4: Inventory Health & Channel Balance</p>
+  <div class="cards cards-3">
+    <div class="card"><div class="card-tag">Inventory Health</div><h3>Sell-in / Sell-out Ratio</h3><p>Outflow vs. movement matching; when Sell-out << Sell-in, channel overstock, future outflow suppressed. Monitor continuously.</p></div>
+    <div class="card"><div class="card-tag">Movement Efficiency</div><h3>Sell-through % / Inventory Days</h3><div class="calc-big" style="font-size: 12px; margin: 0;">Sell-through Rate, Days Inventory, Stockout % together tracked, key SKUs never stockout, non-key SKUs never stagnate.</h3></div>
+    <div class="card"><div class="card-tag">Channel Balance</div><h3>Segment-Internal Price Diff / Channel Interference</h3><p>E-commerce/offline/Hainan/Hong Kong/outbound unified segment ownership, key: price coordination—e-commerce mega-promo landing vs. duty-free vs. regular counters within reasonable band? Are e-commerce low prices creating excessive diversion from duty-free orders, or contributing true growth?</p></div>
+  </div>
+  </div><!-- /dstep2 -->
+
+  <div class="callout"><strong>One-Sentence Framework:</strong> "China · Travel Retail" can focus on "contribution profit," drilled into channel contribution, product contribution, price-promotion, inventory health & channel balance—judging whether growth brings healthy profit, sustains price architecture & long-term brand value. Especially under unified segment management of mainland e-commerce/offline/duty-free, it is worth observing whether the three coordinate pricing and reduce channel diversion—"same-pool, two-leg" strategy coordination, not channel interference. This also echoes Layer 01's "consumers compare prices across channels and are less willing to accept pure international brand premium" and Shiseido's "from heavy distribution toward tourist-driven genuine consumption" strategic pivot.</div>
+</section>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.2 });
+  sections.forEach(s => observer.observe(s));
+
+  // C: progressive drill-down
+  function drillStep(n) {
+    if (n === 1) {
+      const s = document.getElementById('dstep1');
+      const b = document.getElementById('drill1');
+      const open = s.classList.toggle('open');
+      b.classList.toggle('done', open);
+      document.getElementById('drill2').style.display = open ? 'inline-flex' : 'none';
+      if (!open) { document.getElementById('dstep2').classList.remove('open'); document.getElementById('drill2').classList.remove('done'); }
+    } else {
+      const s = document.getElementById('dstep2');
+      const b = document.getElementById('drill2');
+      b.classList.toggle('done', s.classList.toggle('open'));
+    }
+  }
+
+  // F: contribution-margin calculator
+  function recalcCM() {
+    const gm = +document.getElementById('gm').value;
+    const disc = +document.getElementById('disc').value;
+    const gwp = +document.getElementById('gwp').value;
+    const act = +document.getElementById('act').value;
+    document.getElementById('gmOut').textContent = gm + '%';
+    document.getElementById('discOut').textContent = disc + '%';
+    document.getElementById('gwpOut').textContent = gwp + '%';
+    document.getElementById('actOut').textContent = act + '%';
+    const fees = disc + gwp + act;
+    let cm = gm - fees;
+    if (cm < 0) cm = 0;
+    // bar widths relative to net sales (100%): gm portion shown, fees eat into it
+    const cmW = Math.max(cm, 0);
+    const feeW = Math.min(fees, gm);
+    document.getElementById('segGM').style.width = cmW + '%';
+    document.getElementById('segFee').style.width = feeW + '%';
+    const big = document.getElementById('cmBig');
+    big.textContent = cm + '%';
+    const msg = document.getElementById('cmMsg');
+    big.classList.toggle('warn', cm < 30);
+    msg.classList.toggle('warn', cm < 30);
+    if (cm >= 45) {
+      msg.textContent = 'Relatively healthy: Gross margin ' + gm + '% minus ' + fees + '% spend leaves ' + cm + '% contribution margin—this channel/product may be worth continued investment.';
+    } else if (cm >= 30) {
+      msg.textContent = 'Needs observation: Gross margin looks good (' + gm + '%), but ' + fees + '% spending consumed much of it, contribution margin only ' + cm + '%. Watch for "visible sales, thin profit."';
+    } else {
+      msg.textContent = 'Cautious: ' + fees + '% discount/gift/spend nearly consumed ' + gm + '% gross margin, contribution margin only ' + cm + '%. Duty-free mega-promo or e-commerce heavy-streaming may face this issue: sales look large, but profit can be thin.';
+    }
+  }
+  recalcCM();
+</script>
+
+</body>
+</html>

@@ -529,6 +529,116 @@ body.splash-active nav{opacity:0;visibility:hidden;pointer-events:none}
 }
 .divider-line{border:none;border-top:0.5px solid var(--border);margin:2.5rem 0}
 
+/* LEARNING LAB REDESIGN */
+.learning-subtitle{font-size:15px;color:var(--text2);margin-bottom:2rem;max-width:620px;line-height:1.75}
+.learning-shell{display:flex;flex-direction:column;gap:1.35rem}
+.learning-soft-divider{height:1px;background:var(--border);opacity:0.72;margin:0 0 0.2rem}
+.learning-overview{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);gap:clamp(1.6rem,4vw,3.2rem);padding:0.1rem 0 1.55rem}
+.learning-column{min-width:0}
+.learning-column+.learning-column{border-left:1px solid var(--border);padding-left:clamp(1.6rem,4vw,3.2rem)}
+.learning-section-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.85rem}
+.learning-head-title{display:flex;align-items:center;gap:0.5rem;font-size:14px;font-weight:800;color:var(--text)}
+.learning-head-title i{font-size:18px;color:var(--green)}
+.learning-head-kicker{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0}
+.learning-line-list{display:flex;flex-direction:column}
+.learning-line{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:0.8rem;align-items:start;padding:0.8rem 0;border-top:1px solid var(--border)}
+.learning-line:last-child{border-bottom:1px solid var(--border)}
+.learning-index{font-size:11px;font-weight:800;color:var(--green);padding-top:0.15rem}
+.learning-line-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.35}
+.learning-line-desc{font-size:12px;color:var(--text3);line-height:1.5;margin-top:0.14rem}
+.learning-line-state{font-size:11px;font-weight:800;color:var(--green);white-space:nowrap;padding-top:0.16rem}
+.learning-line-state.amber{color:var(--amber)}
+.method-thread{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;list-style:none;margin:0;padding:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.method-thread li{position:relative;min-width:0;padding:0.9rem 1rem 0.95rem 0}
+.method-thread li+li{padding-left:1rem;border-left:1px solid var(--border)}
+.method-thread .method-num{font-size:11px;color:var(--green);font-weight:800;margin-bottom:0.52rem}
+.method-thread .method-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:0.3rem}
+.method-thread .method-desc{font-size:12px;color:var(--text2);line-height:1.55}
+.learning-reflection{font-size:13px;color:var(--text2);line-height:1.7;margin-top:0.9rem}
+.lab-panel{border:1px solid var(--border);border-radius:var(--r-md);background:var(--paper);padding:1.25rem}
+.lab-top-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:1rem;align-items:stretch}
+.lab-block-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.lab-block-title{display:flex;align-items:center;gap:0.5rem;font-size:14px;font-weight:800;color:var(--text)}
+.lab-block-title i{font-size:18px;color:var(--green)}
+.lab-block-kicker{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0}
+.focus-list{display:grid;grid-template-columns:1fr;gap:0.65rem}
+.focus-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0.8rem;align-items:center;border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg2);padding:0.8rem 0.9rem}
+.focus-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.3}
+.focus-desc{font-size:12px;color:var(--text3);line-height:1.45;margin-top:0.15rem}
+.focus-status{font-size:11px;color:var(--green);background:var(--green-bg);border:1px solid #C3D0C4;border-radius:999px;padding:0.28rem 0.62rem;white-space:nowrap;font-weight:700}
+.focus-status.amber{color:var(--amber);background:var(--amber-bg);border-color:#DFC9AA}
+.method-panel{display:flex;flex-direction:column;justify-content:space-between}
+.method-line{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.7rem;position:relative}
+.method-step{border:1px solid var(--border);border-radius:var(--r-md);background:var(--bg2);padding:0.95rem;min-width:0;min-height:116px;transition:background 0.18s ease,border-color 0.18s ease,transform 0.18s ease}
+.method-step:hover{background:var(--paper);border-color:var(--border2);transform:translateY(-1px)}
+.method-num{font-size:11px;color:var(--green);font-weight:800;margin-bottom:0.55rem}
+.method-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:0.35rem}
+.method-desc{font-size:12px;color:var(--text2);line-height:1.55}
+.method-note{font-size:13px;color:var(--text2);line-height:1.65;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.exploration-panel{border:0;background:transparent;padding:0;margin-top:0.2rem}
+.exploration-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.exploration-title{font-size:18px;font-weight:800;color:var(--text);line-height:1.2}
+.exploration-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-top:0.25rem}
+.notes-hint{font-size:11px;color:var(--text3);white-space:nowrap}
+.notes-stack-board{display:grid;grid-template-columns:1fr;gap:2.45rem;margin-top:1.2rem}
+.notes-stack{min-width:0;border:0;border-radius:0;background:transparent;padding:0;overflow:visible}
+.notes-group-head{display:flex;align-items:center;gap:0.55rem;margin-bottom:0.75rem}
+.notes-group-title{font-size:13px;font-weight:900;color:var(--text);text-transform:uppercase;letter-spacing:0}
+.notes-group-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+.notes-stack.is-curiosity-stack .notes-group-dot{background:var(--amber)}
+.notes-group-sub{font-size:12px;color:var(--text3)}
+.stack-stage{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;height:auto;margin-top:0.85rem;perspective:none}
+.stack-note-card{position:relative;left:auto;top:auto;width:auto;height:238px;margin-left:0;border:1px solid var(--border);border-radius:14px;background:var(--paper);padding:1rem;color:var(--text);display:flex;flex-direction:column;align-items:flex-start;text-align:left;text-decoration:none;font-family:var(--font-body);box-shadow:0 12px 28px rgba(45,43,38,0.055);transform:translateY(0);transform-origin:50% 92%;z-index:var(--z);transition:transform 0.28s cubic-bezier(0.16,1,0.3,1),box-shadow 0.24s ease,border-color 0.2s ease,background 0.2s ease,opacity 0.2s ease}
+.stack-note-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(145deg,rgba(255,255,255,0.45),rgba(255,255,255,0) 45%);pointer-events:none}
+button.stack-note-card{appearance:none;cursor:pointer}
+.stack-stage:hover .stack-note-card,.stack-stage:focus-within .stack-note-card{opacity:0.82}
+.stack-note-card:hover,.stack-note-card:focus-visible{border-color:var(--green);background:#FFFDF8;box-shadow:0 22px 42px rgba(45,43,38,0.13);transform:translateY(-10px) scale(1.015)!important;z-index:30;outline:none;opacity:1}
+.stack-note-card.is-planned{background:#F1EEE8;color:var(--text2)}
+.stack-note-card.is-curiosity:hover,.stack-note-card.is-curiosity:focus-visible{border-color:var(--amber)}
+.note-icon{width:42px;height:42px;border-radius:var(--r-md);background:var(--green-bg);color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
+.note-icon i{font-size:21px}
+.note-icon.blue{background:var(--blue-bg);color:var(--blue)}
+.note-icon.amber{background:var(--amber-bg);color:var(--amber)}
+.note-icon.clay{background:#F4E5DD;color:var(--clay)}
+.note-icon.paper{background:var(--bg2);color:var(--text2)}
+.note-number{font-size:11px;color:var(--text3);margin-top:1.8rem;margin-bottom:0.35rem}
+.note-name{font-size:18px;font-weight:800;line-height:1.22;color:inherit;margin-bottom:0.45rem}
+.note-desc{font-size:12px;color:var(--text3);line-height:1.5}
+.note-status{font-size:11px;color:var(--text3);margin-top:auto;padding-top:0.8rem}
+@media (max-width:980px){
+  .learning-overview,.lab-top-grid,.method-line,.notes-stack-board{grid-template-columns:1fr}
+  .learning-column+.learning-column{border-left:0;padding-left:0;border-top:1px solid var(--border);padding-top:1.25rem}
+  .method-thread{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .method-thread li:nth-child(3){border-left:0}
+  .method-thread li:nth-child(n+3){border-top:1px solid var(--border)}
+  .stack-stage{grid-template-columns:repeat(2,minmax(0,1fr));height:auto}
+  .stack-note-card{width:auto;height:230px;margin-left:0}
+  .stack-note-card:hover,.stack-note-card:focus-visible{transform:translateY(-8px) scale(1.012)!important}
+}
+@media (max-width:760px){
+  .lab-panel{padding:1rem}
+  .lab-block-head,.exploration-head,.learning-section-head{align-items:flex-start;flex-direction:column}
+  .learning-line{grid-template-columns:28px minmax(0,1fr);gap:0.65rem}
+  .learning-line-state{grid-column:2;justify-self:start;padding-top:0}
+  .method-thread{grid-template-columns:1fr}
+  .method-thread li{padding:0.82rem 0}
+  .method-thread li+li{padding-left:0;border-left:0;border-top:1px solid var(--border)}
+  .method-thread li:nth-child(3){border-top:1px solid var(--border)}
+  .focus-item{grid-template-columns:1fr}
+  .focus-status{justify-self:start}
+  .notes-stack{padding:0.35rem 0 0}
+  .notes-group-head{align-items:flex-start;flex-wrap:wrap;row-gap:0.25rem}
+  .notes-group-title{white-space:nowrap}
+  .notes-group-sub{flex-basis:100%;padding-left:1.05rem;line-height:1.45}
+  .stack-stage{grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;height:auto;overflow:visible;padding:0.2rem 0 0.5rem;perspective:none}
+  .stack-note-card,.stack-stage:hover .stack-note-card,.stack-stage:focus-within .stack-note-card{position:relative;left:auto;top:auto;width:auto;height:232px;margin-left:0;transform:translateY(0)!important}
+  .stack-note-card:hover,.stack-note-card:focus-visible{transform:translateY(-6px)!important}
+  .note-name{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .stack-note-card{transition:none}
+}
+
 
 /* SPLASH */
 .splash{position:fixed;inset:0;background:#f2f2ee;overflow:hidden;z-index:9000;cursor:pointer}
@@ -1265,101 +1375,168 @@ body.splash-active nav{opacity:0;visibility:hidden;pointer-events:none}
 <!-- ④ 学习与探索 -->
 <section class="section" id="learning">
   <div class="page-title">学习与探索</div>
-  <p style="font-size:14px;color:var(--text2);margin-bottom:2.5rem">持续学习，主动补齐能力边界</p>
-  <div class="top-row">
-    <div>
-      <div class="section-label"><i class="ti ti-progress"></i> 正在学习</div>
-      <div class="learn-list">
-        <div class="learn-card"><div class="learn-top"><div class="learn-title">数据分析师课程</div><div class="learn-pct">40%</div></div><div class="learn-meta">Excel · SQL · Power BI · Python · AIGC · 数据云堂第 23 期</div><div class="bar-bg"><div class="bar-fill bar-blue" style="width:40%"></div></div><span class="learn-status status-active">进行中</span></div>
-        <div class="learn-card"><div class="learn-top"><div class="learn-title">MySQL 数据库基础</div><div class="learn-pct">25%</div></div><div class="learn-meta">数据库基础 · 可视化工具 · 连接配置</div><div class="bar-bg"><div class="bar-fill bar-green" style="width:25%"></div></div><span class="learn-status status-active">进行中</span></div>
-        <div class="learn-card"><div class="learn-top"><div class="learn-title">Python 编程基础</div><div class="learn-pct">20%</div></div><div class="learn-meta">Python 基础语法 · 数据处理 · 代码编程</div><div class="bar-bg"><div class="bar-fill bar-purple" style="width:20%"></div></div><span class="learn-status status-start">刚起步</span></div>
-        <div class="learn-card"><div class="learn-top"><div class="learn-title">Vibe Coding · 个人网页搭建</div><div class="learn-pct">100%</div></div><div class="learn-meta">HTML · CSS · AI 辅助开发 · 个人品牌建设</div><div class="bar-bg"><div class="bar-fill bar-teal" style="width:100%"></div></div><span class="learn-status status-complete">已完成</span></div>
-      </div>
-    </div>
-    <div>
-      <div class="section-label"><i class="ti ti-sparkles"></i> 动态展示区</div>
-      <div class="dynamic-box">
-        <div class="research-module-title"><i class="ti ti-notebook"></i> 研究笔记</div>
-        <div class="research-list">
-          <button class="research-card" type="button" onclick="openResearchModal('aluminum')">
-            <div class="research-card-top">
-              <div class="research-card-icon"><i class="ti ti-chart-candle"></i></div>
-              <span class="research-card-status">持续更新中</span>
-            </div>
-            <div class="research-card-title">铝行业研究笔记</div>
-            <div class="research-card-desc">梳理铝产业链、吨铝成本结构与重点企业布局，用交互卡片拆解成本敏感性和利润逻辑。</div>
-            <div class="research-card-tags">
-              <span>产业链分析</span>
-              <span>成本模型</span>
-              <span>行业研究</span>
-            </div>
-            <div class="research-card-link">展开笔记 <i class="ti ti-arrows-maximize"></i></div>
-          </button>
-          <button class="research-card" type="button" onclick="openResearchModal('automotive')">
-            <div class="research-card-top">
-              <div class="research-card-icon blue"><i class="ti ti-car"></i></div>
-              <span class="research-card-status blue">新增</span>
-            </div>
-            <div class="research-card-title">汽车行业分析笔记</div>
-            <div class="research-card-desc">拆解新能源竞争变化、汽车平台格局、线索转化指标与 CPS 成交模式，形成渠道经营判断。</div>
-            <div class="research-card-tags">
-              <span>行业变化</span>
-              <span>平台格局</span>
-              <span>转化指标</span>
-            </div>
-            <div class="research-card-link">展开笔记 <i class="ti ti-arrows-maximize"></i></div>
-          </button>
+  <p class="learning-subtitle">持续学习，主动补齐能力边界。</p>
+  <div class="learning-shell">
+    <div class="learning-overview">
+      <div class="learning-column">
+        <div class="learning-section-head">
+          <div class="learning-head-title"><i class="ti ti-compass"></i> 当前关注</div>
+          <div class="learning-head-kicker">当前重点</div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-row">
-    <div>
-      <div class="section-label"><i class="ti ti-certificate"></i> 备考计划</div>
-      <div class="exam-card">
-        <div class="exam-top"><div class="exam-icon"><i class="ti ti-award"></i></div><div><div class="exam-name">CIA 国际注册内部审计师</div><div class="exam-full">Certified Internal Auditor</div></div></div>
-        <div class="exam-parts">
-          <div class="exam-part" data-exam-date="2026-06-06T09:00:00">
-            <div class="exam-part-header">
-              <div>
-                <div class="exam-part-title">第一部分</div>
-                <div class="exam-part-date"><i class="ti ti-calendar" style="font-size:12px"></i> 2026年6月6日</div>
-              </div>
-              <span class="learn-status status-active">6/6</span>
+        <div class="learning-line-list">
+          <div class="learning-line">
+            <div class="learning-index">01</div>
+            <div>
+              <div class="learning-line-title">数据分析与 SQL/Python</div>
+              <div class="learning-line-desc">从工具能力补到业务分析表达</div>
             </div>
-            <div class="countdown-row">
-              <div class="countdown-item"><div class="countdown-num" data-countdown="days">--</div><div class="countdown-unit">天</div></div>
-              <div class="countdown-item"><div class="countdown-num" data-countdown="hours">--</div><div class="countdown-unit">小时</div></div>
-              <div class="countdown-item"><div class="countdown-num" data-countdown="mins">--</div><div class="countdown-unit">分钟</div></div>
-            </div>
+            <div class="learning-line-state">学习中</div>
           </div>
-          <div class="exam-part" data-exam-date="2026-06-13T09:00:00">
-            <div class="exam-part-header">
-              <div>
-                <div class="exam-part-title">第二部分</div>
-                <div class="exam-part-date"><i class="ti ti-calendar" style="font-size:12px"></i> 2026年6月13日</div>
-              </div>
-              <span class="learn-status status-active">6/13</span>
+          <div class="learning-line">
+            <div class="learning-index">02</div>
+            <div>
+              <div class="learning-line-title">AI 辅助分析工作流</div>
+              <div class="learning-line-desc">测试清洗、摘要、竞品分析等提效场景</div>
             </div>
-            <div class="countdown-row">
-              <div class="countdown-item"><div class="countdown-num" data-countdown="days">--</div><div class="countdown-unit">天</div></div>
-              <div class="countdown-item"><div class="countdown-num" data-countdown="hours">--</div><div class="countdown-unit">小时</div></div>
-              <div class="countdown-item"><div class="countdown-num" data-countdown="mins">--</div><div class="countdown-unit">分钟</div></div>
+            <div class="learning-line-state amber">实验中</div>
+          </div>
+          <div class="learning-line">
+            <div class="learning-index">03</div>
+            <div>
+              <div class="learning-line-title">CIA / 内部审计方法论</div>
+              <div class="learning-line-desc">将审计知识与项目经验整理成方法卡</div>
             </div>
+            <div class="learning-line-state">复盘中</div>
+          </div>
+          <div class="learning-line">
+            <div class="learning-index">04</div>
+            <div>
+              <div class="learning-line-title">行业研究框架</div>
+              <div class="learning-line-desc">用产业链、竞争格局和指标拆解商业问题</div>
+            </div>
+            <div class="learning-line-state">输出中</div>
           </div>
         </div>
-        <div class="exam-date"><i class="ti ti-calendar" style="font-size:13px"></i> 考试共两部分：6月6日、6月13日</div>
-        <div class="exam-desc">CIA是全球公认的内部审计专业认证，覆盖内部审计基础、实务与知识要素三大模块。结合德勤3年审计实战经验备考，强化专业认证背书。</div>
+      </div>
+
+      <div class="learning-column">
+        <div class="learning-section-head">
+          <div class="learning-head-title"><i class="ti ti-route"></i> 我的学习方式</div>
+          <div class="learning-head-kicker">学习方法</div>
+        </div>
+        <ol class="method-thread">
+          <li>
+            <div class="method-num">01</div>
+            <div class="method-title">输入新知识</div>
+            <div class="method-desc">课程、报告、案例和真实业务问题</div>
+          </li>
+          <li>
+            <div class="method-num">02</div>
+            <div class="method-title">拆成框架</div>
+            <div class="method-desc">先搭结构，再补数据和判断口径</div>
+          </li>
+          <li>
+            <div class="method-num">03</div>
+            <div class="method-title">找案例验证</div>
+            <div class="method-desc">用行业、公司或生活现象做小型验证</div>
+          </li>
+          <li>
+            <div class="method-num">04</div>
+            <div class="method-title">沉淀成作品</div>
+            <div class="method-desc">形成研究笔记、方法卡或网页小项目</div>
+          </li>
+        </ol>
+        <div class="learning-reflection">我更关注学习后的沉淀：能否把一个新问题讲清楚、拆明白，并转成可以复用的结构。</div>
       </div>
     </div>
-    <div>
-      <div class="section-label"><i class="ti ti-bulb"></i> 趣味研究</div>
-      <div class="topic-intro">把行业观察、AI 实验和生活数据变成小型研究。</div>
-      <div class="topic-grid">
-        <button class="topic-card" type="button" onclick="openResearchModal('gaokaoRain')"><div class="topic-icon"><i class="ti ti-cloud-rain"></i></div><div class="topic-title">高考为什么总在下雨？</div><div class="topic-desc">用气象数据、认知偏误和媒体传播解释一个集体记忆。</div><div class="topic-status">已成文</div></button>
-        <div class="topic-card"><div class="topic-icon"><i class="ti ti-sparkles"></i></div><div class="topic-title">AI 会怎样改变分析师工作流？</div><div class="topic-desc">测试数据清洗、报告摘要与竞品分析三个场景的提效方式。</div><div class="topic-status">观察中</div></div>
-        <div class="topic-card"><div class="topic-icon"><i class="ti ti-car"></i></div><div class="topic-title">新能源车为什么越来越像消费品？</div><div class="topic-desc">关注价格策略、渠道打法和用户转化路径的变化。</div><div class="topic-status">待验证</div></div>
-        <div class="topic-card"><div class="topic-icon"><i class="ti ti-chart-bar"></i></div><div class="topic-title">经营问题如何翻译成指标？</div><div class="topic-desc">把业务问题拆成指标、看板和可执行的决策建议。</div><div class="topic-status">方法卡</div></div>
+
+    <div class="learning-soft-divider"></div>
+
+    <div class="lab-panel exploration-panel">
+      <div class="exploration-head">
+        <div>
+          <div class="exploration-title">探索笔记</div>
+          <div class="exploration-desc">一半是商业研究，一半是好奇心实验。</div>
+        </div>
+        <div class="notes-hint">3 已上线 · 5 更新中</div>
+      </div>
+
+      <div class="notes-stack-board">
+        <div class="notes-stack">
+          <div class="notes-group-head">
+            <div class="notes-group-dot"></div>
+            <div class="notes-group-title">商业研究</div>
+            <div class="notes-group-sub">行业 / 公司 / 商业模式</div>
+          </div>
+          <div class="stack-stage" aria-label="研究笔记卡片组">
+            <button class="stack-note-card" type="button" onclick="openResearchModal('aluminum')" style="--rest-x:-72px;--rest-y:5px;--rest-r:-7deg;--open-x:-120px;--tablet-x:-105px;--open-y:10px;--open-r:-7deg;--z:1">
+              <div class="note-icon"><i class="ti ti-chart-candle"></i></div>
+              <div class="note-number">01</div>
+              <div class="note-name">铝行业研究</div>
+              <div class="note-desc">产业链 / 成本模型</div>
+              <div class="note-status">已上线</div>
+            </button>
+            <div class="stack-note-card is-planned" style="--rest-x:-24px;--rest-y:-2px;--rest-r:-2deg;--open-x:-50px;--tablet-x:-44px;--open-y:-4px;--open-r:-2deg;--z:2">
+              <div class="note-icon clay"><i class="ti ti-video"></i></div>
+              <div class="note-number">02</div>
+              <div class="note-name">快手商业化</div>
+              <div class="note-desc">广告产品 / 增长路径</div>
+              <div class="note-status">整理中</div>
+            </div>
+            <button class="stack-note-card" type="button" onclick="openResearchModal('automotive')" style="--rest-x:24px;--rest-y:4px;--rest-r:3deg;--open-x:50px;--tablet-x:44px;--open-y:8px;--open-r:3deg;--z:3">
+              <div class="note-icon blue"><i class="ti ti-car"></i></div>
+              <div class="note-number">03</div>
+              <div class="note-name">汽车行业</div>
+              <div class="note-desc">平台格局 / 转化指标</div>
+              <div class="note-status">已上线</div>
+            </button>
+            <button class="stack-note-card" type="button" onclick="openResearchModal('robam')" style="--rest-x:72px;--rest-y:0px;--rest-r:7deg;--open-x:120px;--tablet-x:105px;--open-y:2px;--open-r:7deg;--z:4">
+              <div class="note-icon amber"><i class="ti ti-building-store"></i></div>
+              <div class="note-number">04</div>
+              <div class="note-name">中国·旅游零售</div>
+              <div class="note-desc">渠道 / 品类结构</div>
+              <div class="note-status">2026年6月</div>
+            </button>
+          </div>
+        </div>
+
+        <div class="notes-stack is-curiosity-stack">
+          <div class="notes-group-head">
+            <div class="notes-group-dot"></div>
+            <div class="notes-group-title">好奇心实验</div>
+            <div class="notes-group-sub">生活现象 / AI 实验 / 小问题研究</div>
+          </div>
+          <div class="stack-stage" aria-label="趣味研究卡片组">
+            <button class="stack-note-card is-curiosity" type="button" onclick="openResearchModal('gaokaoRain')" style="--rest-x:-72px;--rest-y:1px;--rest-r:-8deg;--open-x:-120px;--tablet-x:-105px;--open-y:4px;--open-r:-8deg;--z:1">
+              <div class="note-icon blue"><i class="ti ti-cloud-rain"></i></div>
+              <div class="note-number">01</div>
+              <div class="note-name">高考为什么总在下雨？</div>
+              <div class="note-desc">气象数据 / 认知偏误</div>
+              <div class="note-status">6月7日</div>
+            </button>
+            <div class="stack-note-card is-planned is-curiosity" style="--rest-x:-24px;--rest-y:5px;--rest-r:-3deg;--open-x:-50px;--tablet-x:-44px;--open-y:10px;--open-r:-3deg;--z:2">
+              <div class="note-icon clay"><i class="ti ti-sparkles"></i></div>
+              <div class="note-number">02</div>
+              <div class="note-name">AI 工作流实验</div>
+              <div class="note-desc">清洗 / 摘要 / 竞品分析</div>
+              <div class="note-status">实验中</div>
+            </div>
+            <div class="stack-note-card is-planned is-curiosity" style="--rest-x:24px;--rest-y:-3px;--rest-r:2deg;--open-x:50px;--tablet-x:44px;--open-y:-4px;--open-r:2deg;--z:3">
+              <div class="note-icon amber"><i class="ti ti-chart-dots"></i></div>
+              <div class="note-number">03</div>
+              <div class="note-name">生活数据观察</div>
+              <div class="note-desc">日常数据 / 小型验证</div>
+              <div class="note-status">待补充</div>
+            </div>
+            <div class="stack-note-card is-planned is-curiosity" style="--rest-x:72px;--rest-y:2px;--rest-r:8deg;--open-x:120px;--tablet-x:105px;--open-y:6px;--open-r:8deg;--z:4">
+              <div class="note-icon paper"><i class="ti ti-bulb"></i></div>
+              <div class="note-number">04</div>
+              <div class="note-name">消费现象小记</div>
+              <div class="note-desc">用户选择 / 传播记忆</div>
+              <div class="note-status">待补充</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1643,16 +1820,24 @@ function closeContactModalDirect(){
 const researchNotes={
   aluminum:{title:'铝行业研究笔记',src:'aluminum_research.html'},
   automotive:{title:'汽车行业分析笔记',src:'automotive_analysis_final.html'},
-  gaokaoRain:{title:'高考为什么总在下雨？',src:'gaokao_rain_research.html'}
+  gaokaoRain:{title:'高考为什么总在下雨？',src:'gaokao_rain_research.html'},
+  robam:{title:'中国·旅游零售业务研究',src:'robam_appliances.html',srcEn:'robam_appliances_EN.html'}
 };
+let currentResearchNote='aluminum';
+function getResearchSrc(item){
+  return currentLang==='en'&&item.srcEn?item.srcEn:item.src;
+}
 function openResearchModal(note='aluminum'){
   const item=researchNotes[note]||researchNotes.aluminum;
+  currentResearchNote=researchNotes[note]?note:'aluminum';
   const title=document.getElementById('research-modal-title');
   const frame=document.getElementById('research-frame');
+  const src=getResearchSrc(item);
   const displayTitle=currentLang==='en'?translateText(item.title,'en'):item.title;
-  title.innerHTML=`<i class="ti ti-notebook"></i> ${displayTitle}`;
-  if(frame.getAttribute('src')!==item.src) frame.setAttribute('src',item.src);
-  frame.setAttribute('title',item.title);
+  const modalLabel=currentLang==='en'?'Research Notes':'研究笔记';
+  title.innerHTML=`<i class="ti ti-notebook"></i> ${modalLabel}`;
+  if(frame.getAttribute('src')!==src) frame.setAttribute('src',src);
+  frame.setAttribute('title',displayTitle);
   document.getElementById('research-modal-overlay').classList.add('show');
   document.body.style.overflow='hidden';
 }
@@ -1889,6 +2074,56 @@ const EN_TEXT_MAP={
   '中文（母语）':'Chinese (Native)',
   '英语（流利）':'English (Fluent)',
   '学习与探索':'Learning',
+  '持续学习，主动补齐能力边界。':'Continuous learning, actively expanding capability boundaries.',
+  '我把新的能力补齐过程，沉淀成研究笔记、方法卡和小型项目。':'I turn new capability-building into research notes, method cards, and small projects.',
+  '当前关注':'Current Focus',
+  '数据分析与 SQL/Python':'Data Analysis & SQL/Python',
+  '从工具能力补到业务分析表达':'From tool skills to business analysis communication',
+  '学习中':'Learning',
+  'AI 辅助分析工作流':'AI-assisted Analysis Workflow',
+  '测试清洗、摘要、竞品分析等提效场景':'Testing efficiency gains in cleaning, summaries, and competitor analysis',
+  '实验中':'Experimenting',
+  'CIA / 内部审计方法论':'CIA / Internal Audit Methodology',
+  '将审计知识与项目经验整理成方法卡':'Turning audit knowledge and project experience into method cards',
+  '复盘中':'Reviewing',
+  '行业研究框架':'Industry Research Framework',
+  '用产业链、竞争格局和指标拆解商业问题':'Using value chains, competition, and metrics to break down business questions',
+  '输出中':'Publishing',
+  '我的学习方式':'How I Learn',
+  '输入新知识':'Input New Knowledge',
+  '课程、报告、案例和真实业务问题':'Courses, reports, cases, and real business questions',
+  '拆成框架':'Structure It',
+  '先搭结构，再补数据和判断口径':'Build the structure first, then add data and judgment criteria',
+  '找案例验证':'Test With Cases',
+  '用行业、公司或生活现象做小型验证':'Use industries, companies, or everyday phenomena for small tests',
+  '沉淀成作品':'Publish as Work',
+  '形成研究笔记、方法卡或网页小项目':'Turn it into research notes, method cards, or small web projects',
+  '我更关注学习后的沉淀：能否把一个新问题讲清楚、拆明白，并转成可以复用的结构。':'I care most about what remains after learning: whether I can explain a new problem clearly, break it down, and turn it into a reusable structure.',
+  '一半是商业研究，一半是好奇心实验。':'Half business research, half curiosity experiments.',
+  '3 已上线 · 5 更新中':'3 Published · 5 In Progress',
+  '横向滑动':'Swipe Horizontally',
+  '行业 / 公司 / 商业模式':'Industries / Companies / Business Models',
+  '生活现象 / AI 实验 / 小问题研究':'Life Phenomena / AI Experiments / Small Questions',
+  '铝行业研究':'Aluminum Research',
+  '产业链 / 成本模型':'Value Chain / Cost Model',
+  '已上线':'Published',
+  '快手商业化':'Kuaishou Monetization',
+  '广告产品 / 增长路径':'Ad Products / Growth Path',
+  '整理中':'In Draft',
+  '中国·旅游零售':'China Travel Retail',
+  '中国·旅游零售业务研究':'China Travel Retail Business Research',
+  '渠道 / 品类结构':'Channels / Category Mix',
+  '待补充':'To Add',
+  '汽车行业':'Automotive Industry',
+  '平台格局 / 转化指标':'Platform Landscape / Conversion Metrics',
+  '高考为什么总在下雨？':'Why Does It Always Rain During Gaokao?',
+  '气象数据 / 认知偏误':'Weather Data / Cognitive Bias',
+  'AI 工作流实验':'AI Workflow Experiments',
+  '清洗 / 摘要 / 竞品分析':'Cleaning / Summaries / Competitor Analysis',
+  '生活数据观察':'Life Data Observations',
+  '日常数据 / 小型验证':'Everyday Data / Small Tests',
+  '消费现象小记':'Consumer Phenomena Notes',
+  '用户选择 / 传播记忆':'User Choices / Shared Memory',
   '持续学习，主动补齐能力边界':'Continuous learning to expand capability boundaries',
   '正在学习':'Currently Learning',
   '数据分析师课程':'Data Analyst Program',
@@ -1930,6 +2165,8 @@ const EN_TEXT_MAP={
   'CIA 国际注册内部审计师':'CIA Certified Internal Auditor',
   '第一部分':'Part 1',
   '第二部分':'Part 2',
+  '2026年6月':'June 2026',
+  '6月7日':'June 7',
   '2026年6月6日':'June 6, 2026',
   '2026年6月13日':'June 13, 2026',
   '天':'Days',
@@ -2308,7 +2545,12 @@ const EN_TEXT_MAP={
   '地域':'Region',
   '客户':'Customer',
   '产品业务':'Products & Services',
-  '渠道':'Channel'
+  '渠道':'Channel',
+  '探索笔记':'Exploration Notes',
+  '商业研究':'Research Notes',
+  '好奇心实验':'Curiosity Notes',
+  '当前重点':'Current Focus',
+  '学习方法':'How I Learn'
 };
 
 const ZH_TEXT_MAP=Object.fromEntries(Object.entries(EN_TEXT_MAP).map(([zh,en])=>[en,zh]));
@@ -2389,6 +2631,9 @@ function applyLanguage(lang){
   translateElement(document.body,lang);
   if(currentModalIndex!==null&&document.getElementById('overlay').classList.contains('show')){
     openModal(currentModalIndex);
+  }
+  if(document.getElementById('research-modal-overlay').classList.contains('show')){
+    openResearchModal(currentResearchNote);
   }
   startTyping(lang);
 }
